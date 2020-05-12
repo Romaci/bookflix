@@ -30,6 +30,11 @@ Perfil >> initialize [
 ]
 
 { #category : #accessing }
+Perfil >> nombre [
+	^nombre.
+]
+
+{ #category : #accessing }
 Perfil >> nombre: unNombre [
 
 	nombre:= unNombre.
