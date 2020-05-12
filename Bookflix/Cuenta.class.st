@@ -20,12 +20,12 @@ Cuenta class >> conMail:unMail Pass: unaPass nombre: unNombre nroTarjeta: unNro 
 ]
 
 { #category : #'as yet unclassified' }
-Cuenta class >> conNombre:unNombre Nombre: unMail ypass: unaPass [ 
-^self new conNombre:unNombre Nombre: unMail ypass: unaPass.
+Cuenta class >> conNombre:unNombre mail: unMail ypass: unaPass [ 
+^self new conNombre:unNombre mail: unMail ypass: unaPass.
 ]
 
 { #category : #'as yet unclassified' }
-Cuenta >> conNombre:unNombre Nombre: unMail ypass: unaPass [
+Cuenta >> conNombre:unNombre mail: unMail ypass: unaPass [
 	
 	nombre:= unNombre.
 	mail:= unMail.
