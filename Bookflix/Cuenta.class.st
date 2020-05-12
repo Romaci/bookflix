@@ -16,7 +16,7 @@ Cuenta class >> conNombre:unNombre mail: unMail yPass: unaPass [
 ]
 
 { #category : #initialization }
-Cuenta >> agregarPerfilConNombre: unNombre. [
+Cuenta >> agregarPerfilConNombre: unNombre [.
 
 	perfiles add: (Perfil conNombre:unNombre).
 ]
