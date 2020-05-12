@@ -5,19 +5,10 @@ Class {
 		'nombre',
 		'mail',
 		'password',
-		'perfiles',
-		'nroTarjeta',
-		'codSeg',
-		'dateExp',
-		'titular'
+		'perfiles'
 	],
 	#category : #'Bookflix-model'
 }
-
-{ #category : #'as yet unclassified' }
-Cuenta class >> conMail:unMail Pass: unaPass nombre: unNombre nroTarjeta: unNro codSeg:unCod dateExp: unaFecha titular:unTit [
-^self new conMail:unMail Pass: unaPass nombre: unNombre nroTarjeta: unNro codSeg:unCod dateExp: unaFecha titular:unTit.
-]
 
 { #category : #'as yet unclassified' }
 Cuenta class >> conNombre:unNombre mail: unMail yPass: unaPass [ 

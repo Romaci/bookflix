@@ -28,12 +28,14 @@ SistemaBookflix >> initialize [
 { #category : #'as yet unclassified' }
 SistemaBookflix >> registrarCuentaDe: unNombre mail: unMail yPass: unaPass [
 	|ok|
+	
 	ok:=false.
 	(cuentas anySatisfy: [:cuenta| cuenta mail == unMail ])
 	ifFalse: [ 
 	cuentas add: (Cuenta conNombre:unNombre mail: unMail yPass: unaPass ).
 	ok:= true.
 	].
+	"Devuelvo boolean para confirmar la carga. Si ya existe usurio devuelve false y notifica en pantalla"
 	^ok.
 	
 ]
