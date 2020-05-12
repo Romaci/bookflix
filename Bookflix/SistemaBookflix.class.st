@@ -26,19 +26,6 @@ SistemaBookflix >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarCuenta: unMail pass: unaPass [
-	|ok|
-	ok:=false.
-	(cuentas anySatisfy: [:cuenta| cuenta mail == unMail ])
-	ifFalse:  [ 
-	cuentas add: (Cuenta conMail:unMail pass:unaPass ).
-	ok:= true.
-	].
-	^ok.
-	
-]
-
-{ #category : #'as yet unclassified' }
 SistemaBookflix >> registrarCuentaDe: unNombre Nombre: unMail ypass: unaPass [
 	|ok|
 	ok:=false.
