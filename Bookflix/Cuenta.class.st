@@ -45,3 +45,9 @@ Cuenta >> mail [
 
 	^mail.
 ]
+
+{ #category : #accessing }
+Cuenta >> nombre [
+	
+ ^nombre.
+]
