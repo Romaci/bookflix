@@ -28,3 +28,9 @@ Perfil >> initialize [
 	historial:= OrderedCollection new.
 	recomendados:= OrderedCollection new.
 ]
+
+{ #category : #accessing }
+Perfil >> nombre: unNombre [
+
+	nombre:= unNombre.
+]
