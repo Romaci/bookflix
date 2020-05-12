@@ -15,12 +15,21 @@ Cuenta class >> conNombre:unNombre mail: unMail yPass: unaPass [
 ^self new conNombre:unNombre mail: unMail yPass: unaPass.
 ]
 
+{ #category : #initialization }
+Cuenta >> agregarPerfilConNombre: unNombre. [
+
+	perfiles add: (Perfil conNombre:unNombre).
+]
+
 { #category : #'as yet unclassified' }
 Cuenta >> conNombre:unNombre mail: unMail yPass: unaPass [
 	
 	nombre:= unNombre.
 	mail:= unMail.
 	password := unaPass.
+	self agregarPerfilConNombre:'Perfil 1'.
+	self agregarPerfilConNombre:'Perfil 2'.
+	
 	
 ]
 
