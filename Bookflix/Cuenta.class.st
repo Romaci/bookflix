@@ -36,3 +36,13 @@ Cuenta >> mail [
 
 	^mail.
 ]
+
+{ #category : #accessing }
+Cuenta >> nombre [
+^nombre
+]
+
+{ #category : #accessing }
+Cuenta >> password [
+^password
+]
