@@ -9,6 +9,9 @@ Class {
 		'editoriales',
 		'novedades'
 	],
+	#classInstVars : [
+		'soleInstance'
+	],
 	#category : #'Bookflix-model'
 }
 
