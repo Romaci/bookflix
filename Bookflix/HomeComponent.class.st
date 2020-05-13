@@ -13,6 +13,12 @@ HomeComponent >> initialize [
 super initialize 
 ]
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> logOut [ 
+
+	self show: (LoginComponent new )
+]
+
 { #category : #accessing }
 HomeComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
@@ -31,7 +37,7 @@ HomeComponent >> renderLogoutButtonOn: aCanvas [
 
 	aCanvas
 		paragraph:[ aCanvas anchor
-				callback: [ self answer ];
+				callback: [ self logOut ];
 				with: [ aCanvas button with: 'Cerrar Sesión' ]].
 ]
 

@@ -16,7 +16,7 @@ BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance .
 
 
 
-    I
+ 
 "
 Class {
 	#name : #LoginComponent,
