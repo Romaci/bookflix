@@ -12,3 +12,9 @@ Class {
 	],
 	#category : #'Bookflix-model'
 }
+
+{ #category : #accessing }
+Libro >> titulo [
+	
+	^titulo.
+]
