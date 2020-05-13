@@ -40,7 +40,7 @@ Cuenta >> mail [
 { #category : #accessing }
 Cuenta >> nombre [
 
-^nombre.
+ ^nombre.
 ]
 
 { #category : #accessing }
