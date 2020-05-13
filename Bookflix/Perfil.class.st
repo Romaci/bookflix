@@ -37,5 +37,5 @@ Perfil >> nombre [
 { #category : #accessing }
 Perfil >> nombre: unNombre [
 
-	nombre:= unNombre.
+nombre:= unNombre.
 ]
