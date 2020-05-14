@@ -52,6 +52,10 @@ aCanvas horizontalRule
 			with: 'Iniciar sesión'.].]]
 ]
 
+{ #category : #'as yet unclassified' }
+RegistroComponent >> prueba [
+]
+
 { #category : #rendering }
 RegistroComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
