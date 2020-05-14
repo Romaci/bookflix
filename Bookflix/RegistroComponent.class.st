@@ -30,6 +30,13 @@ aCanvas horizontalRule
 					aCanvas textInput 
 						callback: [ :valor| self setApellido:valor];
 					with: ''.].
+				
+				aCanvas 
+				paragraph: [ aCanvas label: 'Email: '.
+					aCanvas textInput 
+						callback: [ :valor| self setEmail:valor];
+					with: ''.].
+		
 		
 		aCanvas 
 				paragraph: [ aCanvas label: 'Nombre de usuario: '.
@@ -51,11 +58,12 @@ aCanvas horizontalRule
 	
 		aCanvas button
 			callback: [self registrar  ];
-			with: 'Iniciar sesión'.].]]
+			with: 'Registrarme'.].]]
 ]
 
 { #category : #'as yet unclassified' }
 RegistroComponent >> irLogin [
+
 
 self call: LoginComponent new.
 
@@ -74,8 +82,8 @@ RegistroComponent >> registrar [
 		ifNil: [ self model registrarCuentaDe: user conNombre: nombre conApellido: apellido conMail: mail  yPass: password. 
 			
 			self irLogin].
-	 user := nil.
-	password := nil
+	 "user := nil.
+	password := nil"
 
 
 ]
@@ -92,6 +100,12 @@ self titleTop: aCanvas.
 RegistroComponent >> setApellido:unApe [
 
 apellido :=unApe. 
+]
+
+{ #category : #initialization }
+RegistroComponent >> setEmail:unEmail [
+
+mail:=unEmail . 
 ]
 
 { #category : #initialization }

@@ -53,12 +53,15 @@ aCanvas horizontalRule
 		aCanvas button
 			callback: [self login ];
 			with: 'Iniciar sesión'.
-	
-	aCanvas button
+		
+		
+		aCanvas button
 			callback: [self irRegistro ];
-			with: 'Registrarse'.].].
-	
-	]
+			with: 'Registrarse'.].
+		]. ].
+
+
+
 ]
 
 { #category : #initialization }
