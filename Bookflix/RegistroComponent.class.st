@@ -1,30 +1,9 @@
-"
-|application|
-
-""--------------------------------SEASIDE REGISTRO--------------------------------------""
-
-
-application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.
-application sessionClass: SessionWithUser.
-WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
-WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
-
-
-
-""----------------------------------------------------------------------------------------""
-SistemaBookflix clearSoleInstance .
-BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
-
-
-
-
-    I
-"
 Class {
-	#name : #LoginComponent,
+	#name : #RegistroComponent,
 	#superclass : #WAComponent,
 	#instVars : [
+		'nombre',
+		'apellido',
 		'user',
 		'password'
 	],
@@ -32,12 +11,25 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-LoginComponent >> formularioLogin:aCanvas [
+RegistroComponent >> formularioRegistro:aCanvas [
 
 aCanvas horizontalRule 
 		with: [aCanvas div
 		id: 'formLogin';
+		
 		with: [ aCanvas form: [aCanvas 
+				paragraph: [ aCanvas label: 'Nombre: '.
+					aCanvas textInput 
+						callback: [ :valor| self setNombre:valor];
+					with: ''.].
+				
+			aCanvas 
+				paragraph: [ aCanvas label: 'Apellido: '.
+					aCanvas textInput 
+						callback: [ :valor| self setApellido:valor];
+					with: ''.].
+		
+		aCanvas 
 				paragraph: [ aCanvas label: 'Nombre de usuario: '.
 					aCanvas textInput 
 						callback: [ :valor| self setUser:valor];
@@ -48,73 +40,58 @@ aCanvas horizontalRule
 					aCanvas passwordInput
 					callback: [ :valor| self setPassword:valor];
 					with: ''.].
+				
+				aCanvas paragraph: [ aCanvas label: 'Repetir Password: '.
+					aCanvas passwordInput
+					callback: [ :valor| self setPasswordRepetida:valor];
+					with: ''.].
  
 	
 		aCanvas button
 			callback: [self login ];
-			with: 'Iniciar sesión'.
-	
-	aCanvas button
-			callback: [self irRegistro ];
-			with: 'Registrarse'.].].
-	
-	]
-]
-
-{ #category : #initialization }
-LoginComponent >> initialize [
-	super initialize. 
-	
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponent >> irHome: aUser [
-
-self session setUser:aUser.
-
-self call: HomeComponent new.
-
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponent >> irRegistro [ 
-   self call: RegistroComponent new.
-]
-
-{ #category : #'private protocol' }
-LoginComponent >> login [ 
-(self model withUsername:user ypass:password)
-		ifNotNil: [ :it | self irHome:it ].
-	user:= nil.
-	password := nil
-]
-
-{ #category : #accessing }
-LoginComponent >> model [
-^ SistemaBookflix soleInstance
+			with: 'Iniciar sesión'.].]]
 ]
 
 { #category : #rendering }
-LoginComponent >> renderContentOn: aCanvas [
+RegistroComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
-		with: [ self formularioLogin: aCanvas ]
- 
+		with: [ self formularioRegistro: aCanvas ]
 ]
 
 { #category : #initialization }
-LoginComponent >> setPassword:unaPass [
-password :=unaPass. 
+RegistroComponent >> setApellido:unApe [
+
+apellido :=unApe. 
 ]
 
-{ #category : #'as yet unclassified' }
-LoginComponent >> setUser: unUser [
-user:= unUser.
+{ #category : #initialization }
+RegistroComponent >> setNombre:unNombre [
+
+nombre:=unNombre . 
+]
+
+{ #category : #initialization }
+RegistroComponent >> setPassword: unaPass [
+
+password :=unaPass . 
+]
+
+{ #category : #initialization }
+RegistroComponent >> setPasswordRepetida:unaPass [
+
+"acá hay que hacer un get de la password que puso eel usuario y fijarse si es igual a la repetida" 
+]
+
+{ #category : #initialization }
+RegistroComponent >> setUser: unUser [
+
+user:=unUser . 
 ]
 
 { #category : #hooks }
-LoginComponent >> style [
+RegistroComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -130,7 +107,7 @@ LoginComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponent >> titleTop: aCanvas [
+RegistroComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
 ]
