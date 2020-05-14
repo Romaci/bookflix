@@ -8,6 +8,8 @@ application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
+WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
+
 
 
 ""----------------------------------------------------------------------------------------""
@@ -16,7 +18,8 @@ BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance .
 
 
 
- 
+
+    I
 "
 Class {
 	#name : #LoginComponent,
