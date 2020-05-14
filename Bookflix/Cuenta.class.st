@@ -2,7 +2,9 @@ Class {
 	#name : #Cuenta,
 	#superclass : #Object,
 	#instVars : [
+		'user',
 		'nombre',
+		'apellido',
 		'mail',
 		'password',
 		'perfiles'
@@ -11,8 +13,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Cuenta class >> conNombre:unNombre mail: unMail yPass: unaPass [ 
-^self new conNombre:unNombre mail: unMail yPass: unaPass.
+Cuenta class >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail: unMail yPass: password [ 
+^self new conUser:unUser conNombre:unNombre conApellido:unApellido conMail: unMail yPass: password 
 ]
 
 { #category : #initialization }
@@ -22,15 +24,16 @@ Cuenta >> agregarPerfilConNombre: unNombre. [
 ]
 
 { #category : #'as yet unclassified' }
-Cuenta >> conNombre:unNombre mail: unMail yPass: unaPass [
+Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
+
 	
 	nombre:= unNombre.
+	apellido:=unApellido .
+	user:=unUser .
 	mail:= unMail.
 	password := unaPass.
 	self agregarPerfilConNombre:'Perfil 1'.
 	self agregarPerfilConNombre:'Perfil 2'.
-	
-	
 ]
 
 { #category : #initialization }
@@ -55,4 +58,9 @@ Cuenta >> nombre [
 { #category : #accessing }
 Cuenta >> password [
 ^password
+]
+
+{ #category : #accessing }
+Cuenta >> user [ 
+^user
 ]
