@@ -2,6 +2,8 @@ Class {
 	#name : #RegistroComponent,
 	#superclass : #WAComponent,
 	#instVars : [
+		'model',
+		'mail',
 		'nombre',
 		'apellido',
 		'user',
@@ -41,19 +43,41 @@ aCanvas horizontalRule
 					callback: [ :valor| self setPassword:valor];
 					with: ''.].
 				
-				aCanvas paragraph: [ aCanvas label: 'Repetir Password: '.
+				"aCanvas paragraph: [ aCanvas label: 'Repetir Password: '.
 					aCanvas passwordInput
 					callback: [ :valor| self setPasswordRepetida:valor];
-					with: ''.].
+					with: ''.]."
  
 	
 		aCanvas button
-			callback: [self login ];
+			callback: [self registrar  ];
 			with: 'Iniciar sesión'.].]]
 ]
 
 { #category : #'as yet unclassified' }
-RegistroComponent >> prueba [
+RegistroComponent >> irLogin [
+
+self call: LoginComponent new.
+
+
+]
+
+{ #category : #accessing }
+RegistroComponent >> model [ 
+^ SistemaBookflix soleInstance 
+]
+
+{ #category : #'as yet unclassified' }
+RegistroComponent >> registrar [
+
+	(self model estaRegistradoUsuario: user )
+		ifNil: [ self model registrarCuentaDe: user conNombre: nombre conApellido: apellido conMail: mail  yPass: password. 
+			
+			self irLogin].
+	 user := nil.
+	password := nil
+
+
 ]
 
 { #category : #rendering }

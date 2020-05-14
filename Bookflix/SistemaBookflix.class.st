@@ -25,6 +25,16 @@ SistemaBookflix class >> soleInstance [
 ^ soleInstance ifNil:[soleInstance:= self new]
 ]
 
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoUsuario: nombreUser [ 
+
+"metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
+
+	^cuentas detect: [ :each | each user = nombreUser ]	
+		ifNone: [ nil ]
+		
+]
+
 { #category : #initialization }
 SistemaBookflix >> initialize [
 	
@@ -39,13 +49,13 @@ SistemaBookflix >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarCuentaDe: unNombre mail: unMail yPass: unaPass [
+SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: unApellido conMail: unMail  yPass: password [
 	|ok|
 	
 	ok:=false.
 	(cuentas anySatisfy: [:cuenta| cuenta mail == unMail ])
 	ifFalse: [ 
-	cuentas add: (Cuenta conNombre:unNombre mail: unMail yPass: unaPass ).
+	cuentas add: (Cuenta conUser:unUser conNombre:unNombre conApellido:unApellido mail: unMail yPass: password ).
 	ok:= true.
 	].
 	"Devuelvo boolean para confirmar la carga. Si ya existe usurio devuelve false y notifica en pantalla"

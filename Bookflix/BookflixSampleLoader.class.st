@@ -8,7 +8,7 @@ Class {
 BookflixSampleLoader >> loadExampleDataIn:unSistema [
 |usuario1|
 
-usuario1:=unSistema registrarCuentaDe:'lugosi' mail:'lugosi@bookflix.com' yPass:'1234'.
+usuario1:=unSistema registrarCuentaDe: 'lugosi' conNombre: 'Gato' conApellido: 'Lugosi' conMail: 'lugosi@bookflix.com'  yPass: '1234'.
 
 
 ]
