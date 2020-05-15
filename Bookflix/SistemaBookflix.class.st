@@ -46,6 +46,19 @@ SistemaBookflix >> darDeAltaAutor:unNombre apellido: unApellido fechaDeNac: unaF
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> darDeAltaEditorial: unaEdit [
+	
+	|ok|
+	ok:=false.
+	
+	"Verifico que no este ya cargado en el sistema LA EDITORIAL por dar de alta"
+	(editoriales  anySatisfy:[:editorial | editorial = unaEdit])
+	ifFalse: [editoriales add: unaEdit. 
+		ok:=true].
+	^ok.
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> darDeAltaGenero: unGenero [
 	
 	|ok|
