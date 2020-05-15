@@ -18,7 +18,7 @@ Cuenta class >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail
 ]
 
 { #category : #initialization }
-Cuenta >> agregarPerfilConNombre: unNombre [.
+Cuenta >> agregarPerfilConNombre: unNombre. [
 
 	perfiles add: (Perfil conNombre:unNombre).
 ]
