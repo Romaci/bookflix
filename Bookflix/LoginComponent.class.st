@@ -53,17 +53,21 @@ aCanvas horizontalRule
 		aCanvas button
 			callback: [self login ];
 			with: 'Iniciar sesión'.
-	
-	aCanvas button
+		
+		
+		aCanvas button
 			callback: [self irRegistro ];
-			with: 'Registrarse'.].].
-	
-	]
+			with: 'Registrarse'.].
+		]. ].
+
+
+
 ]
 
 { #category : #initialization }
 LoginComponent >> initialize [
 	super initialize. 
+	
 	
 ]
 
@@ -91,7 +95,9 @@ LoginComponent >> login [
 
 { #category : #accessing }
 LoginComponent >> model [
-^ SistemaBookflix soleInstance
+  self buildMold.
+^ SistemaBookflix soleInstance.
+
 ]
 
 { #category : #rendering }
@@ -99,8 +105,8 @@ LoginComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
-		with: [ self formularioLogin: aCanvas ]
- 
+		with: [ self formularioLogin: aCanvas ].
+		
 ]
 
 { #category : #initialization }

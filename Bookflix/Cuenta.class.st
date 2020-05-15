@@ -13,8 +13,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Cuenta class >> conNombre:unNombre mail: unMail yPass: unaPass [ 
-^self new conNombre:unNombre mail: unMail yPass: unaPass.
+Cuenta class >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail: unMail yPass: password [ 
+^self new conUser:unUser conNombre:unNombre conApellido:unApellido conMail: unMail yPass: password 
 ]
 
 { #category : #initialization }
@@ -24,7 +24,7 @@ Cuenta >> agregarPerfilConNombre: unNombre [.
 ]
 
 { #category : #'as yet unclassified' }
-Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido mail:unMail yPass:unaPass [
+Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
 
 	
 	nombre:= unNombre.

@@ -1,3 +1,34 @@
+"
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+For the Class part:  State a one line summary. For example, ""I represent a paragraph of text"".
+
+For the Responsibility part: Three sentences about my main responsibilities - what I do, what I know.
+
+For the Collaborators Part: State my main collaborators and one line about how I interact with them. 
+
+Public API and Key Messages
+
+- message one   
+- message two 
+- (for bonus points) how to create instances.
+
+   One simple example is simply gorgeous.
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	apellido:		<Object>
+	mail:		<Object>
+	model:		<Object>
+	mold:		<Object>
+	nombre:		<Object>
+	password:		<Object>
+	user:		<Object>
+
+
+    Implementation Points
+"
 Class {
 	#name : #RegistroComponent,
 	#superclass : #WAComponent,
@@ -30,6 +61,13 @@ aCanvas horizontalRule
 					aCanvas textInput 
 						callback: [ :valor| self setApellido:valor];
 					with: ''.].
+				
+				aCanvas 
+				paragraph: [ aCanvas label: 'Email: '.
+					aCanvas textInput 
+						callback: [ :valor| self setEmail:valor];
+					with: ''.].
+		
 		
 		aCanvas 
 				paragraph: [ aCanvas label: 'Nombre de usuario: '.
@@ -51,11 +89,18 @@ aCanvas horizontalRule
 	
 		aCanvas button
 			callback: [self registrar  ];
-			with: 'Iniciar sesión'.].]]
+			with: 'Registrarme'.].]]
+]
+
+{ #category : #initialization }
+RegistroComponent >> initialize [
+	super initialize. 
+	self buildMold.
 ]
 
 { #category : #'as yet unclassified' }
 RegistroComponent >> irLogin [
+
 
 self call: LoginComponent new.
 
@@ -74,8 +119,8 @@ RegistroComponent >> registrar [
 		ifNil: [ self model registrarCuentaDe: user conNombre: nombre conApellido: apellido conMail: mail  yPass: password. 
 			
 			self irLogin].
-	 user := nil.
-	password := nil
+	 "user := nil.
+	password := nil"
 
 
 ]
@@ -86,12 +131,25 @@ self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
 		with: [ self formularioRegistro: aCanvas ]
+
+]
+
+{ #category : #hooks }
+RegistroComponent >> script [ 
+
+
 ]
 
 { #category : #initialization }
 RegistroComponent >> setApellido:unApe [
 
 apellido :=unApe. 
+]
+
+{ #category : #initialization }
+RegistroComponent >> setEmail:unEmail [
+
+mail:=unEmail . 
 ]
 
 { #category : #initialization }
@@ -131,7 +189,9 @@ RegistroComponent >> style [
 	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: ForestGreen; }
 	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
 	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);
-	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }'
+	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
+	
+	'
 ]
 
 { #category : #'as yet unclassified' }
