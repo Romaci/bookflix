@@ -31,6 +31,7 @@ Autor >> conNombre:unNombre apellido: unApellido fechaDeNac: unaFN yFechaDeDef: 
 	fechaDeNac := unaFN.
 	fechaDeDef := unaFD.
 
+
 ]
 
 { #category : #accessing }

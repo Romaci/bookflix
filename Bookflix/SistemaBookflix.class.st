@@ -32,6 +32,35 @@ SistemaBookflix >> cuentas [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> darDeAltaAutor:unNombre apellido: unApellido fechaDeNac: unaFN yFechaDeDef: unaFD [
+	|ok|
+	ok:=false.
+	
+	"Verifico que no este ya cargado en el sistema el autor por dar de alta"
+	(autores anySatisfy:[:autor | (autor nombre = unNombre) & (autor apellido = unApellido) & (autor fechaDeNac = unaFN)])
+	ifFalse: [autores add: (Autor conNombre:unNombre apellido: unApellido fechaDeNac: unaFN yFechaDeDef: unaFD). 
+		ok:=true].
+	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia autor"
+	^ok.
+	 
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> darDeAltaGenero: unGenero [
+	
+	|ok|
+	ok:=false.
+	
+	"Verifico que no este ya cargado en el sistema el GENERO por dar de alta"
+	(generos anySatisfy:[:genero | genero = unGenero])
+	ifFalse: [generos add: unGenero. 
+		ok:=true].
+	
+	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia autor"
+	^ok.
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoUsuario: nombreUser [ 
 
 "metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
