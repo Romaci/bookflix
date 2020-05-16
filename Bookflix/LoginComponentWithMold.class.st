@@ -75,7 +75,7 @@ aCanvas form:
 { #category : #initialization }
 LoginComponentWithMold >> initialize [
 	super initialize. 
-	cuenta:= Cuenta new conUser:'' conNombre:'.' conApellido:'.' conMail:'.' yPass:''.
+	cuenta:= Cuenta new.
 	self buildMold.
 ]
 
