@@ -1,4 +1,14 @@
 "
+""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
+
+Metacello new 
+  baseline: 'Mold';
+  repository: 'github://grype/Seaside-Mold/src';
+  load.
+
+""
+
+
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
@@ -15,6 +25,8 @@ WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
 ""----------------------------------------------------------------------------------------""
 SistemaBookflix clearSoleInstance .
 BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
+
+
 
 
 
