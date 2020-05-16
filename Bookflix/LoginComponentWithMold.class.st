@@ -128,7 +128,7 @@ LoginComponentWithMold >> irRegistro [
 { #category : #'private protocol' }
 LoginComponentWithMold >> login [
   mold isValid ifFalse: [^self].
-
+  mold save.
    (self model withUsername:cuenta user ypass:cuenta password)
 		ifNotNil: [ :it | self irHome:it ]
 		ifNil:[self irErrorLogin].
