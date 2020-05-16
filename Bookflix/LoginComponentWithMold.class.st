@@ -24,8 +24,7 @@ Class {
 	#name : #LoginComponentWithMold,
 	#superclass : #WAComponent,
 	#instVars : [
-		'userName',
-		'password',
+		'cuenta',
 		'mold'
 	],
 	#category : #'Bookflix-UI'
@@ -35,13 +34,18 @@ Class {
 LoginComponentWithMold >> buildMold [
 mold := Mold new.
   (mold stringField)
-    label: 'Username:';
+    label: 'User:';
+	 on: #user of: self cuenta;
     beRequired.
   (mold passwordField)
-	
     label: 'Password:';
-   
+	 on: #password  of:self cuenta;
     beRequired. 
+]
+
+{ #category : #accessing }
+LoginComponentWithMold >> cuenta [
+	^cuenta.
 ]
 
 { #category : #'as yet unclassified' }
@@ -54,9 +58,17 @@ aCanvas horizontalRule
 aCanvas form:
     [mold canvas: aCanvas.
     mold paragraphs.
-    (aCanvas submitButton)
+    (aCanvas button)
       callback: [self login];
-      value: 'Save']]]
+      value: 'Iniciar sesión'.
+
+
+	 (aCanvas button)
+      callback: [self irRegistro];
+      value: 'Registrar'
+]]].
+
+
 "aCanvas horizontalRule 
 		with: [aCanvas div
 		id: 'formLogin';
@@ -90,7 +102,14 @@ aCanvas form:
 { #category : #initialization }
 LoginComponentWithMold >> initialize [
 	super initialize. 
-	self buildMold
+	cuenta:= Cuenta new conUser:'user' conNombre:'.' conApellido:'.' conMail:'.' yPass:'password'.
+	self buildMold.
+]
+
+{ #category : #'as yet unclassified' }
+LoginComponentWithMold >> irErrorLogin [
+	self call: ErrorLoginComponent new.
+	self answer.
 ]
 
 { #category : #'as yet unclassified' }
@@ -109,10 +128,12 @@ LoginComponentWithMold >> irRegistro [
 
 { #category : #'private protocol' }
 LoginComponentWithMold >> login [ 
-(self model withUsername:userName ypass:password)
-		ifNotNil: [ :it | self irHome:it ].
-	userName:= nil.
-	password := nil
+(self model withUsername:cuenta user ypass:cuenta password)
+		ifNotNil: [ :it | self irHome:it ]
+		ifNil:[self irErrorLogin].
+		
+	cuenta:= nil.
+	
 ]
 
 { #category : #accessing }
@@ -130,16 +151,6 @@ self titleTop: aCanvas.
 
 	
  
-]
-
-{ #category : #initialization }
-LoginComponentWithMold >> setPassword:unaPass [
-password :=unaPass. 
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponentWithMold >> setUser: unUser [
-userName:= unUser.
 ]
 
 { #category : #hooks }

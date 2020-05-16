@@ -36,6 +36,17 @@ Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMai
 	self agregarPerfilConNombre:'Perfil 2'.
 ]
 
+{ #category : #'as yet unclassified' }
+Cuenta >> conUseryPassword [
+
+	nombre:= ''.
+	apellido:='' .
+	user:=' ' .
+	mail:= ''.
+	password := ' '.
+
+]
+
 { #category : #initialization }
 Cuenta >> initialize [ 
 
@@ -61,6 +72,17 @@ Cuenta >> password [
 ]
 
 { #category : #accessing }
+Cuenta >> password: unaPass [
+	password := unaPass.
+]
+
+{ #category : #accessing }
 Cuenta >> user [ 
 ^user
+]
+
+{ #category : #accessing }
+Cuenta >> user: unUser [
+	
+	user:= unUser.
 ]
