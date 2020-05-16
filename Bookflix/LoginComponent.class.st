@@ -9,7 +9,7 @@ application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
 WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
-
+WAAdmin register: ErrorLoginComponent  asApplicationAt: 'Error'.
 
 
 ""----------------------------------------------------------------------------------------""
@@ -71,6 +71,12 @@ LoginComponent >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+LoginComponent >> irErrorLogin [
+
+self call: ErrorLoginComponent new.
+]
+
+{ #category : #'as yet unclassified' }
 LoginComponent >> irHome: aUser [
 
 self session setUser:aUser.
@@ -87,7 +93,8 @@ LoginComponent >> irRegistro [
 { #category : #'private protocol' }
 LoginComponent >> login [ 
 (self model withUsername:user ypass:password)
-		ifNotNil: [ :it | self irHome:it ].
+		ifNotNil: [ :it | self irHome:it ]
+		ifNil:[self irErrorLogin].
 	user:= nil.
 	password := nil
 ]
