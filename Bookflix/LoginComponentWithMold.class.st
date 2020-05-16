@@ -39,7 +39,7 @@ mold := Mold new.
     beRequired.
   (mold passwordField)
     label: 'Password:';
-	 on: #password  of:self cuenta;
+	 on: #password of:self cuenta;
     beRequired. 
 ]
 
@@ -109,7 +109,6 @@ LoginComponentWithMold >> initialize [
 { #category : #'as yet unclassified' }
 LoginComponentWithMold >> irErrorLogin [
 	self call: ErrorLoginComponent new.
-	self answer.
 ]
 
 { #category : #'as yet unclassified' }
@@ -127,13 +126,23 @@ LoginComponentWithMold >> irRegistro [
 ]
 
 { #category : #'private protocol' }
-LoginComponentWithMold >> login [ 
+LoginComponentWithMold >> login [
+  mold isValid ifFalse: [^self].
+
+   (self model withUsername:cuenta user ypass:cuenta password)
+		ifNotNil: [ :it | self irHome:it ]
+		ifNil:[self irErrorLogin].
+  self answer.
+ 
+  
+
+"login 
+
 (self model withUsername:cuenta user ypass:cuenta password)
 		ifNotNil: [ :it | self irHome:it ]
 		ifNil:[self irErrorLogin].
 		
-	cuenta:= nil.
-	
+	cuenta:=Cuenta new conUser:'user' conNombre:'.' conApellido:'.' conMail:'.' yPass:'password'."  
 ]
 
 { #category : #accessing }
