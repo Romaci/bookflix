@@ -36,11 +36,13 @@ mold := Mold new.
   (mold stringField)
     label: 'User:';
 	 on: #user of: self cuenta;
-    beRequired.
+    beRequired: 'El campo es requerido'.
+	
   (mold passwordField)
     label: 'Password:';
 	 on: #password of:self cuenta;
-    beRequired. 
+    beRequired: 'El campo es requerido'.
+	 
 ]
 
 { #category : #accessing }
@@ -68,41 +70,12 @@ aCanvas form:
       value: 'Registrar'
 ]]].
 
-
-"aCanvas horizontalRule 
-		with: [aCanvas div
-		id: 'formLogin';
-		with: [ aCanvas form: [aCanvas 
-				paragraph: [ aCanvas label: 'Nombre de usuario: '.
-					aCanvas textInput 
-						callback: [ :valor| self setUser:valor];
-					with: ''.].
-			
-	
-			aCanvas paragraph: [ aCanvas label: 'Password: '.
-					aCanvas passwordInput
-					callback: [ :valor| self setPassword:valor];
-					with: ''.].
- 
-	
-		aCanvas button
-			callback: [self login ];
-			with: 'Iniciar sesión'.
-		
-		
-		aCanvas button
-			callback: [self irRegistro ];
-			with: 'Registrarse'.].
-		]. ].
-
-
-"
 ]
 
 { #category : #initialization }
 LoginComponentWithMold >> initialize [
 	super initialize. 
-	cuenta:= Cuenta new conUser:'user' conNombre:'.' conApellido:'.' conMail:'.' yPass:'password'.
+	cuenta:= Cuenta new conUser:'' conNombre:'.' conApellido:'.' conMail:'.' yPass:''.
 	self buildMold.
 ]
 
