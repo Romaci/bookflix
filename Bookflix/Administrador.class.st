@@ -18,7 +18,7 @@ Administrador class >> conNombre:unNombre apellido: unApellido mail: unMail yPas
 ]
 
 { #category : #'as yet unclassified' }
-Administrador >> conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass. [
+Administrador >> conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass [.
 
 	nombre:= unNombre.
 	apellido:= unApellido.

@@ -18,9 +18,21 @@ Cuenta class >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail
 ]
 
 { #category : #initialization }
-Cuenta >> agregarPerfilConNombre: unNombre. [
+Cuenta >> agregarPerfilConNombre: unNombre [.
 
 	perfiles add: (Perfil conNombre:unNombre).
+]
+
+{ #category : #accessing }
+Cuenta >> apellido [
+
+^apellido .
+]
+
+{ #category : #accessing }
+Cuenta >> apellido:unApe [ 
+
+apellido:=unApe.
 ]
 
 { #category : #'as yet unclassified' }
@@ -61,9 +73,21 @@ Cuenta >> mail [
 ]
 
 { #category : #accessing }
+Cuenta >> mail:unMail [
+
+mail:=unMail . 
+]
+
+{ #category : #accessing }
 Cuenta >> nombre [
 	
  ^nombre.
+]
+
+{ #category : #accessing }
+Cuenta >> nombre:unNombre [
+
+nombre :=unNombre .
 ]
 
 { #category : #accessing }
