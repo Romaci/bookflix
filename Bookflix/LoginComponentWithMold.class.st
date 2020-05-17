@@ -18,8 +18,8 @@ application:=WAAdmin register: LoginComponentWithMold  asApplicationAt: 'bookfli
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
-
+WAAdmin register: RegistroComponentWithMold  asApplicationAt: 'Registro'.
+WAAdmin register: EditarDatosPersonalesComponent  asApplicationAt: 'Registro'.
 
 
 ""----------------------------------------------------------------------------------------""
