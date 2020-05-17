@@ -7,7 +7,7 @@ Class {
 { #category : #'as yet unclassified' }
 RegistroExitosoComponent >> irLogin [
 
-self call: LoginComponentWithMold new.
+self call: LoginWithMoldComponent new.
 self answer.
 ]
 

@@ -1,39 +1,26 @@
 "
-""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
-
-Metacello new 
-  baseline: 'Mold';
-  repository: 'github://grype/Seaside-Mold/src';
-  load.
-
-""
-
-
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
 
 
-application:=WAAdmin register: LoginComponentWithMold  asApplicationAt: 'bookflix'.
+application:=WAAdmin register: LoginWithMoldComponent asApplicationAt: 'bookflix'.
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: RegistroComponentWithMold  asApplicationAt: 'Registro'.
+WAAdmin register: RegistroWithMoldComponent  asApplicationAt: 'Registro'.
 WAAdmin register: EditarDatosPersonalesComponent  asApplicationAt: 'Editar'.
-
+WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'Registro Exitoso'.
+WAAdmin register: ErrorLoginComponent   asApplicationAt: 'Error Login'.
 
 ""----------------------------------------------------------------------------------------""
 SistemaBookflix clearSoleInstance .
 BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
 
 
-
-
-
-
 "
 Class {
-	#name : #LoginComponentWithMold,
+	#name : #RegistroWithMoldComponent,
 	#superclass : #WAComponent,
 	#instVars : [
 		'cuenta',
@@ -43,12 +30,16 @@ Class {
 }
 
 { #category : #initialization }
-LoginComponentWithMold >> buildMold [
+RegistroWithMoldComponent >> buildMold [
 mold := Mold new.
   (mold stringField)
     label: 'User:';
 	 on: #user of: self cuenta;
-    beRequired: 'El campo es requerido'.
+    beRequired: 'El campo es requerido';
+	 addCondition: [ :input | (self model estaRegistradoUsuario: input) isNil]
+			labeled: 
+				[ :wrong | 
+				'El usuario ingresado ya se escuentra registrado en el sistema' expandMacrosWith: wrong ].
 	
   (mold passwordField)
     label: 'Password:';
@@ -58,89 +49,64 @@ mold := Mold new.
 ]
 
 { #category : #accessing }
-LoginComponentWithMold >> cuenta [
+RegistroWithMoldComponent >> cuenta [
 	^cuenta.
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponentWithMold >> formularioLogin:aCanvas [
+RegistroWithMoldComponent >> formularioRegistro: aCanvas [
 
-aCanvas horizontalRule 
+	aCanvas horizontalRule 
 		with: [aCanvas div
 		id: 'formLogin';
 		with:[
 aCanvas form:
     [mold canvas: aCanvas.
     mold paragraphs.
-    (aCanvas button)
-      callback: [self login];
-      value: 'Iniciar sesión'.
-
 
 	 (aCanvas button)
-      callback: [self irRegistro];
-      value: 'Registrar'
+			callback: [self registrar  ];
+			with: 'Registrar'
 ]]].
+
 
 ]
 
 { #category : #initialization }
-LoginComponentWithMold >> initialize [
+RegistroWithMoldComponent >> initialize [
 	super initialize. 
 	cuenta:= Cuenta new.
 	self buildMold.
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponentWithMold >> irErrorLogin [
-	self call: ErrorLoginComponent new.
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponentWithMold >> irHome: aUser [
-
-self session setUser:aUser.
-
-self call: HomeComponent new.
-
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponentWithMold >> irRegistro [ 
-   self call: RegistroComponentWithMold new.
-]
-
-{ #category : #'private protocol' }
-LoginComponentWithMold >> login [
-  mold isValid ifFalse: [^self].
-  mold save.
-   (self model withUsername:cuenta user ypass:cuenta password)
-		ifNotNil: [ :it | self irHome:it ]
-		ifNil:[self irErrorLogin].
-  self answer.
- 
-  
-
-"login 
-
-(self model withUsername:cuenta user ypass:cuenta password)
-		ifNotNil: [ :it | self irHome:it ]
-		ifNil:[self irErrorLogin].
-		
-	cuenta:=Cuenta new conUser:'user' conNombre:'.' conApellido:'.' conMail:'.' yPass:'password'."  
+RegistroWithMoldComponent >> irRegistroExitoso [
+	self call: RegistroExitosoComponent new.
 ]
 
 { #category : #accessing }
-LoginComponentWithMold >> model [
+RegistroWithMoldComponent >> model [
 ^ SistemaBookflix soleInstance
 ]
 
+{ #category : #'as yet unclassified' }
+RegistroWithMoldComponent >> registrar [
+
+  mold isValid ifFalse: [^self].
+  mold save.
+(self model estaRegistradoUsuario: cuenta user )
+		ifNil: [ self model registrarCuentaDe: cuenta user conNombre: cuenta nombre conApellido: cuenta apellido conMail: cuenta mail  yPass: cuenta password.
+		self irRegistroExitoso.	].
+		self answer.
+  
+]
+
 { #category : #rendering }
-LoginComponentWithMold >> renderContentOn: aCanvas [
+RegistroWithMoldComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
-		with: [ self formularioLogin: aCanvas ]
+		with: [ self formularioRegistro: aCanvas ]
 		
 
 	
@@ -148,7 +114,7 @@ self titleTop: aCanvas.
 ]
 
 { #category : #hooks }
-LoginComponentWithMold >> style [
+RegistroWithMoldComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -164,7 +130,7 @@ LoginComponentWithMold >> style [
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponentWithMold >> titleTop: aCanvas [
+RegistroWithMoldComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
 ]
