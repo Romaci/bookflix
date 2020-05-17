@@ -1,17 +1,3 @@
-"
-|application|
-
-""--------------------------------SEASIDE REGISTRO--------------------------------------""
-
-
-application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'bookflixAdmin'.
-application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
-
-
-""----------------------------------------------------------------------------------------""
-SistemaBookflix clearSoleInstance .
-BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
-"
 Class {
 	#name : #LoginAdminWithMoldComponent,
 	#superclass : #WAComponent,

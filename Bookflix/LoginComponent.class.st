@@ -1,16 +1,34 @@
 "
+""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
+
+Metacello new 
+  baseline: 'Mold';
+  repository: 'github://grype/Seaside-Mold/src';
+  load.
+
+
+
+---------------------------------------------------------------------------------------
+
+
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
 
 
-application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.
+application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.  //Este no lo usamos mientras usamos validaciones por MOLD
+
+
+application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'loginAdmin'.
+application:=WAAdmin register: LoginWithMoldComponent asApplicationAt: 'loginUser'.
+WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
 WAAdmin register: EditarDatosPersonalesComponent  asApplicationAt: 'EditarDatos'.
-
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
+WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'Registro Exitoso'.
+WAAdmin register: ErrorLoginComponent   asApplicationAt: 'Error Login'.
 
 
 
