@@ -73,10 +73,15 @@ LoginAdminWithMoldComponent >> irErrorLogin [
 ]
 
 { #category : #'as yet unclassified' }
+LoginAdminWithMoldComponent >> irHome [
+
+self call: HomeAdminComponent new.
+
+]
+
+{ #category : #'as yet unclassified' }
 LoginAdminWithMoldComponent >> irHome: aUser [
-
 self session setUser:aUser.
-
 self call: HomeAdminComponent new.
 
 ]
@@ -86,7 +91,7 @@ LoginAdminWithMoldComponent >> login [
   mold isValid ifFalse: [^self].
   mold save.
    (self model withUsername:administrador user ypass:administrador password)
-		ifNotNil: [ :it | self irHome:it ]
+		ifNotNil: [self irHome]
 		ifNil:[self irErrorLogin].
   self answer.
  

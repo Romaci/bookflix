@@ -42,7 +42,6 @@ HomeAdminComponent >> model [
 { #category : #rendering }
 HomeAdminComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
-		aCanvas horizontalRule.
 		aCanvas div
 				with: [ aCanvas anchor
 						callback: [ "AGREGAR RENDER PARA DAR DE ALTA EDITORIAL" ];
@@ -60,7 +59,6 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA LIBRO" ];
 						with: [ aCanvas button with: 'Dar de alta Libro' ].
 						
-						
 						 ]
 ]
 
@@ -71,8 +69,7 @@ aCanvas div
 		id: 'contLogout';
 		with: [aCanvas div
 				id: 'cuooter';
-				with: [ aCanvas text: 'Usuario en sesión: '.
-					aCanvas paragraph: self session getUser user .
+				with: [ 
 			aCanvas div
 				with: [ aCanvas anchor
 						callback: [ self answer. ];
@@ -109,10 +106,6 @@ HomeAdminComponent >> titleTop: aCanvas [
 		
 aCanvas horizontalRule.
 
-aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self irDatosPersonales ];
-						with: [aCanvas text: 'Datos personales' ].].
 	
 
 ]
