@@ -23,6 +23,12 @@ Cuenta >> agregarPerfilConNombre: unNombre. [
 	perfiles add: (Perfil conNombre:unNombre).
 ]
 
+{ #category : #accessing }
+Cuenta >> apellido [
+
+	^apellido.
+]
+
 { #category : #'as yet unclassified' }
 Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
 
