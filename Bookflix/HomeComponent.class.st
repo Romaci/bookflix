@@ -35,10 +35,16 @@ HomeComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 HomeComponent >> renderLogoutButtonOn: aCanvas [
 
-	aCanvas
-		paragraph:[ aCanvas anchor
-				callback: [ self logOut ];
-				with: [ aCanvas button with: 'Cerrar Sesión' ]].
+aCanvas div
+		id: 'contLogout';
+		with: [aCanvas div
+				id: 'cuooter';
+				with: [ aCanvas text: 'Usuario en sesión: '.
+					aCanvas paragraph: self session getUser user .
+			aCanvas div
+				with: [ aCanvas anchor
+						callback: [ self answer. ];
+						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
 ]
 
 { #category : #hooks }
