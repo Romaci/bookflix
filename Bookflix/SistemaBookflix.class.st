@@ -7,7 +7,8 @@ Class {
 		'generos',
 		'libros',
 		'editoriales',
-		'novedades'
+		'novedades',
+		'administradores'
 	],
 	#classInstVars : [
 		'soleInstance'
@@ -92,7 +93,17 @@ SistemaBookflix >> initialize [
 	editoriales := OrderedCollection new.
 	libros:= OrderedCollection new.
 	novedades:=OrderedCollection new.
+	administradores := OrderedCollection new.
 	
+	
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> registrarAdminitrador:unNombre apellido: unApellido mail: unMail yPassWord: unaPass [
+
+
+	administradores add: (Administrador conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass).
+
 	
 ]
 

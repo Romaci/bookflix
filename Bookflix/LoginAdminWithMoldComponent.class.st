@@ -1,54 +1,69 @@
 Class {
-	#name : #LoginAdminComponent,
+	#name : #LoginAdminWithMoldComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'user',
-		'password'
+		'cuenta',
+		'mold'
 	],
 	#category : #'Bookflix-UI'
 }
 
+{ #category : #initialization }
+LoginAdminWithMoldComponent >> buildMold [
+mold := Mold new.
+  (mold stringField)
+    label: 'User:';
+	 on: #user of: self cuenta;
+    beRequired: 'El campo es requerido'.
+	
+  (mold passwordField)
+    label: 'Password:';
+	 on: #password of:self cuenta;
+    beRequired: 'El campo es requerido'.
+	 
+]
+
+{ #category : #accessing }
+LoginAdminWithMoldComponent >> cuenta [
+	^cuenta.
+]
+
 { #category : #'as yet unclassified' }
-LoginAdminComponent >> formularioLogin:aCanvas [
+LoginAdminWithMoldComponent >> formularioLogin:aCanvas [
 
 aCanvas horizontalRule 
 		with: [aCanvas div
 		id: 'formLogin';
-		with: [ aCanvas form: [aCanvas 
-				paragraph: [ aCanvas label: 'Nombre de usuario: '.
-					aCanvas textInput 
-						callback: [ :valor| self setUser:valor];
-					with: ''.].
-			
-	
-			aCanvas paragraph: [ aCanvas label: 'Password: '.
-					aCanvas passwordInput
-					callback: [ :valor| self setPassword:valor];
-					with: ''.].
- 
-	
-		aCanvas button
-			callback: [self login ];
-			with: 'Iniciar sesión'.
-		
-		
-		aCanvas button
-			callback: [self irRegistro ];
-			with: 'Registrarse'.].
-		]. ].
+		with:[
+aCanvas form:
+    [mold canvas: aCanvas.
+    mold paragraphs.
+    (aCanvas button)
+      callback: [self login];
+      value: 'Iniciar sesión'.
 
 
+	 (aCanvas button)
+      callback: [self irRegistro];
+      value: 'Registrar'
+]]].
 
 ]
 
 { #category : #initialization }
-LoginAdminComponent >> initialize [
+LoginAdminWithMoldComponent >> initialize [
 	super initialize. 
-	
+	cuenta:= Cuenta new.
+	self buildMold.
 ]
 
 { #category : #'as yet unclassified' }
-LoginAdminComponent >> irHome: aUser [
+LoginAdminWithMoldComponent >> irErrorLogin [
+	self call: ErrorLoginComponent new.
+]
+
+{ #category : #'as yet unclassified' }
+LoginAdminWithMoldComponent >> irHome: aUser [
 
 self session setUser:aUser.
 
@@ -57,45 +72,49 @@ self call: HomeComponent new.
 ]
 
 { #category : #'as yet unclassified' }
-LoginAdminComponent >> irRegistro [ 
-   self call: RegistroComponent new.
-	self answer.
+LoginAdminWithMoldComponent >> irRegistro [ 
+   self call: RegistroWithMoldComponent new.
 ]
 
 { #category : #'private protocol' }
-LoginAdminComponent >> login [ 
-(self model withUsername:user ypass:password)
-		ifNotNil: [ :it | self irHome:it ].
-	user:= nil.
-	password := nil
+LoginAdminWithMoldComponent >> login [
+  mold isValid ifFalse: [^self].
+  mold save.
+   (self model withUsername:cuenta user ypass:cuenta password)
+		ifNotNil: [ :it | self irHome:it ]
+		ifNil:[self irErrorLogin].
+  self answer.
+ 
+  
+
+"login 
+
+(self model withUsername:cuenta user ypass:cuenta password)
+		ifNotNil: [ :it | self irHome:it ]
+		ifNil:[self irErrorLogin].
+		
+	cuenta:=Cuenta new conUser:'user' conNombre:'.' conApellido:'.' conMail:'.' yPass:'password'."  
 ]
 
 { #category : #accessing }
-LoginAdminComponent >> model [
+LoginAdminWithMoldComponent >> model [
 ^ SistemaBookflix soleInstance
 ]
 
 { #category : #rendering }
-LoginAdminComponent >> renderContentOn: aCanvas [
+LoginAdminWithMoldComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
 		with: [ self formularioLogin: aCanvas ]
+		
+
+	
  
 ]
 
-{ #category : #initialization }
-LoginAdminComponent >> setPassword:unaPass [
-password :=unaPass. 
-]
-
-{ #category : #'as yet unclassified' }
-LoginAdminComponent >> setUser: unUser [
-user:= unUser.
-]
-
 { #category : #hooks }
-LoginAdminComponent >> style [
+LoginAdminWithMoldComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -111,7 +130,7 @@ LoginAdminComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-LoginAdminComponent >> titleTop: aCanvas [
+LoginAdminWithMoldComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
 ]

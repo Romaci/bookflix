@@ -12,14 +12,24 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Administrador class >> conNombre:unNombre apellido: unApellido mail: unMail yPassword: unaPass [
+Administrador class >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
 
-^self new conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass.
+^self new conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass.
 ]
 
 { #category : #'as yet unclassified' }
 Administrador >> conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass. [
 
+	nombre:= unNombre.
+	apellido:= unApellido.
+	mail:= unMail.
+	password := unaPass.
+]
+
+{ #category : #'as yet unclassified' }
+Administrador >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
+	
+	user:= unUser.
 	nombre:= unNombre.
 	apellido:= unApellido.
 	mail:= unMail.
