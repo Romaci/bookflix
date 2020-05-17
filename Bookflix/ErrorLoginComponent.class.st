@@ -14,7 +14,7 @@ self titleTop: aCanvas.
 	aCanvas horizontalRule 
 		with: [aCanvas div
 		with: [ aCanvas 
-				paragraph: 'El usuario y/o contraseña no se encuentran registrados en el sistema'.
+				paragraph: 'El usuario y/o constraseña ingresados son incorrectos'.
 	   
 		aCanvas anchor
 			callback: [self answer ];

@@ -1,31 +1,45 @@
+"
+|application|
+
+""--------------------------------SEASIDE REGISTRO--------------------------------------""
+
+
+application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'bookflixAdmin'.
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
+
+
+""----------------------------------------------------------------------------------------""
+SistemaBookflix clearSoleInstance .
+BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
+"
 Class {
 	#name : #LoginAdminWithMoldComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'cuenta',
+		'administrador',
 		'mold'
 	],
 	#category : #'Bookflix-UI'
 }
+
+{ #category : #accessing }
+LoginAdminWithMoldComponent >> administrador [
+	^administrador.
+]
 
 { #category : #initialization }
 LoginAdminWithMoldComponent >> buildMold [
 mold := Mold new.
   (mold stringField)
     label: 'User:';
-	 on: #user of: self cuenta;
+	 on: #user of: self administrador ;
     beRequired: 'El campo es requerido'.
 	
   (mold passwordField)
     label: 'Password:';
-	 on: #password of:self cuenta;
+	 on: #password of:self administrador;
     beRequired: 'El campo es requerido'.
 	 
-]
-
-{ #category : #accessing }
-LoginAdminWithMoldComponent >> cuenta [
-	^cuenta.
 ]
 
 { #category : #'as yet unclassified' }
@@ -42,10 +56,6 @@ aCanvas form:
       callback: [self login];
       value: 'Iniciar sesión'.
 
-
-	 (aCanvas button)
-      callback: [self irRegistro];
-      value: 'Registrar'
 ]]].
 
 ]
@@ -53,7 +63,7 @@ aCanvas form:
 { #category : #initialization }
 LoginAdminWithMoldComponent >> initialize [
 	super initialize. 
-	cuenta:= Cuenta new.
+	administrador:= Administrador new.
 	self buildMold.
 ]
 
@@ -67,20 +77,15 @@ LoginAdminWithMoldComponent >> irHome: aUser [
 
 self session setUser:aUser.
 
-self call: HomeComponent new.
+self call: HomeAdminComponent new.
 
-]
-
-{ #category : #'as yet unclassified' }
-LoginAdminWithMoldComponent >> irRegistro [ 
-   self call: RegistroWithMoldComponent new.
 ]
 
 { #category : #'private protocol' }
 LoginAdminWithMoldComponent >> login [
   mold isValid ifFalse: [^self].
   mold save.
-   (self model withUsername:cuenta user ypass:cuenta password)
+   (self model withUsername:administrador user ypass:administrador password)
 		ifNotNil: [ :it | self irHome:it ]
 		ifNil:[self irErrorLogin].
   self answer.

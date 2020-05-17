@@ -26,6 +26,16 @@ SistemaBookflix class >> soleInstance [
 ^ soleInstance ifNil:[soleInstance:= self new]
 ]
 
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> adminWithUsername: unUsername ypass: aPassword [
+
+"metodo que chequea que el usuario que entró por parámetro y la contraseña, 
+coincidan con uno que ya está en la lista de usuarios registrados"
+
+	^administradores  detect: [ :each | each user = unUsername & (each password = aPassword)]	
+		ifNone: [ nil ]
+]
+
 { #category : #accessing }
 SistemaBookflix >> cuentas [
 
@@ -103,6 +113,15 @@ SistemaBookflix >> registrarAdminitrador:unNombre apellido: unApellido mail: unM
 
 
 	administradores add: (Administrador conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass).
+
+	
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> registrarAdminitrador:unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:unaPass [
+
+
+	administradores add: (Administrador conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass).
 
 	
 ]

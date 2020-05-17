@@ -17,6 +17,12 @@ Administrador class >> conUser:unUser conNombre:unNombre conApellido:unApellido 
 ^self new conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass.
 ]
 
+{ #category : #accessing }
+Administrador >> apellido [ 
+
+^apellido.
+]
+
 { #category : #'as yet unclassified' }
 Administrador >> conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass. [
 
@@ -34,4 +40,38 @@ Administrador >> conUser:unUser conNombre:unNombre conApellido:unApellido conMai
 	apellido:= unApellido.
 	mail:= unMail.
 	password := unaPass.
+]
+
+{ #category : #accessing }
+Administrador >> mail [ 
+
+^mail.
+]
+
+{ #category : #accessing }
+Administrador >> nombre [ 
+
+^nombre.
+]
+
+{ #category : #accessing }
+Administrador >> password [
+
+	^password.
+]
+
+{ #category : #accessing }
+Administrador >> password: unaPass [
+	password := unaPass.
+]
+
+{ #category : #accessing }
+Administrador >> user [ 
+	^user.
+]
+
+{ #category : #accessing }
+Administrador >> user: unUser [
+	
+	user:= unUser.
 ]

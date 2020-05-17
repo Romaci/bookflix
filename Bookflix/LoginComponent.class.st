@@ -4,7 +4,7 @@
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
 
 
-application:=WAAdmin register: LoginComponentWithMold  asApplicationAt: 'bookflix'.
+application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
