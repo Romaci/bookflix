@@ -37,7 +37,7 @@ CuentaComponent >> guardar:unNombre [
 
 { #category : #'as yet unclassified' }
 CuentaComponent >> logOut [
-	self show: (LoginComponent new )
+	self answer.
 ]
 
 { #category : #'as yet unclassified' }
@@ -47,13 +47,11 @@ aCanvas div
 		with: [aCanvas div
 				id: 'cuooter';
 				with: [ aCanvas text: 'Usuario en sesión: '.
-					aCanvas anchor
-						callback: [ self verDatosPersonales: self session getUser ];
-						with: [ aCanvas text: self session getUser user  ] ].
+					aCanvas paragraph: self session getUser user .
 			aCanvas div
 				with: [ aCanvas anchor
 						callback: [ self logOut ];
-						with: [ aCanvas button with: 'Cerrar sesión' ] ] ]
+						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
 ]
 
 { #category : #'as yet unclassified' }
@@ -120,41 +118,34 @@ CuentaComponent >> renderDatosPersonalesOn: aCanvas [
 
 { #category : #hooks }
 CuentaComponent >> style [
-	^ '
-	body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
-	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
-	.cuerpo { padding: 15px 25px 25px 25px; display: flex; flex: 30px; flex-direction: row; justify-content: center; background-color: white }
-	#pieDeRespuesta{text-align: center; color: ForestGreen}
-	#CuOOra { text-align: left; color: ForestGreen; font-family: arial; font-size: 60px;  } 
+	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px }
+	#pieDeRespuesta{text-align: center}
+	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;  } 
 	#respuesta { text-align: center; }
-	#logout { text-align: right; padding: 6px 14px; float: right}
-	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: DarkOrange; }
-	a {color: green; color: MediumSeaGreen; text-decoration: none}
-	#cuooter { color: ForestGreen }
+	#mostrarRespuesta { padding: 5px 10px; font-size: 10px; margin: 4px 2px; }
+	a {color: red; text-decoration: none } 
+	#cuooter { color: LightGreen}
 	#contLogout { display: flex; flex-flow: row; align-items: center; align-content: center ; justify-content: flex-end; }
-	#acepCan { display: flex; flex-flow: row; justify-content: space-between; }
-	form { border-radius: 8px;  } 
-	button { background-color: ForestGreen; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: 	inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: 	pointer;}
-	button:hover {background-color: ForestGreen; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);}
-	textArea { height: 6em; width: 400px;}
-	input { width: 400px;}
-	'
+	#logout { text-align: right; padding: 6px 14px; float: right}
+	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: darkred; }
+	
+	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
+	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);
+			'
 ]
 
 { #category : #'as yet unclassified' }
 CuentaComponent >> titleTop: aCanvas [
-	aCanvas div
-		id: 'CuOOra';
+	aCanvas div 
+		id: 'Bookflix';
 		with: [ aCanvas text: 'Bookflix' ].
-	aCanvas div
+	
+		aCanvas div
 		id: 'logout';
-		with: [ self logOutButton: aCanvas ].
-	aCanvas div
-		id: 'volverButton';
-		with: [ aCanvas div with: [ self volver: aCanvas].
-		aCanvas break.
-			aCanvas horizontalRule .
-]
+		with: [self logOutButton: aCanvas  ].
+		
+aCanvas horizontalRule.
+	
 ]
 
 { #category : #'as yet unclassified' }

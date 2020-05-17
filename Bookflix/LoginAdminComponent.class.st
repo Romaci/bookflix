@@ -59,6 +59,7 @@ self call: HomeComponent new.
 { #category : #'as yet unclassified' }
 LoginAdminComponent >> irRegistro [ 
    self call: RegistroComponent new.
+	self answer.
 ]
 
 { #category : #'private protocol' }
