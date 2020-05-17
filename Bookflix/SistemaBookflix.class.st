@@ -109,7 +109,7 @@ SistemaBookflix >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarAdminitrador:unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:unaPass [
+SistemaBookflix >> registrarAdministrador:unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:unaPass [
 
 
 	administradores add: (Administrador conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass).
