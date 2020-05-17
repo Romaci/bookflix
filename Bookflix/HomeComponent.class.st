@@ -13,6 +13,12 @@ HomeComponent >> initialize [
 super initialize 
 ]
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> irDatosPersonales [
+
+	self call: (CuentaComponent new ).
+]
+
 { #category : #accessing }
 HomeComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
@@ -62,12 +68,15 @@ HomeComponent >> titleTop: aCanvas [
 		aCanvas div
 		id: 'logout';
 		with: [self renderLogoutButtonOn: aCanvas ].
+		
+aCanvas horizontalRule.
+
+aCanvas 
+	heading: [ aCanvas anchor
+						callback: [ self irDatosPersonales ];
+						with: [aCanvas text: 'Datos personales' ].].
 	
-"aCanvas heading
-		level: 2;
-		with: [ aCanvas text: 	'Preguntas relevantes para: '. (aCanvas anchor callback: [ self verPerfil: self session getUser ];
-						with: [aCanvas text: self session getUser getNombreUser  asString ]).
-		"
+
 ]
 
 { #category : #'as yet unclassified' }

@@ -29,6 +29,12 @@ Cuenta >> apellido [
 ^apellido .
 ]
 
+{ #category : #accessing }
+Cuenta >> apellido:unApe [ 
+
+apellido:=unApe.
+]
+
 { #category : #'as yet unclassified' }
 Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
 
@@ -67,9 +73,21 @@ Cuenta >> mail [
 ]
 
 { #category : #accessing }
+Cuenta >> mail:unMail [
+
+mail:=unMail . 
+]
+
+{ #category : #accessing }
 Cuenta >> nombre [
 	
  ^nombre.
+]
+
+{ #category : #accessing }
+Cuenta >> nombre:unNombre [
+
+nombre :=unNombre .
 ]
 
 { #category : #accessing }

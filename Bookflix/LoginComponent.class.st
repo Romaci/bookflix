@@ -4,12 +4,14 @@
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
 
 
-application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.
+application:=WAAdmin register: LoginComponentWithMold  asApplicationAt: 'bookflix'.
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
 WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
-WAAdmin register: ErrorLoginComponent  asApplicationAt: 'Error'.
+WAAdmin register: EditarDatosPersonalesComponent  asApplicationAt: 'EditarDatos'.
+
+
 
 
 ""----------------------------------------------------------------------------------------""
@@ -141,6 +143,8 @@ LoginComponent >> style [
 
 { #category : #'as yet unclassified' }
 LoginComponent >> titleTop: aCanvas [
-	 aCanvas div id: 'Bookflix';
-		with: 'Bookflix'
+	aCanvas div
+		id: 'Bookflix';
+		with: [ aCanvas text: 'Bookflix' ].
+	
 ]
