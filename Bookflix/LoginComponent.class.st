@@ -25,7 +25,9 @@ WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
 application sessionClass: SessionWithUser.
 WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
 WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: EditarDatosPersonalesComponent  asApplicationAt: 'EditarDatos'.
+WAAdmin register: EditarNombreUserComponent  asApplicationAt: 'EditarNombre'.
+WAAdmin register: EditarApellidoUserComponent  asApplicationAt: 'EditarApellido'.
+WAAdmin register: EditarEmailUserComponent  asApplicationAt: 'EditarEmail'.
 application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
 WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'Registro Exitoso'.
 WAAdmin register: ErrorLoginComponent   asApplicationAt: 'Error Login'.

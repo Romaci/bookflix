@@ -74,9 +74,10 @@ self call: HomeAdminComponent new.
 
 { #category : #'private protocol' }
 LoginAdminWithMoldComponent >> login [
+"Envia los datos del admin al metodo de verificacion en sistemaBookflix, si está en la colección de administradores y los datos son correctos, inicia sesion"
   mold isValid ifFalse: [^self].
   mold save.
-   (self model withUsername:administrador user ypass:administrador password)
+   (self model adminWithUsername: administrador user ypass: administrador password)
 		ifNotNil: [self irHome]
 		ifNil:[self irErrorLogin].
   self answer.

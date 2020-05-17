@@ -24,18 +24,6 @@ CuentaComponent >> guardar [
 ]
 
 { #category : #'as yet unclassified' }
-CuentaComponent >> guardar:unNombre [
-
-	
-   self session getUser nombre: unNombre.
-
-	self answer
-
-
-
-]
-
-{ #category : #'as yet unclassified' }
 CuentaComponent >> logOut [
 	self answer.
 ]
@@ -55,9 +43,21 @@ aCanvas div
 ]
 
 { #category : #'as yet unclassified' }
+CuentaComponent >> modificarApellido [
+
+self call: EditarApellidoUserComponent new.
+]
+
+{ #category : #'as yet unclassified' }
+CuentaComponent >> modificarEmail [
+
+self call: EditarEmailUserComponent new.
+]
+
+{ #category : #'as yet unclassified' }
 CuentaComponent >> modificarNombre [
 
-self call: EditarDatosPersonalesComponent new.
+self call: EditarNombreUserComponent new.
 
 "modificarNombre:aCanvas
 
@@ -105,14 +105,22 @@ CuentaComponent >> renderDatosPersonalesOn: aCanvas [
 		aCanvas break.
 	aCanvas text: 'Apellido: '.
 	aCanvas text: self session getUser apellido  .
+	aCanvas anchor
+		callback: [ self modificarApellido   ];
+		with: [ aCanvas button with: 'Modificar apellido' ].
+	aCanvas horizontalRule.
 		aCanvas break.
 	aCanvas text: 'Nombre de usuario: '.
 	aCanvas text: self session getUser user  .
-		aCanvas break.
-	aCanvas text: 'Nombre: '.
-	aCanvas text: self session getUser nombre.
 	aCanvas horizontalRule.
-	
+		aCanvas break.
+	aCanvas text: 'Email: '.
+	aCanvas text: self session getUser mail.
+	aCanvas anchor
+		callback: [ self modificarEmail   ];
+		with: [ aCanvas button with: 'Modificar email' ].
+	aCanvas horizontalRule.
+
 
 ]
 

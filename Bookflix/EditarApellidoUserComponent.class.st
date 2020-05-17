@@ -1,69 +1,45 @@
 Class {
-	#name : #EditarDatosPersonalesComponent,
+	#name : #EditarApellidoUserComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'nombre',
-		'apellido',
-		'email'
+		'apellido'
 	],
 	#category : #'Bookflix-UI'
 }
 
 { #category : #accessing }
-EditarDatosPersonalesComponent >> apellido:unApe [
+EditarApellidoUserComponent >> apellido:unApe [
 
 apellido:=unApe.
 ]
 
 { #category : #'as yet unclassified' }
-EditarDatosPersonalesComponent >> cancelar [
+EditarApellidoUserComponent >> cancelar [
 self answer 
 ]
 
-{ #category : #accessing }
-EditarDatosPersonalesComponent >> email:unEmail [
-
-email:=unEmail .
-]
-
 { #category : #'as yet unclassified' }
-EditarDatosPersonalesComponent >> guardar [
+EditarApellidoUserComponent >> guardar [
 
-	nombre ifNotNil: [self session getUser nombre: nombre.].
-
-	apellido ifNotNil: [self session getUser apellido: apellido.].
-	email ifNotNil: [self session getUser mail: email.].
+	self session getUser apellido:apellido.
 
 	self answer
 ]
 
-{ #category : #accessing }
-EditarDatosPersonalesComponent >> nombre:unNombre [
-
-nombre:=unNombre . 
+{ #category : #initialization }
+EditarApellidoUserComponent >> initialize [
+	super initialize. 
 ]
 
 { #category : #rendering }
-EditarDatosPersonalesComponent >> renderContentOn: aCanvas [
+EditarApellidoUserComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 aCanvas 
-	form: [aCanvas 
-				paragraph: [ aCanvas label: 'Nombre'.
-					aCanvas textInput 
-						callback: [ :valor| self nombre:valor];
-					with: ''.].
-			
-	
-			aCanvas paragraph: [ aCanvas label: 'Apellido '.
+	form: [aCanvas paragraph: [ aCanvas label: 'Apellido '.
 					aCanvas textInput 
 					callback: [ :valor| self apellido:valor];
 					with: ''.].
 				
-		  aCanvas paragraph: [ aCanvas label: 'Email'.
-					aCanvas textInput  
-					callback: [ :valor| self email:valor];
-					with: ''.].
-
 		aCanvas button
 			callback: [self guardar ];
 			with: 'Guardar'.
@@ -77,11 +53,10 @@ aCanvas
 
 
 
-
 ]
 
 { #category : #hooks }
-EditarDatosPersonalesComponent >> style [
+EditarApellidoUserComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -97,7 +72,7 @@ EditarDatosPersonalesComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-EditarDatosPersonalesComponent >> titleTop: aCanvas [
+EditarApellidoUserComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
 ]
