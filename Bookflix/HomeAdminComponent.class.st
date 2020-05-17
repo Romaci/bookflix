@@ -1,5 +1,19 @@
+"
+|application|
+
+""--------------------------------SEASIDE REGISTRO--------------------------------------""
+
+
+application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'bookflixAdmin'.
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
+application sessionClass: SessionWithUser.
+
+""----------------------------------------------------------------------------------------""
+SistemaBookflix clearSoleInstance .
+BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
+"
 Class {
-	#name : #HomeComponent,
+	#name : #HomeAdminComponent,
 	#superclass : #WAComponent,
 	#instVars : [
 		'model'
@@ -8,46 +22,54 @@ Class {
 }
 
 { #category : #initialization }
-HomeComponent >> initialize [ 
+HomeAdminComponent >> initialize [ 
 
 super initialize 
 ]
 
 { #category : #'as yet unclassified' }
-HomeComponent >> irDatosPersonales [
+HomeAdminComponent >> irDatosPersonales [
 
 	self call: (CuentaComponent new ).
 	self answer.
 ]
 
-{ #category : #'as yet unclassified' }
-HomeComponent >> logOut [ 
-
-	self show: (LoginComponent new )
-]
-
 { #category : #accessing }
-HomeComponent >> model [ 
+HomeAdminComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #rendering }
-HomeComponent >> renderContentOn: aCanvas [
+HomeAdminComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
-		aCanvas horizontalRule.
-
-
+		aCanvas div
+				with: [ aCanvas anchor
+						callback: [ "AGREGAR RENDER PARA DAR DE ALTA EDITORIAL" ];
+						with: [ aCanvas button with: 'Dar de alta Editorial' ].
+						
+						aCanvas anchor
+						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA AUTOR" ];
+						with: [ aCanvas button with: 'Dar de alta Autor' ].
+						
+						aCanvas anchor
+						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA GENERO" ];
+						with: [ aCanvas button with: 'Dar de alta Genero' ].
+						
+						aCanvas anchor
+						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA LIBRO" ];
+						with: [ aCanvas button with: 'Dar de alta Libro' ].
+						
+						 ]
 ]
 
 { #category : #rendering }
-HomeComponent >> renderLogoutButtonOn: aCanvas [
+HomeAdminComponent >> renderLogoutButtonOn: aCanvas [
 
 aCanvas div
 		id: 'contLogout';
 		with: [aCanvas div
 				id: 'cuooter';
-				with: [ aCanvas text: 'Usuario en sesión: '.
-					aCanvas paragraph: self session getUser user .
+				with: [ 
 			aCanvas div
 				with: [ aCanvas anchor
 						callback: [ self answer. ];
@@ -55,7 +77,7 @@ aCanvas div
 ]
 
 { #category : #hooks }
-HomeComponent >> style [
+HomeAdminComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px }
 	#pieDeRespuesta{text-align: center}
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;  } 
@@ -73,7 +95,7 @@ HomeComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-HomeComponent >> titleTop: aCanvas [
+HomeAdminComponent >> titleTop: aCanvas [
 	aCanvas div
 		id: 'Bookflix';
 		with: [ aCanvas text: 'Bookflix' ].
@@ -84,16 +106,12 @@ HomeComponent >> titleTop: aCanvas [
 		
 aCanvas horizontalRule.
 
-aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self irDatosPersonales ];
-						with: [aCanvas text: 'Datos personales' ].].
 	
 
 ]
 
 { #category : #'as yet unclassified' }
-HomeComponent >> verCuenta:unUser [
+HomeAdminComponent >> verCuenta:unUser [
 
 "self show: (PerfilComponent new perfilDe:unUser) "
 ]

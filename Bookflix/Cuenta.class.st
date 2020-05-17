@@ -23,6 +23,18 @@ Cuenta >> agregarPerfilConNombre: unNombre. [
 	perfiles add: (Perfil conNombre:unNombre).
 ]
 
+{ #category : #accessing }
+Cuenta >> apellido [
+
+^apellido .
+]
+
+{ #category : #accessing }
+Cuenta >> apellido:unApe [ 
+
+apellido:=unApe.
+]
+
 { #category : #'as yet unclassified' }
 Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass [
 
@@ -34,6 +46,17 @@ Cuenta >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMai
 	password := unaPass.
 	self agregarPerfilConNombre:'Perfil 1'.
 	self agregarPerfilConNombre:'Perfil 2'.
+]
+
+{ #category : #'as yet unclassified' }
+Cuenta >> conUseryPassword [
+
+	nombre:= ''.
+	apellido:='' .
+	user:=' ' .
+	mail:= ''.
+	password := ' '.
+
 ]
 
 { #category : #initialization }
@@ -50,9 +73,21 @@ Cuenta >> mail [
 ]
 
 { #category : #accessing }
+Cuenta >> mail:unMail [
+
+mail:=unMail . 
+]
+
+{ #category : #accessing }
 Cuenta >> nombre [
 	
  ^nombre.
+]
+
+{ #category : #accessing }
+Cuenta >> nombre:unNombre [
+
+nombre :=unNombre .
 ]
 
 { #category : #accessing }
@@ -61,6 +96,17 @@ Cuenta >> password [
 ]
 
 { #category : #accessing }
+Cuenta >> password: unaPass [
+	password := unaPass.
+]
+
+{ #category : #accessing }
 Cuenta >> user [ 
 ^user
+]
+
+{ #category : #accessing }
+Cuenta >> user: unUser [
+	
+	user:= unUser.
 ]

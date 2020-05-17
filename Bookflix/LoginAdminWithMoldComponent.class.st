@@ -4,129 +4,127 @@
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
 
 
-application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.
-application sessionClass: SessionWithUser.
-WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
-WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
-WAAdmin register: EditarDatosPersonalesComponent  asApplicationAt: 'EditarDatos'.
-
-
+application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'bookflixAdmin'.
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
 
 
 ""----------------------------------------------------------------------------------------""
 SistemaBookflix clearSoleInstance .
 BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
-
-
-
-
-    I
 "
 Class {
-	#name : #LoginComponent,
+	#name : #LoginAdminWithMoldComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'user',
-		'password'
+		'administrador',
+		'mold'
 	],
 	#category : #'Bookflix-UI'
 }
 
+{ #category : #accessing }
+LoginAdminWithMoldComponent >> administrador [
+	^administrador.
+]
+
+{ #category : #initialization }
+LoginAdminWithMoldComponent >> buildMold [
+mold := Mold new.
+  (mold stringField)
+    label: 'User:';
+	 on: #user of: self administrador ;
+    beRequired: 'El campo es requerido'.
+	
+  (mold passwordField)
+    label: 'Password:';
+	 on: #password of:self administrador;
+    beRequired: 'El campo es requerido'.
+	 
+]
+
 { #category : #'as yet unclassified' }
-LoginComponent >> formularioLogin:aCanvas [
+LoginAdminWithMoldComponent >> formularioLogin:aCanvas [
 
 aCanvas horizontalRule 
 		with: [aCanvas div
 		id: 'formLogin';
-		with: [ aCanvas form: [aCanvas 
-				paragraph: [ aCanvas label: 'Nombre de usuario: '.
-					aCanvas textInput 
-						callback: [ :valor| self setUser:valor];
-					with: ''.].
-			
-	
-			aCanvas paragraph: [ aCanvas label: 'Password: '.
-					aCanvas passwordInput
-					callback: [ :valor| self setPassword:valor];
-					with: ''.].
- 
-	
-		aCanvas button
-			callback: [self login ];
-			with: 'Iniciar sesión'.
-		
-		
-		aCanvas button
-			callback: [self irRegistro ];
-			with: 'Registrarse'.].
-		]. ].
+		with:[
+aCanvas form:
+    [mold canvas: aCanvas.
+    mold paragraphs.
+    (aCanvas button)
+      callback: [self login];
+      value: 'Iniciar sesión'.
 
-
+]]].
 
 ]
 
 { #category : #initialization }
-LoginComponent >> initialize [
+LoginAdminWithMoldComponent >> initialize [
 	super initialize. 
-	
+	administrador:= Administrador new.
+	self buildMold.
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponent >> irErrorLogin [
-
-self call: ErrorLoginComponent new.
+LoginAdminWithMoldComponent >> irErrorLogin [
+	self call: ErrorLoginComponent new.
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponent >> irHome: aUser [
+LoginAdminWithMoldComponent >> irHome [
 
+self call: HomeAdminComponent new.
+
+]
+
+{ #category : #'as yet unclassified' }
+LoginAdminWithMoldComponent >> irHome: aUser [
 self session setUser:aUser.
+self call: HomeAdminComponent new.
 
-self call: HomeComponent new.
-
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponent >> irRegistro [ 
-   self call: RegistroComponent new.
 ]
 
 { #category : #'private protocol' }
-LoginComponent >> login [ 
-(self model withUsername:user ypass:password)
+LoginAdminWithMoldComponent >> login [
+  mold isValid ifFalse: [^self].
+  mold save.
+   (self model withUsername:administrador user ypass:administrador password)
+		ifNotNil: [self irHome]
+		ifNil:[self irErrorLogin].
+  self answer.
+ 
+  
+
+"login 
+
+(self model withUsername:cuenta user ypass:cuenta password)
 		ifNotNil: [ :it | self irHome:it ]
 		ifNil:[self irErrorLogin].
-	user:= nil.
-	password := nil
+		
+	cuenta:=Cuenta new conUser:'user' conNombre:'.' conApellido:'.' conMail:'.' yPass:'password'."  
 ]
 
 { #category : #accessing }
-LoginComponent >> model [
+LoginAdminWithMoldComponent >> model [
 ^ SistemaBookflix soleInstance
 ]
 
 { #category : #rendering }
-LoginComponent >> renderContentOn: aCanvas [
+LoginAdminWithMoldComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
 		with: [ self formularioLogin: aCanvas ]
+		
+
+	
  
 ]
 
-{ #category : #initialization }
-LoginComponent >> setPassword:unaPass [
-password :=unaPass. 
-]
-
-{ #category : #'as yet unclassified' }
-LoginComponent >> setUser: unUser [
-user:= unUser.
-]
-
 { #category : #hooks }
-LoginComponent >> style [
+LoginAdminWithMoldComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -142,9 +140,7 @@ LoginComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-LoginComponent >> titleTop: aCanvas [
-	aCanvas div
-		id: 'Bookflix';
-		with: [ aCanvas text: 'Bookflix' ].
-	
+LoginAdminWithMoldComponent >> titleTop: aCanvas [
+	 aCanvas div id: 'Bookflix';
+		with: 'Bookflix'
 ]
