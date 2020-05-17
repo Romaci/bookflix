@@ -26,7 +26,7 @@ Cuenta >> agregarPerfilConNombre: unNombre. [
 { #category : #accessing }
 Cuenta >> apellido [
 
-	^apellido.
+^apellido .
 ]
 
 { #category : #'as yet unclassified' }
