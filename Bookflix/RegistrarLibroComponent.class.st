@@ -55,8 +55,10 @@ aCanvas horizontalRule
 				
 			aCanvas 
 				paragraph: [ aCanvas label: 'Autor: '.
-					aCanvas textInput 
+					aCanvas select
 						callback: [ :valor| self autor:valor];
+				      list:(self model autores collect:[:a|a nombre,'', a apellido]);	
+					selected:self autor;	
 					with: ''.].
 				
 				
@@ -172,7 +174,7 @@ RegistrarLibroComponent >> style [
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
-		with: ['Bookflix'].
+		with: [aCanvas text: 'Bookflix'].
 		
 		aCanvas div
 		id: 'logout';
