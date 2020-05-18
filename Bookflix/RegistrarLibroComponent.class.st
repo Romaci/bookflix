@@ -112,7 +112,6 @@ RegistrarLibroComponent >> model [
 
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> registrar [
-
 |listaGeneros  |
 
 	listaGeneros := OrderedCollection new.
@@ -127,6 +126,7 @@ RegistrarLibroComponent >> registrar [
      self model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
 
 	self answer
+
 ]
 
 { #category : #rendering }
