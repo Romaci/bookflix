@@ -1,37 +1,30 @@
 Class {
-	#name : #ListaLibrosComponent,
+	#name : #ListaAutoresComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'model'
+		'nombre',
+		'apellido',
+		'fechaNac',
+		'fechaDef'
 	],
 	#category : #'Bookflix-UI'
 }
 
 { #category : #'as yet unclassified' }
-ListaLibrosComponent >> irRegistrarLibro [
+ListaAutoresComponent >> irRegistrarAutor [
 
 
-	self call: (RegistrarLibroComponent  new ).
+	self call: (RegistroAutorComponent  new ).
 	"self answer ."
 ]
 
 { #category : #accessing }
-ListaLibrosComponent >> model [ 
+ListaAutoresComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderContentOn: aCanvas. [
-
-self titleTop: aCanvas.
-	aCanvas
-		table: [  (self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
-		
-	
-]
-
-{ #category : #rendering }
-ListaLibrosComponent >> renderLibro:unLibro On:aCanvas [
+ListaAutoresComponent >> renderAutor:unAutor On:aCanvas [
 
 aCanvas horizontalRule.
 
@@ -44,19 +37,23 @@ aCanvas horizontalRule.
 	
 
 									
-				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo   ].  
-				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor  ].  
-				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor].  
+				aCanvas text: 'Nombre de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor nombre    ].  
+				aCanvas text: 'Apellido de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor apellido   ].  
+				aCanvas text: 'Fecha de nacimiento de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor fechaDeNac ].  
+				aCanvas text: 'Fecha de defunción de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor fechaDeDef ].  
 	
-
-
-
-
-
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderLogoutButtonOn: aCanvas [
+ListaAutoresComponent >> renderContentOn: aCanvas. [
+
+self titleTop: aCanvas.
+	aCanvas
+		table: [  (self model obtenerListadoAutores) do:[:each| self renderAutor:each On:aCanvas]]. 
+]
+
+{ #category : #rendering }
+ListaAutoresComponent >> renderLogoutButtonOn: aCanvas [
 
 	aCanvas
 		paragraph:[ aCanvas anchor
@@ -65,7 +62,7 @@ ListaLibrosComponent >> renderLogoutButtonOn: aCanvas [
 ]
 
 { #category : #hooks }
-ListaLibrosComponent >> style [
+ListaAutoresComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px }
 	#pieDeRespuesta{text-align: center}
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;  } 
@@ -83,7 +80,7 @@ ListaLibrosComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-ListaLibrosComponent >> titleTop: aCanvas [
+ListaAutoresComponent >> titleTop: aCanvas [
 	aCanvas div
 		id: 'Bookflix';
 		with: [ aCanvas text: 'Bookflix' ].
@@ -96,6 +93,6 @@ aCanvas horizontalRule.
 
 aCanvas 
 	heading: [ aCanvas anchor
-						callback: [ self irRegistrarLibro ];
+						callback: [ self irRegistrarAutor  ];
 						with: [aCanvas text: 'Registrar nuevo libro en el sistema' ].].
 ]

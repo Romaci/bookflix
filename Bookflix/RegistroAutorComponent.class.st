@@ -1,85 +1,78 @@
 Class {
-	#name : #RegistrarLibroComponent,
+	#name : #RegistroAutorComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'model',
-		'titulo',
-		'autor',
-		'editorial',
-		'generos'
+		'nombre',
+		'apellido',
+		'fechaNac',
+		'fechaDef'
 	],
 	#category : #'Bookflix-UI'
 }
 
 { #category : #accessing }
-RegistrarLibroComponent >> autor [ 
+RegistroAutorComponent >> apellido:unApe [
 
-^autor
-]
-
-{ #category : #accessing }
-RegistrarLibroComponent >> autor:unAutor [
-
-autor:=unAutor.
+apellido:=unApe.
 ]
 
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> cancelar [
+RegistroAutorComponent >> cancelar [
 self answer 
 ]
 
-{ #category : #accessing }
-RegistrarLibroComponent >> editorial [
+{ #category : #'as yet unclassified' }
+RegistroAutorComponent >> fechaDeDef:unaFecha [
 
-^editorial
+fechaDef :=unaFecha . 
+]
+
+{ #category : #'as yet unclassified' }
+RegistroAutorComponent >> fechaDeNac: unaFecha [
+
+fechaNac :=unaFecha. 
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> editorial:unaEditorial [
-
-editorial:=unaEditorial.
-]
-
-{ #category : #accessing }
-RegistrarLibroComponent >> formularioRegistro:aCanvas [
+RegistroAutorComponent >> formularioRegistro:aCanvas [
 
 aCanvas horizontalRule 
 		with: [aCanvas div
 		id: 'formLogin';
 		
 		with: [ aCanvas form: [aCanvas 
-				paragraph: [ aCanvas label: 'Título: '.
+				paragraph: [ aCanvas label: 'Nombre: '.
 					aCanvas textInput 
-						callback: [ :valor| self titulo:valor];
+						callback: [ :valor| self nombre:valor];
 					with: ''.].
 				
 			aCanvas 
-				paragraph: [ aCanvas label: 'Autor: '.
+				paragraph: [ aCanvas label: 'Apellido: '.
 					aCanvas textInput 
-						callback: [ :valor| self autor:valor];
+						callback: [ :valor| self apellido:valor];
 					with: ''.].
 				
 				
 				
 				aCanvas 
-				paragraph: [ aCanvas label: 'Editorial: '.
+				paragraph: [ aCanvas label: 'Fecha de nacimiento: '.
 					aCanvas textInput 
-						callback: [ :valor| self editorial:valor];
+						callback: [ :valor| self fechaDeNac:valor];
 					with: ''.].
 		
 		
 		aCanvas 
-				paragraph: [ aCanvas label: 'Generos: '.
+				paragraph: [ aCanvas label: 'Fecha de defunción: '.
 					aCanvas textInput 
-						callback: [ :valor| self generos:valor];
-					with: 'Ingrese,generos,separados,por,coma'.].
+						callback: [ :valor| self fechaDeDef:valor];
+					with: ''.].
 			
 
  
 	
 		aCanvas button
 			callback: [self registrar  ];
-			with: 'Registrar libro'.].
+			with: 'Registrar autor'.].
 	
 	
 		aCanvas button
@@ -87,51 +80,37 @@ aCanvas horizontalRule
 			with: 'Cancelar'.].].
 ]
 
-{ #category : #accessing }
-RegistrarLibroComponent >> generos [ 
-^generos
-]
-
-{ #category : #accessing }
-RegistrarLibroComponent >> generos:listaDeGeneros [
-
-generos:=listaDeGeneros .
-]
-
 { #category : #initialization }
-RegistrarLibroComponent >> initialize [ 
+RegistroAutorComponent >> initialize [ 
 
 super initialize 
-
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> model [ 
+RegistroAutorComponent >> model [ 
 ^ SistemaBookflix soleInstance 
 ]
 
+{ #category : #accessing }
+RegistroAutorComponent >> nombre:unNombre [
+
+nombre:=unNombre .
+]
+
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> registrar [
+RegistroAutorComponent >> registrar [
 
-|listaGeneros  |
-
-	listaGeneros := OrderedCollection new.
-	
-	
-	(self generos findTokens: ',') do: [ :each | listaGeneros  add: each ]. 
-	
-
-	
-	
-
-     self model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
+self model darDeAltaAutor:nombre apellido: apellido fechaDeNac: fechaNac yFechaDeDef: fechaDef .
+    
 
 	self answer
 
 ]
 
 { #category : #rendering }
-RegistrarLibroComponent >> renderContentOn: aCanvas [
+RegistroAutorComponent >> renderContentOn: aCanvas [
+
+
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
@@ -139,7 +118,7 @@ self titleTop: aCanvas.
 ]
 
 { #category : #rendering }
-RegistrarLibroComponent >> renderLogoutButtonOn: aCanvas [
+RegistroAutorComponent >> renderLogoutButtonOn: aCanvas [
 
 aCanvas div
 		id: 'contLogout';
@@ -154,7 +133,7 @@ aCanvas div
 ]
 
 { #category : #hooks }
-RegistrarLibroComponent >> style [
+RegistroAutorComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -170,7 +149,7 @@ RegistrarLibroComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> titleTop: aCanvas [
+RegistroAutorComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: ['Bookflix'].
 		
@@ -179,20 +158,4 @@ RegistrarLibroComponent >> titleTop: aCanvas [
 		with: [self renderLogoutButtonOn: aCanvas ].
 		
 aCanvas horizontalRule.
-
-
-	
-
-]
-
-{ #category : #accessing }
-RegistrarLibroComponent >> titulo [ 
-
-^titulo
-]
-
-{ #category : #accessing }
-RegistrarLibroComponent >> titulo:unTitulo [
-
-titulo:=unTitulo.
 ]

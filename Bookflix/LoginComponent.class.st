@@ -33,6 +33,9 @@ WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'RegistroExitoso'.
 WAAdmin register: ErrorLoginComponent   asApplicationAt: 'ErrorLogin'.
 WAAdmin register: RegistrarLibroComponent asApplicationAt: 'RegistroLibro'.
 WAAdmin register: ListaLibrosComponent asApplicationAt: 'ListaLibros'.
+WAAdmin register: RegistroAutorComponent asApplicationAt: 'RegistroAutor'.
+WAAdmin register: ListaAutoresComponent asApplicationAt: 'ListaAutores'.
+
 
 
 ""----------------------------------------------------------------------------------------""
