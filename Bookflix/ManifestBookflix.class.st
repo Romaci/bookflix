@@ -16,3 +16,8 @@ ManifestBookflix class >> ruleRBSendsUnknownMessageToGlobalRuleV1FalsePositive [
 ManifestBookflix class >> ruleRBSentNotImplementedRuleV1FalsePositive [
 	^ #(#(#(#RGPackage #(#Bookflix)) #'2020-05-16T02:08:09.03092-03:00') )
 ]
+
+{ #category : #'code-critics' }
+ManifestBookflix class >> ruleRBUnclassifiedMethodsRuleV1FalsePositive [
+	^ #(#(#(#RGMethodDefinition #(#RegistroComponent #registrar #false)) #'2020-05-18T16:12:13.890665-03:00') )
+]

@@ -7,7 +7,11 @@ Class {
 		'nombre',
 		'apellido',
 		'user',
-		'password'
+		'password',
+		'nroTarjeta',
+		'mesExp',
+		'anioExp',
+		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -61,6 +65,12 @@ aCanvas horizontalRule
 			with: 'Registrarme'.].]]
 ]
 
+{ #category : #initialization }
+RegistroComponent >> initialize [
+	super initialize.
+	errorMessage:= OrderedCollection new.
+]
+
 { #category : #'as yet unclassified' }
 RegistroComponent >> irLogin [
 
@@ -71,29 +81,53 @@ self call: LoginComponent new.
 ]
 
 { #category : #accessing }
+RegistroComponent >> isValid [
+    errorMessage removeAll.
+	(self model estaRegistradoUsuario: user)
+		ifNotNil: [ errorMessage
+				add: '*El Usuario Ingresado ya se encuentra registrado en el sistema'.
+			^ false ].
+    
+	^ true
+]
+
+{ #category : #accessing }
 RegistroComponent >> model [ 
 ^ SistemaBookflix soleInstance 
 ]
 
 { #category : #'as yet unclassified' }
 RegistroComponent >> registrar [
-
-	(self model estaRegistradoUsuario: user )
-		ifNil: [ self model registrarCuentaDe: user conNombre: nombre conApellido: apellido conMail: mail  yPass: password. 
-			
-			self irLogin].
-	 "user := nil.
-	password := nil"
-
-
+	self isValid
+		ifFalse: [ ^ self ]
+		ifTrue: [ self model
+				registrarCuentaDe: user
+				conNombre: nombre
+				conApellido: apellido
+				conMail: mail
+				yPass: password.
+			self irLogin ].
+	user := nil.
+	password := nil.
+	mail := nil.
+	nombre := nil.
+	apellido := nil.
+	nroTarjeta := nil.
+	mesExp := nil.
+	anioExp := nil
 ]
 
 { #category : #rendering }
 RegistroComponent >> renderContentOn: aCanvas [
-self titleTop: aCanvas.
+	self titleTop: aCanvas.
 	aCanvas div
-	id: 'formLogin';
-		with: [ self formularioRegistro: aCanvas ]
+		id: 'formLogin';
+		with: [ self formularioRegistro: aCanvas ].
+	aCanvas div
+		with: [ errorMessage
+				do: [ :each | 
+					aCanvas paragraph: each.
+					aCanvas break ] ].
 ]
 
 { #category : #initialization }
