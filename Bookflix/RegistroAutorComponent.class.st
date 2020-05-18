@@ -109,12 +109,13 @@ self model darDeAltaAutor:nombre apellido: apellido fechaDeNac: fechaNac yFechaD
 
 { #category : #rendering }
 RegistroAutorComponent >> renderContentOn: aCanvas [
-
-
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
 		with: [ self formularioRegistro: aCanvas ]
+		
+	
+
 ]
 
 { #category : #rendering }
@@ -151,7 +152,9 @@ RegistroAutorComponent >> style [
 { #category : #'as yet unclassified' }
 RegistroAutorComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
-		with: ['Bookflix'].
+		with: [aCanvas text: 'Bookflix'].
+		
+
 		
 		aCanvas div
 		id: 'logout';

@@ -174,7 +174,7 @@ RegistrarLibroComponent >> style [
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
-		with: ['Bookflix'].
+		with: [aCanvas text: 'Bookflix'].
 		
 		aCanvas div
 		id: 'logout';
