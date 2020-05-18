@@ -85,6 +85,15 @@ SistemaBookflix >> darDeAltaGenero: unGenero [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoEmail: unEmail [
+
+"metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
+
+	^cuentas detect: [ :each | each mail = unEmail ]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoUsuario: nombreUser [ 
 
 "metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"

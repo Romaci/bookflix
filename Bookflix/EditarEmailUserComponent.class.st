@@ -13,6 +13,12 @@ self answer
 ]
 
 { #category : #accessing }
+EditarEmailUserComponent >> email [
+
+^email
+]
+
+{ #category : #accessing }
 EditarEmailUserComponent >> email:unEmail [
 
 email:=unEmail .
@@ -21,14 +27,26 @@ email:=unEmail .
 { #category : #'as yet unclassified' }
 EditarEmailUserComponent >> guardar [
 
-	self session getUser mail: email.
+"Verificar que el mail que quiero modificar no este ya en el sistema, si no está lo guarda"
 
-	self answer
+ 	(self model estaRegistradoEmail: email)
+	ifNil:[ self session getUser mail: email].
+
+	self answer.
+	
+
+
+
 ]
 
 { #category : #initialization }
 EditarEmailUserComponent >> initialize [
 	super initialize. 
+]
+
+{ #category : #accessing }
+EditarEmailUserComponent >> model [ 
+^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #rendering }
