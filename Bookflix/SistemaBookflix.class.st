@@ -142,6 +142,18 @@ SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: un
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros [
+
+|unLibro|
+
+ unLibro:= Libro registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros . 
+
+libros add:unLibro. 
+
+^unLibro
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> withUsername: unUsername ypass: aPassword [
 
 "metodo que chequea que el usuario que entró por parámetro y la contraseña, 

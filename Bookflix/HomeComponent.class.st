@@ -36,11 +36,14 @@ HomeComponent >> renderContentOn: aCanvas [
   with:
     [(aCanvas label)
        for: 'upload';
-       with: 'Select File'.
+       with: 'Elegir el libro a cargar'.
+aCanvas break.
      (aCanvas fileUpload)
        readonly: true;
        id: 'upload';
-       callback: [:f | self upload: f]]
+       callback: [:f | self upload: f]].
+		aCanvas submitButton text: 'Send file'.
+			
 ]
 
 { #category : #rendering }
@@ -94,6 +97,12 @@ aCanvas
 						with: [aCanvas text: 'Datos personales' ].].
 	
 
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> upload:aFile [
+
+file:=aFile. 
 ]
 
 { #category : #'as yet unclassified' }
