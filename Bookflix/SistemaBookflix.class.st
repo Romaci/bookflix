@@ -123,6 +123,12 @@ SistemaBookflix >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> obtenerListadoAutores [
+
+^autores
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> obtenerListadoLibros [
 
 ^libros

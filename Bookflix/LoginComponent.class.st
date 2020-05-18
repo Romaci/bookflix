@@ -1,48 +1,27 @@
 "
-""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
-
-Metacello new 
-  baseline: 'Mold';
-  repository: 'github://grype/Seaside-Mold/src';
-  load.
-
-
-
----------------------------------------------------------------------------------------
-
-
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
 
-
-application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'.  //Este no lo usamos mientras usamos validaciones por MOLD
-
-
-application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'loginAdmin'.
-application:=WAAdmin register: LoginWithMoldComponent asApplicationAt: 'loginUser'.
-WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
+application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'. 
+WAAdmin register: RegistroComponent  asApplicationAt: 'registro'.
 application sessionClass: SessionWithUser.
-WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
-WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
-WAAdmin register: EditarNombreUserComponent  asApplicationAt: 'EditarNombre'.
-WAAdmin register: EditarApellidoUserComponent  asApplicationAt: 'EditarApellido'.
-WAAdmin register: EditarEmailUserComponent  asApplicationAt: 'EditarEmail'.
-application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
-WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'RegistroExitoso'.
-WAAdmin register: ErrorLoginComponent   asApplicationAt: 'ErrorLogin'.
-WAAdmin register: RegistrarLibroComponent asApplicationAt: 'RegistroLibro'.
-WAAdmin register: ListaLibrosComponent asApplicationAt: 'ListaLibros'.
+WAAdmin register: HomeComponent  asApplicationAt: 'bookflixHome'.
+WAAdmin register:CuentaComponent   asApplicationAt: 'cuenta'.
+WAAdmin register: EditarNombreUserComponent  asApplicationAt: 'editarNombre'.
+WAAdmin register: EditarApellidoUserComponent  asApplicationAt: 'editarApellido'.
+WAAdmin register: EditarEmailUserComponent  asApplicationAt: 'editarEmail'.
+
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'homeAdmin'.
+WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'registroExitoso'.
+WAAdmin register: ErrorLoginComponent   asApplicationAt: 'errorLogin'.
+WAAdmin register: RegistrarLibroComponent asApplicationAt: 'registroLibro'.
+WAAdmin register: ListaLibrosComponent asApplicationAt: 'listaLibros'.
 
 
 ""----------------------------------------------------------------------------------------""
 SistemaBookflix clearSoleInstance .
 BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
-
-
-
-
- 
 "
 Class {
 	#name : #LoginComponent,

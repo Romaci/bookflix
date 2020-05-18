@@ -35,6 +35,14 @@ HomeAdminComponent >> irDatosPersonales [
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irListaDeAutores [
+
+
+	self call: (ListaAutoresComponent new ).
+	self answer .
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irListaDeLibros [
 
 
@@ -43,11 +51,19 @@ HomeAdminComponent >> irListaDeLibros [
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irRegistrarAutor [
+
+
+	self call: (RegistroAutorComponent  new ).
+	"self answer ."
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irRegistrarLibro [
 
 
 	self call: (RegistrarLibroComponent  new ).
-	self answer .
+	"self answer ."
 
 ]
 
@@ -65,7 +81,7 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						with: [ aCanvas button with: 'Dar de alta Editorial' ].
 						
 						aCanvas anchor
-						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA AUTOR" ];
+						callback: [ self irRegistrarAutor ];
 						with: [ aCanvas button with: 'Dar de alta Autor' ].
 						
 						aCanvas anchor
@@ -80,7 +96,11 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						
 						aCanvas anchor
 						callback: [ self irListaDeLibros  ];
-						with: [ aCanvas button with: 'Listado completos de libros en sistema' ].
+						with: [ aCanvas button with: 'Listado completo de libros en sistema' ].
+						
+						aCanvas anchor
+						callback: [ self irListaDeAutores  ];
+						with: [ aCanvas button with: 'Listado completo de autores en sistema' ].
 						
 						
 						 ]
