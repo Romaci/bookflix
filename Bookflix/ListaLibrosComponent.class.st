@@ -47,16 +47,6 @@ aCanvas horizontalRule.
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderLibrosOn: aCanvas. [
-
-
-	aCanvas
-		table: [  (self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
-		
-	
-]
-
-{ #category : #rendering }
 ListaLibrosComponent >> renderLogoutButtonOn: aCanvas [
 
 	aCanvas
