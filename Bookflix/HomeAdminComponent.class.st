@@ -59,6 +59,15 @@ HomeAdminComponent >> irRegistrarAutor [
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irRegistrarEditorial [
+
+
+	self call: (RegistroEditorialComponent  new ).
+	"self answer ."
+
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irRegistrarGenero [
 
 
@@ -85,7 +94,7 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 		aCanvas div
 				with: [ aCanvas anchor
-						callback: [ "AGREGAR RENDER PARA DAR DE ALTA EDITORIAL" ];
+						callback: [ self irRegistrarEditorial ];
 						with: [ aCanvas button with: 'Dar de alta Editorial' ].
 						
 						aCanvas anchor
@@ -97,7 +106,7 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						with: [ aCanvas button with: 'Dar de alta Genero' ].
 						
 						aCanvas anchor
-						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA LIBRO" ];
+						callback: [ self irRegistrarLibro  ];
 						with: [ aCanvas button with: 'Dar de alta Libro' ].
 						
 						aCanvas break. 

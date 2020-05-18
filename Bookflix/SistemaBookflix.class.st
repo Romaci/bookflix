@@ -57,15 +57,18 @@ SistemaBookflix >> darDeAltaAutor:unNombre apellido: unApellido fechaDeNac: unaF
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> darDeAltaEditorial: unaEdit [
+SistemaBookflix >> darDeAltaEditorial: unNombre [
 	
-	|ok|
+	
+	|ok |
 	ok:=false.
 	
-	"Verifico que no este ya cargado en el sistema LA EDITORIAL por dar de alta"
-	(editoriales  anySatisfy:[:editorial | editorial = unaEdit])
-	ifFalse: [editoriales add: unaEdit. 
+	"Verifico que no este ya cargado en el sistema la EDITORIAL por dar de alta"
+	(editoriales anySatisfy:[:editorial | editorial nombreEditorial  = unNombre])
+	ifFalse: [editoriales add: (Editorial nombre: unNombre).
 		ok:=true].
+	
+	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia editorialr"
 	^ok.
 ]
 

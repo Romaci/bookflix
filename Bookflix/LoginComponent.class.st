@@ -35,7 +35,7 @@ WAAdmin register: ListaLibrosComponent asApplicationAt: 'ListaLibros'.
 WAAdmin register: RegistroAutorComponent asApplicationAt: 'RegistroAutor'.
 WAAdmin register: ListaAutoresComponent asApplicationAt: 'ListaAutores'.
 WAAdmin register: RegistroGeneroComponent asApplicationAt: 'RegistroGenero'.
-
+WAAdmin register: RegistroEditorialComponent asApplicationAt: 'RegistroEditorial'.
 
 ""----------------------------------------------------------------------------------------""
 SistemaBookflix clearSoleInstance .
