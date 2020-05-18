@@ -112,6 +112,7 @@ RegistrarLibroComponent >> model [
 
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> registrar [
+
 |listaGeneros  |
 
 	listaGeneros := OrderedCollection new.
