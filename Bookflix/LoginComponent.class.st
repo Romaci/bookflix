@@ -43,9 +43,6 @@ SistemaBookflix clearSoleInstance .
 BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
 
 
-
-
- 
 "
 Class {
 	#name : #LoginComponent,
