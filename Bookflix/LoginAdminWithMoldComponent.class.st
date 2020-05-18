@@ -1,17 +1,3 @@
-"
-|application|
-
-""--------------------------------SEASIDE REGISTRO--------------------------------------""
-
-
-application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'bookflixAdmin'.
-application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
-
-
-""----------------------------------------------------------------------------------------""
-SistemaBookflix clearSoleInstance .
-BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
-"
 Class {
 	#name : #LoginAdminWithMoldComponent,
 	#superclass : #WAComponent,
@@ -79,19 +65,13 @@ self call: HomeAdminComponent new.
 
 ]
 
-{ #category : #'as yet unclassified' }
-LoginAdminWithMoldComponent >> irHome: aUser [
-self session setUser:aUser.
-self call: HomeAdminComponent new.
-
-]
-
 { #category : #'private protocol' }
 LoginAdminWithMoldComponent >> login [
+"Envia los datos del admin al metodo de verificacion en sistemaBookflix, si está en la colección de administradores y los datos son correctos, inicia sesion"
   mold isValid ifFalse: [^self].
   mold save.
-   (self model withUsername:administrador user ypass:administrador password)
-		ifNotNil: [self irHome]
+   (self model adminWithUsername: administrador user ypass: administrador password)
+		ifNotNil: [ self irHome]
 		ifNil:[self irErrorLogin].
   self answer.
  

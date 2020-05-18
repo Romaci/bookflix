@@ -85,6 +85,15 @@ SistemaBookflix >> darDeAltaGenero: unGenero [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoEmail: unEmail [
+
+"metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
+
+	^cuentas detect: [ :each | each mail = unEmail ]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoUsuario: nombreUser [ 
 
 "metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
@@ -109,16 +118,13 @@ SistemaBookflix >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarAdminitrador:unNombre apellido: unApellido mail: unMail yPassWord: unaPass [
+SistemaBookflix >> obtenerListadoLibros [
 
-
-	administradores add: (Administrador conNombre:unNombre apellido: unApellido mail: unMail yPassWord: unaPass).
-
-	
+^libros
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarAdminitrador:unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:unaPass [
+SistemaBookflix >> registrarAdministrador:unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:unaPass [
 
 
 	administradores add: (Administrador conUser:unUser conNombre:unNombre conApellido:unApellido conMail:unMail yPass:unaPass).
@@ -139,6 +145,18 @@ SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: un
 	"Devuelvo boolean para confirmar la carga. Si ya existe usurio devuelve false y notifica en pantalla"
 	^ok.
 	
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
+
+|unLibro|
+
+ unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros . 
+
+libros add:unLibro. 
+
+^unLibro
 ]
 
 { #category : #'as yet unclassified' }

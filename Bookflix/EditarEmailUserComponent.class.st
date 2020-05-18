@@ -1,63 +1,59 @@
 Class {
-	#name : #EditarDatosPersonalesComponent,
+	#name : #EditarEmailUserComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'nombre',
-		'apellido',
 		'email'
 	],
 	#category : #'Bookflix-UI'
 }
 
-{ #category : #accessing }
-EditarDatosPersonalesComponent >> apellido:unApe [
-
-apellido:=unApe.
-]
-
 { #category : #'as yet unclassified' }
-EditarDatosPersonalesComponent >> cancelar [
+EditarEmailUserComponent >> cancelar [
 self answer 
 ]
 
 { #category : #accessing }
-EditarDatosPersonalesComponent >> email:unEmail [
+EditarEmailUserComponent >> email [
+
+^email
+]
+
+{ #category : #accessing }
+EditarEmailUserComponent >> email:unEmail [
 
 email:=unEmail .
 ]
 
 { #category : #'as yet unclassified' }
-EditarDatosPersonalesComponent >> guardar [
+EditarEmailUserComponent >> guardar [
 
-	nombre ifNotNil: [self session getUser nombre: nombre.].
+"Verificar que el mail que quiero modificar no este ya en el sistema, si no está lo guarda"
 
-	apellido ifNotNil: [self session getUser apellido: apellido.].
-	email ifNotNil: [self session getUser mail: email.].
+ 	(self model estaRegistradoEmail: email)
+	ifNil:[ self session getUser mail: email].
 
-	self answer
+	self answer.
+	
+
+
+
+]
+
+{ #category : #initialization }
+EditarEmailUserComponent >> initialize [
+	super initialize. 
 ]
 
 { #category : #accessing }
-EditarDatosPersonalesComponent >> nombre:unNombre [
-
-nombre:=unNombre . 
+EditarEmailUserComponent >> model [ 
+^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #rendering }
-EditarDatosPersonalesComponent >> renderContentOn: aCanvas [
+EditarEmailUserComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 aCanvas 
-	form: [aCanvas 
-				paragraph: [ aCanvas label: 'Nombre'.
-					aCanvas textInput 
-						callback: [ :valor| self nombre:valor];
-					with: ''.].
-			
-	
-			aCanvas paragraph: [ aCanvas label: 'Apellido '.
-					aCanvas textInput 
-					callback: [ :valor| self apellido:valor];
-					with: ''.].
+	form: [
 				
 		  aCanvas paragraph: [ aCanvas label: 'Email'.
 					aCanvas textInput  
@@ -81,7 +77,7 @@ aCanvas
 ]
 
 { #category : #hooks }
-EditarDatosPersonalesComponent >> style [
+EditarEmailUserComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
@@ -97,7 +93,7 @@ EditarDatosPersonalesComponent >> style [
 ]
 
 { #category : #'as yet unclassified' }
-EditarDatosPersonalesComponent >> titleTop: aCanvas [
+EditarEmailUserComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
 ]

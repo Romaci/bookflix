@@ -34,6 +34,23 @@ HomeAdminComponent >> irDatosPersonales [
 	self answer.
 ]
 
+{ #category : #'as yet unclassified' }
+HomeAdminComponent >> irListaDeLibros [
+
+
+	self call: (ListaLibrosComponent new ).
+	self answer .
+]
+
+{ #category : #'as yet unclassified' }
+HomeAdminComponent >> irRegistrarLibro [
+
+
+	self call: (RegistrarLibroComponent  new ).
+	self answer .
+
+]
+
 { #category : #accessing }
 HomeAdminComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
@@ -58,6 +75,13 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						aCanvas anchor
 						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA LIBRO" ];
 						with: [ aCanvas button with: 'Dar de alta Libro' ].
+						
+						aCanvas break. 
+						
+						aCanvas anchor
+						callback: [ self irListaDeLibros  ];
+						with: [ aCanvas button with: 'Listado completos de libros en sistema' ].
+						
 						
 						 ]
 ]
@@ -105,6 +129,11 @@ HomeAdminComponent >> titleTop: aCanvas [
 		with: [self renderLogoutButtonOn: aCanvas ].
 		
 aCanvas horizontalRule.
+
+aCanvas 
+	heading: [ aCanvas anchor
+						callback: [ self irRegistrarLibro ];
+						with: [aCanvas text: 'Registrar nuevo libro en el sistema' ].].
 
 	
 

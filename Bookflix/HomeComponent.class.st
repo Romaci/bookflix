@@ -2,7 +2,8 @@ Class {
 	#name : #HomeComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'model'
+		'model',
+		'file'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -36,7 +37,19 @@ HomeComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 		aCanvas horizontalRule.
 
-
+(aCanvas form)
+  multipart;
+  with:
+    [(aCanvas label)
+       for: 'upload';
+       with: 'Elegir el libro a cargar'.
+aCanvas break.
+     (aCanvas fileUpload)
+       readonly: true;
+       id: 'upload';
+       callback: [:f | self upload: f]].
+		aCanvas submitButton text: 'Send file'.
+			
 ]
 
 { #category : #rendering }
@@ -88,8 +101,15 @@ aCanvas
 	heading: [ aCanvas anchor
 						callback: [ self irDatosPersonales ];
 						with: [aCanvas text: 'Datos personales' ].].
+				
 	
 
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> upload:aFile [
+
+file:=aFile. 
 ]
 
 { #category : #'as yet unclassified' }
