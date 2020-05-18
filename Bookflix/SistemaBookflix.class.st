@@ -118,6 +118,12 @@ SistemaBookflix >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> obtenerListadoLibros [
+
+^libros
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> registrarAdministrador:unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:unaPass [
 
 
@@ -142,11 +148,11 @@ SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: un
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros [
+SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
 
 |unLibro|
 
- unLibro:= Libro registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros . 
+ unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros . 
 
 libros add:unLibro. 
 

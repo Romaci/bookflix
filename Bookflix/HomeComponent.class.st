@@ -95,6 +95,7 @@ aCanvas
 	heading: [ aCanvas anchor
 						callback: [ self irDatosPersonales ];
 						with: [aCanvas text: 'Datos personales' ].].
+				
 	
 
 ]

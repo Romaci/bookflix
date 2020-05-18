@@ -5,7 +5,7 @@ Class {
 		'titulo',
 		'autor',
 		'editorial',
-		'genero',
+		'generos',
 		'trailer',
 		'puntuacion',
 		'comentarios'
@@ -14,28 +14,72 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Libro class >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros [
+Libro class >> conTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
 
-^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros
+^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros
+
+
+
+]
+
+{ #category : #accessing }
+Libro >> autor [
+
+^autor
+]
+
+{ #category : #accessing }
+Libro >> autor:unAutor [
+
+autor:=unAutor.
+]
+
+{ #category : #accessing }
+Libro >> editorial [
+
+^editorial
+]
+
+{ #category : #accessing }
+Libro >> editorial:unaEditorial [
+editorial:=unaEditorial . 
+]
+
+{ #category : #accessing }
+Libro >> generos [
+
+^generos
+]
+
+{ #category : #'as yet unclassified' }
+Libro >> generos:unaLista [
+
+generos:=unaLista.
 ]
 
 { #category : #'as yet unclassified' }
 Libro >> initilize [
 
-genero:= OrderedCollection new. 
+generos:= OrderedCollection new. 
 ]
 
 { #category : #'as yet unclassified' }
-Libro >> libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unaListaDeGeneros [
+Libro >> libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
 
 titulo:=unTitulo . 
 autor:=unAutor . 
 editorial :=unaEditorial .
-genero :=unaListaDeGeneros . 
+generos :=unaListaDeGeneros . 
 ]
 
 { #category : #accessing }
 Libro >> titulo [
 	
 	^titulo.
+]
+
+{ #category : #accessing }
+Libro >> titulo:unTitulo [
+
+titulo:=unTitulo . 
 ]

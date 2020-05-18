@@ -29,9 +29,10 @@ WAAdmin register: EditarNombreUserComponent  asApplicationAt: 'EditarNombre'.
 WAAdmin register: EditarApellidoUserComponent  asApplicationAt: 'EditarApellido'.
 WAAdmin register: EditarEmailUserComponent  asApplicationAt: 'EditarEmail'.
 application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
-WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'Registro Exitoso'.
-WAAdmin register: ErrorLoginComponent   asApplicationAt: 'Error Login'.
-
+WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'RegistroExitoso'.
+WAAdmin register: ErrorLoginComponent   asApplicationAt: 'ErrorLogin'.
+WAAdmin register: RegistrarLibroComponent asApplicationAt: 'RegistroLibro'.
+WAAdmin register: ListaLibrosComponent asApplicationAt: 'ListaLibros'.
 
 
 ""----------------------------------------------------------------------------------------""
