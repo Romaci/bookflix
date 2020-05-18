@@ -23,6 +23,7 @@ ListaLibrosComponent >> model [
 
 { #category : #rendering }
 ListaLibrosComponent >> renderLibro:unLibro On:aCanvas [
+
 aCanvas horizontalRule.
 
 "aCanvas 
@@ -38,6 +39,7 @@ aCanvas horizontalRule.
 				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor  ].  
 				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor].  
 	
+
 
 
 
