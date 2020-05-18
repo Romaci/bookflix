@@ -55,12 +55,11 @@ aCanvas horizontalRule
 				
 			aCanvas 
 				paragraph: [ aCanvas label: 'Autor: '.
-					aCanvas select
-					callback: [ :valor| self autor:valor];
-					list: (self model autores collect:[:a|a nombre,a apellido]
-					);
-					selected:self autor;
-				with: ''.	].
+					aCanvas textInput 
+						callback: [ :valor| self autor:valor];
+					with: ''.].
+				
+				
 				
 				aCanvas 
 				paragraph: [ aCanvas label: 'Editorial: '.
