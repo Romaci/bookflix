@@ -1,3 +1,42 @@
+"
+|application|
+
+""--------------------------------SEASIDE REGISTRO--------------------------------------""
+
+
+application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'loginAdmin'.
+application:=WAAdmin register: LoginWithMoldComponent asApplicationAt: 'loginUser'.
+WAAdmin register: RegistroComponent  asApplicationAt: 'Registro'.
+application sessionClass: SessionWithUser.
+WAAdmin register: HomeComponent  asApplicationAt: 'BookflixHome'.
+WAAdmin register:CuentaComponent   asApplicationAt: 'Cuenta'.
+WAAdmin register: EditarNombreUserComponent  asApplicationAt: 'EditarNombre'.
+WAAdmin register: EditarApellidoUserComponent  asApplicationAt: 'EditarApellido'.
+WAAdmin register: EditarEmailUserComponent  asApplicationAt: 'EditarEmail'.
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'HomeAdmin'.
+WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'RegistroExitoso'.
+WAAdmin register: ErrorLoginComponent   asApplicationAt: 'ErrorLogin'.
+WAAdmin register: RegistrarLibroComponent asApplicationAt: 'RegistroLibro'.
+WAAdmin register: ListaLibrosComponent asApplicationAt: 'ListaLibros'.
+
+
+""----------------------------------------------------------------------------------------""
+SistemaBookflix clearSoleInstance .
+BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
+
+
+""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
+
+Metacello new 
+  baseline: 'Mold';
+  repository: 'github://grype/Seaside-Mold/src';
+  load.
+
+
+
+---------------------------------------------------------------------------------------
+
+"
 Class {
 	#name : #LoginWithMoldComponent,
 	#superclass : #WAComponent,
