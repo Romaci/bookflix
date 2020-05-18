@@ -17,8 +17,8 @@ usuario2:=unSistema registrarCuentaDe: 'stonky' conNombre: 'Gata' conApellido: '
 admin:= unSistema registrarAdministrador: 'admin1' conNombre: 'Administrador' conApellido: 'Admin' conMail: 'admin@bookflix.com' yPass: '1234'.
 
 
-autor1:= unSistema darDeAltaAutor:'Stephen' apellido:'King' fechaDeNac: (Date newDay: 21 month: #Septiembre year: 1947) yFechaDeDef: nil.
-autor2:= unSistema darDeAltaAutor:'Amelie' apellido:'Nothomb' fechaDeNac: (Date newDay: 9 month: #Julio year: 1966) yFechaDeDef: nil.
+autor1:= unSistema darDeAltaAutor:'Stephen' apellido:'King' fechaDeNac: (Date newDay: 21 month: #Sep year: 1947) yFechaDeDef: nil.
+autor2:= unSistema darDeAltaAutor:'Amelie' apellido:'Nothomb' fechaDeNac: (Date newDay: 9 month: #Jul year: 1966) yFechaDeDef: nil.
 
 
 unSistema darDeAltaEditorial: 'Anagrama'.
