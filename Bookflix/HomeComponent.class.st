@@ -2,7 +2,8 @@ Class {
 	#name : #HomeComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'model'
+		'model',
+		'file'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -30,7 +31,16 @@ HomeComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 		aCanvas horizontalRule.
 
-
+(aCanvas form)
+  multipart;
+  with:
+    [(aCanvas label)
+       for: 'upload';
+       with: 'Select File'.
+     (aCanvas fileUpload)
+       readonly: true;
+       id: 'upload';
+       callback: [:f | self upload: f]]
 ]
 
 { #category : #rendering }
