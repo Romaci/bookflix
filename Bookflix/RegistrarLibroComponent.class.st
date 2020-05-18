@@ -55,9 +55,12 @@ aCanvas horizontalRule
 				
 			aCanvas 
 				paragraph: [ aCanvas label: 'Autor: '.
-					aCanvas textInput 
-						callback: [ :valor| self autor:valor];
-					with: ''.].
+					aCanvas select
+					callback: [ :valor| self autor:valor];
+					list: (self model autores collect:[:a|a nombre,a apellido]
+					);
+					selected:self autor;
+				with: ''.	].
 				
 				aCanvas 
 				paragraph: [ aCanvas label: 'Editorial: '.
@@ -122,9 +125,9 @@ RegistrarLibroComponent >> registrar [
 	
 	
 
-     model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
+self model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
 
-	self answer
+
 
 ]
 

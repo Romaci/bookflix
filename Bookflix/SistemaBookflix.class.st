@@ -37,6 +37,11 @@ coincidan con uno que ya está en la lista de usuarios registrados"
 ]
 
 { #category : #accessing }
+SistemaBookflix >> autores [
+^autores
+]
+
+{ #category : #accessing }
 SistemaBookflix >> cuentas [
 
 ^cuentas
