@@ -8,9 +8,9 @@ Class {
 		'apellido',
 		'user',
 		'password',
+		'password2',
 		'nroTarjeta',
-		'mesExp',
-		'anioExp',
+		'dateExp',
 		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
@@ -58,7 +58,7 @@ aCanvas horizontalRule
 					aCanvas passwordInput
 					callback: [ :valor| self setPasswordRepetida:valor];
 					with: ''.]."
- 
+ 			
 	
 		aCanvas button
 			callback: [self registrar  ];
@@ -113,8 +113,7 @@ RegistroComponent >> registrar [
 	nombre := nil.
 	apellido := nil.
 	nroTarjeta := nil.
-	mesExp := nil.
-	anioExp := nil
+	dateExp := nil.
 ]
 
 { #category : #rendering }
@@ -137,6 +136,11 @@ apellido :=unApe.
 ]
 
 { #category : #initialization }
+RegistroComponent >> setDateExp: aDate [
+	dateExp := aDate
+]
+
+{ #category : #initialization }
 RegistroComponent >> setEmail:unEmail [
 
 mail:=unEmail . 
@@ -149,15 +153,20 @@ nombre:=unNombre .
 ]
 
 { #category : #initialization }
+RegistroComponent >> setNroTarjeta:unNro [
+
+nroTarjeta := unNro.
+]
+
+{ #category : #initialization }
 RegistroComponent >> setPassword: unaPass [
 
 password :=unaPass . 
 ]
 
 { #category : #initialization }
-RegistroComponent >> setPasswordRepetida:unaPass [
-
-"acá hay que hacer un get de la password que puso eel usuario y fijarse si es igual a la repetida" 
+RegistroComponent >> setPasswordRepetida: unaPass [
+	password2 := unaPass
 ]
 
 { #category : #initialization }
