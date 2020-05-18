@@ -70,18 +70,20 @@ SistemaBookflix >> darDeAltaEditorial: unaEdit [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> darDeAltaGenero: unGenero [
+SistemaBookflix >> darDeAltaGenero: unNombre [
 	
-	|ok|
+	|ok |
 	ok:=false.
 	
 	"Verifico que no este ya cargado en el sistema el GENERO por dar de alta"
-	(generos anySatisfy:[:genero | genero = unGenero])
-	ifFalse: [generos add: unGenero. 
+	(generos anySatisfy:[:genero | genero nombreGenero = unNombre])
+	ifFalse: [generos add: (Genero nombre:unNombre).
 		ok:=true].
 	
 	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia autor"
 	^ok.
+	
+
 ]
 
 { #category : #'as yet unclassified' }

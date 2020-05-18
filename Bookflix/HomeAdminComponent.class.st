@@ -59,6 +59,14 @@ HomeAdminComponent >> irRegistrarAutor [
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irRegistrarGenero [
+
+
+	self call: (RegistroGeneroComponent  new ).
+	"self answer ."
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irRegistrarLibro [
 
 
@@ -85,7 +93,7 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						with: [ aCanvas button with: 'Dar de alta Autor' ].
 						
 						aCanvas anchor
-						callback: [ self "AGREGAR RENDER PARA DAR DE ALTA GENERO" ];
+						callback: [ self irRegistrarGenero ];
 						with: [ aCanvas button with: 'Dar de alta Genero' ].
 						
 						aCanvas anchor
