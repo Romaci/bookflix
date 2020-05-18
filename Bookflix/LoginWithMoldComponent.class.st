@@ -1,10 +1,4 @@
 "
-WAComponent subclass: #LoginWithMoldComponent
-	instanceVariableNames: 'cuenta mold'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Bookflix-UI'
-
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""

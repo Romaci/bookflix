@@ -1,10 +1,4 @@
 "
-WAComponent subclass: #LoginComponent
-	instanceVariableNames: 'user password'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Bookflix-UI'
-
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
