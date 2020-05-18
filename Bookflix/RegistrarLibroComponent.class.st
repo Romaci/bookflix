@@ -122,7 +122,7 @@ RegistrarLibroComponent >> registrar [
 	
 	
 
-     model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
+     self model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
 
 	self answer
 

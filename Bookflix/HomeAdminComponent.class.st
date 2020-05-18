@@ -47,7 +47,7 @@ HomeAdminComponent >> irRegistrarLibro [
 
 
 	self call: (RegistrarLibroComponent  new ).
-	self answer .
+	"self answer ."
 
 ]
 
