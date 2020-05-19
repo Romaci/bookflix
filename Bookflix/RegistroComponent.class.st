@@ -124,8 +124,8 @@ RegistroComponent >> isValid [
 		self verificarNombTit.
 		self verificarApellTit.
 		self verificarNroTarjeta.
-		"self verificarDataExp:dateExp.
-		self verificarCodSeg:codSeg."	
+		self verificarDateExp.
+		"self verificarCodSeg:codSeg."	
      ^ errorMessage isEmpty.
 
 ]
@@ -188,7 +188,8 @@ codSeg:= unNro.
 
 { #category : #initialization }
 RegistroComponent >> setDateExp: aDate [
-	dateExp := aDate
+	
+	dateExp:=aDate.
 ]
 
 { #category : #initialization }
@@ -267,6 +268,15 @@ RegistroComponent >> verificarApellTit [
 RegistroComponent >> verificarApellido [
 
 	apellido ='' ifTrue: [errorMessage add:'*El campo Apellido es requido.'].
+]
+
+{ #category : #validating }
+RegistroComponent >> verificarDateExp [
+|mes|
+mes:=((dateExp at:6) asInteger)*10 +((dateExp at:7) asInteger).
+
+mes  < (Date today month) ifTrue:[errorMessage add:'*La fecha de vencimiento ingresada es incorrecta.'].
+
 ]
 
 { #category : #validating }
