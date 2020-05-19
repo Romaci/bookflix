@@ -62,7 +62,7 @@ aCanvas
 
 		aCanvas button
 			callback: [self guardar ];
-			with: 'Guardar'.
+			with: 'Modificar email'.
 		
 		aCanvas button
 			callback: [self cancelar ];

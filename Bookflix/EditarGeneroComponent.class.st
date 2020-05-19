@@ -36,7 +36,7 @@ aCanvas horizontalRule
 	
 		aCanvas button
 			callback: [self registrar  ];
-			with: 'Registrar libro'.
+			with: 'Modificar género'.
 	
 	
 		aCanvas button

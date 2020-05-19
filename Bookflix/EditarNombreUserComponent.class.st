@@ -44,7 +44,7 @@ aCanvas
 
 		aCanvas button
 			callback: [self guardar ];
-			with: 'Guardar'.
+			with: 'Modificar nombre'.
 		
 		aCanvas button
 			callback: [self cancelar ];

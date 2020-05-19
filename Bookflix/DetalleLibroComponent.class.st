@@ -27,7 +27,7 @@ DetalleLibroComponent >> libro [
 
 { #category : #'as yet unclassified' }
 DetalleLibroComponent >> logOut [
-self show: (LoginWithMoldComponent  new )
+self show: (LoginAdminWithMoldComponent  new )
 ]
 
 { #category : #'as yet unclassified' }
@@ -89,7 +89,10 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 
 	aCanvas break.
-	self renderLibro: libro on: aCanvas
+	aCanvas div
+	id:'centrar';
+	with:[
+	self renderLibro: libro on: aCanvas]
 ]
 
 { #category : #rendering }
@@ -101,7 +104,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 		with: [ aCanvas button with: 'Modificar título' ].
 	aCanvas horizontalRule.
 		aCanvas break.
-	aCanvas text: 'Autor'.
+	aCanvas text: ''.
 	aCanvas anchor
 		callback: [   ];
 		with: [ aCanvas text: unLibro autor asString   ].
@@ -112,7 +115,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 	aCanvas horizontalRule.
 		aCanvas break.
 	aCanvas break.
-			aCanvas text: 'Editorial'.
+			aCanvas text: ''.
 	aCanvas anchor
 		callback: [   ];
 		with: [ aCanvas text: unLibro editorial  asString  ].
@@ -122,7 +125,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 		with: [ aCanvas button with: 'Modificar Editorial' ].
 	aCanvas horizontalRule.
 		aCanvas break.
-			aCanvas text: 'Genero'.
+			aCanvas text: ''.
 	aCanvas anchor
 		callback: [   ];
 		with: [ aCanvas text: unLibro genero  asString  ].
