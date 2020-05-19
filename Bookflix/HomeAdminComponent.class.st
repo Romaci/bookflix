@@ -94,7 +94,8 @@ HomeAdminComponent >> irRegistrarLibro [
 
 { #category : #'as yet unclassified' }
 HomeAdminComponent >> logOut [
-self show: (LoginAdminWithMoldComponent  new )
+self answer.
+"self show: (LoginAdminWithMoldComponent  new )"
 ]
 
 { #category : #accessing }
@@ -132,11 +133,11 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						
 						aCanvas anchor
 						callback: [ self irListaDeLibros  ];
-						with: [ aCanvas button with: 'Listado completo de libros en sistema' ].
+						with: [ aCanvas button with: 'Listado de libros' ].
 						
 						aCanvas anchor
 						callback: [ self irListaDeAutores  ];
-						with: [ aCanvas button with: 'Listado completo de autores en sistema' ].
+						with: [ aCanvas button with: 'Listado de autores' ].
 						
 						
 						 ]
@@ -147,29 +148,29 @@ HomeAdminComponent >> renderLogoutButtonOn: aCanvas [
 
 aCanvas div
 		id: 'contLogout';
-		with: [aCanvas div
-				id: 'cuooter';
-				with: [ 
+		with: [
 			aCanvas div
 				with: [ aCanvas anchor
+					id: 'logOutAdmin';
 						callback: [ self logOut . ];
-						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
+						with:'Cerrar sesión' ].]
 ]
 
 { #category : #hooks }
 HomeAdminComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px }
 	#pieDeRespuesta{text-align: center}
-	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;  } 
+	#Bookflix { text-align: left; color: darkblue; font-family: arial; font-size: 60px;  } 
 	#respuesta { text-align: center; }
 	#mostrarRespuesta { padding: 5px 10px; font-size: 10px; margin: 4px 2px; }
 	a {color: red; text-decoration: none } 
 	#cuooter { color: LightGreen}
+	#logOutAdmin{color: darkblue}
 	#contLogout { display: flex; flex-flow: row; align-items: center; align-content: center ; justify-content: flex-end; }
 	#logout { text-align: right; padding: 6px 14px; float: right}
 	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: darkred; }
 	
-	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
+	button { background-color: darkblue; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
 	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);
 			'
 ]
@@ -185,11 +186,6 @@ HomeAdminComponent >> titleTop: aCanvas [
 		with: [self renderLogoutButtonOn: aCanvas ].
 		
 aCanvas horizontalRule.
-
-aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self irRegistrarLibro ];
-						with: [aCanvas text: 'Registrar nuevo libro en el sistema' ].].
 
 	
 

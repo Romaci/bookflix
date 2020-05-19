@@ -175,6 +175,7 @@ self session setUser:aUser.
 
 self call: HomeComponent new.
 
+self answer.
 ]
 
 { #category : #'as yet unclassified' }
