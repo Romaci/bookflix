@@ -68,12 +68,12 @@ RegistroComponent >> formularioRegistro: aCanvas [
 										callback: [ :valor | self setApellTit: valor ];
 										with: '' ].
 							aCanvas
-								paragraph: [ aCanvas label: 'Número de tarjeta: '.
+								paragraph: [ aCanvas label: 'Número de tarjeta (debe contener 10 dígitos): '.
 									aCanvas numberInput
 										callback: [ :valor | self setNroTarjeta: valor ];
 										with: '' ].
 							aCanvas
-								paragraph: [ aCanvas label: 'Código de seguridad: '.
+								paragraph: [ aCanvas label: 'Código de seguridad (debe contener 3 o 4 dígitos): '.
 									aCanvas numberInput
 										callback: [ :valor | self setCodSeg: valor ];
 										with: '' ].
@@ -267,7 +267,7 @@ RegistroComponent >> verificarApellTit [
 { #category : #validating }
 RegistroComponent >> verificarApellido [
 
-	apellido ='' ifTrue: [errorMessage add:'*El campo Apellido es requido.'].
+	apellido ='' ifTrue: [errorMessage add:'*El campo Apellido es requerido.'].
 ]
 
 { #category : #validating }
