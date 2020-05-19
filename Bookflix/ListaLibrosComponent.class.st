@@ -8,6 +8,22 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+ListaLibrosComponent >> entrarLibro [
+
+
+	self call: (DetalleLibroComponent  new ).
+	"self answer ."
+]
+
+{ #category : #'as yet unclassified' }
+ListaLibrosComponent >> entrarLibro:unLibro [
+
+
+	self call: (DetalleLibroComponent  new detalleDe:unLibro ).
+	"self answer ."
+]
+
+{ #category : #'as yet unclassified' }
 ListaLibrosComponent >> irRegistrarLibro [
 
 

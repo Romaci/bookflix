@@ -112,7 +112,7 @@ self call: HomeComponent new.
 
 { #category : #'as yet unclassified' }
 LoginWithMoldComponent >> irRegistro [ 
-   self call: RegistroWithMoldComponent new.
+   self call: RegistroComponent new.
 ]
 
 { #category : #'private protocol' }

@@ -2,7 +2,8 @@ Class {
 	#name : #EditarApellidoUserComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'apellido'
+		'apellido',
+		'model'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -29,6 +30,11 @@ EditarApellidoUserComponent >> guardar [
 { #category : #initialization }
 EditarApellidoUserComponent >> initialize [
 	super initialize. 
+]
+
+{ #category : #accessing }
+EditarApellidoUserComponent >> model [ 
+^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #rendering }
