@@ -112,8 +112,4 @@ ListaLibrosComponent >> titleTop: aCanvas [
 		
 aCanvas horizontalRule.
 
-aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self irRegistrarLibro ];
-						with: [aCanvas text: 'Registrar nuevo libro en el sistema' ].].
 ]

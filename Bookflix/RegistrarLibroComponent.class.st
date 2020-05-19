@@ -120,16 +120,6 @@ RegistrarLibroComponent >> model [
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> registrar [
 
-"|listaGeneros  |
-
-	listaGeneros := OrderedCollection new.
-	
-	
-	(self generos findTokens: ',') do: [ :each | listaGeneros  add: each ]. "
-	
-
-	
-
 
      self model registrarLibroConTitulo: self titulo  de: self autor  editadoPor: self editorial  genero: self genero .
 
