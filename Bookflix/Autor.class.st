@@ -23,6 +23,11 @@ Autor >> apellido [
 	^apellido.
 ]
 
+{ #category : #accessing }
+Autor >> autor [ 
+^self asString 
+]
+
 { #category : #'as yet unclassified' }
 Autor >> conNombre:unNombre apellido: unApellido fechaDeNac: unaFN yFechaDeDef: unaFD [
 	
@@ -61,6 +66,6 @@ Autor >> nombre [
 { #category : #'as yet unclassified' }
 Autor >> nombreYapellido [
 
-|aux|
-^aux:=nombre+apellido
+
+^(nombre+apellido)
 ]

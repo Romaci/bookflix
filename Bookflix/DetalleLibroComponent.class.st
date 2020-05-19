@@ -60,7 +60,7 @@ self call: (EditarAutorComponent new autorDe:unLibro).
 { #category : #'as yet unclassified' }
 DetalleLibroComponent >> modificarEditorial [
 
-self call: EditarEditorialComponent new.
+self call: (EditarEditorialComponent new editorialDe:libro).
 ]
 
 { #category : #'as yet unclassified' }
