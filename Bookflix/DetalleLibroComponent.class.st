@@ -183,7 +183,7 @@ DetalleLibroComponent >> style [
 { #category : #'as yet unclassified' }
 DetalleLibroComponent >> titleTop: aCanvas [
 	aCanvas div
-		id: 'CuOOra';
+		id: 'Bookflix';
 		with: [ aCanvas text: 'Bookflix' ].
 	aCanvas div
 		id: 'logout';

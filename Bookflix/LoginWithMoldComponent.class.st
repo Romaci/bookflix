@@ -118,12 +118,12 @@ Class {
 LoginWithMoldComponent >> buildMold [
 mold := Mold new.
   (mold stringField)
-    label: 'User:';
+    label: 'Nombre de usuario:';
 	 on: #user of: self cuenta;
     beRequired: 'El campo es requerido'.
 	
   (mold passwordField)
-    label: 'Password:';
+    label: 'Contraseña:';
 	 on: #password of:self cuenta;
     beRequired: 'El campo es requerido'.
 	 
