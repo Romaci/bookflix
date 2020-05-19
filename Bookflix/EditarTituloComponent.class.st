@@ -85,6 +85,7 @@ EditarTituloComponent >> style [
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;} 
 	#respuesta { text-align: center; }
 	a {color:red} 
+	#mensajeError { text-aling:center; color:red}
 	#logout { text-align: right; padding: 6px 14px; float: right}
 	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: ForestGreen; }
 	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
