@@ -103,10 +103,9 @@ HomeComponent >> titleTop: aCanvas [
 		
 aCanvas horizontalRule.
 
-aCanvas 
-	heading: [ aCanvas anchor
+ aCanvas anchor
 						callback: [ self irDatosPersonales ];
-						with: [aCanvas text: 'Datos personales' ].].
+						with: 'Datos personales'.
 				
 	
 
