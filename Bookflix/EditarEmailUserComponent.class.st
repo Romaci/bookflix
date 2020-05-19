@@ -2,7 +2,8 @@ Class {
 	#name : #EditarEmailUserComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'email'
+		'email',
+		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -28,11 +29,12 @@ email:=unEmail .
 EditarEmailUserComponent >> guardar [
 
 "Verificar que el mail que quiero modificar no este ya en el sistema, si no está lo guarda"
+	self isValid
+		ifFalse: [ ^ self ]
+		ifTrue:[
+ 	 self session getUser mail: email.
 
- 	(self model estaRegistradoEmail: email)
-	ifNil:[ self session getUser mail: email].
-
-	self answer.
+	self answer.].
 	
 
 
@@ -41,7 +43,15 @@ EditarEmailUserComponent >> guardar [
 
 { #category : #initialization }
 EditarEmailUserComponent >> initialize [
-	super initialize. 
+	super initialize.
+	errorMessage:= OrderedCollection new.
+]
+
+{ #category : #validating }
+EditarEmailUserComponent >> isValid [
+    errorMessage removeAll.
+	self verificarMail.
+	 ^ errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -70,7 +80,9 @@ aCanvas
 		
 	].
 
-
+aCanvas div
+				id: 'mensajeError';
+				with: [ errorMessage do: [ :each | aCanvas paragraph: each ] ] 
 
 
 
@@ -96,4 +108,12 @@ EditarEmailUserComponent >> style [
 EditarEmailUserComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
+]
+
+{ #category : #validating }
+EditarEmailUserComponent >> verificarMail [
+
+	self email ='' ifTrue: [errorMessage add:'*El campo Email es requerido.']
+	ifFalse:[
+	(self model estaRegistradoEmail: email) ifNotNil: [errorMessage add:'*El email ingresado ya se encuentra registrado en el sistema.'].].
 ]
