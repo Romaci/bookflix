@@ -50,6 +50,8 @@ ListaAutoresComponent >> renderContentOn: aCanvas. [
 self titleTop: aCanvas.
 	aCanvas
 		table: [  (self model obtenerListadoAutores) do:[:each| self renderAutor:each On:aCanvas]]. 
+		
+
 ]
 
 { #category : #rendering }

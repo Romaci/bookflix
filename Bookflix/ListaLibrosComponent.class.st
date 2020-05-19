@@ -41,7 +41,7 @@ ListaLibrosComponent >> renderContentOn: aCanvas. [
 
 self titleTop: aCanvas.
 	aCanvas
-		table: [  (self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
+		table: [(self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
 		
 	
 ]

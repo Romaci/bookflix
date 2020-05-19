@@ -57,7 +57,7 @@ aCanvas horizontalRule
 				paragraph: [ aCanvas label: 'Autor: '.
 					aCanvas select
 						callback: [ :valor| self autor:valor];
-				      list:(self model autores collect:[:a|a nombre,'', a apellido]);	
+				      list:(self model autores collect:[:a|a nombre,' ', a apellido]);	
 					selected:self autor;	
 					with: ''.].
 				
@@ -65,16 +65,20 @@ aCanvas horizontalRule
 				
 				aCanvas 
 				paragraph: [ aCanvas label: 'Editorial: '.
-					aCanvas textInput 
+					aCanvas select
 						callback: [ :valor| self editorial:valor];
+						list:(self model editoriales collect:[:e|e nombreEditorial ]);	
+					selected:self editorial;	
 					with: ''.].
-		
+		             
 		
 		aCanvas 
 				paragraph: [ aCanvas label: 'Generos: '.
-					aCanvas textInput 
+					aCanvas select
 						callback: [ :valor| self generos:valor];
-					with: 'Ingrese,generos,separados,por,coma'.].
+						list:(self model generos collect:[:g|g nombreGenero]);	
+					selected:self generos;	
+					with: ''.].
 			
 
  

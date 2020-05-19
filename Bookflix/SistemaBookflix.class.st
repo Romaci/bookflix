@@ -109,6 +109,11 @@ SistemaBookflix >> darDeAltaGenero: unNombre [
 
 ]
 
+{ #category : #accessing }
+SistemaBookflix >> editoriales [
+^editoriales
+]
+
 { #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoEmail: unEmail [
 
@@ -126,6 +131,11 @@ SistemaBookflix >> estaRegistradoUsuario: nombreUser [
 	^cuentas detect: [ :each | each user = nombreUser ]	
 		ifNone: [ nil ]
 		
+]
+
+{ #category : #accessing }
+SistemaBookflix >> generos [ 
+^generos
 ]
 
 { #category : #initialization }
