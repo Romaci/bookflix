@@ -60,10 +60,10 @@ aCanvas horizontalRule.
 	
 
 									
-				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo,' '].  
-				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor asString ].
-	aCanvas text: 'Editorial '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro editorial asString ].  
-				aCanvas text: 'Género '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro genero asString ].  
+				aCanvas text: 'Titulo del libro:  '. aCanvas anchor callback: [ '' ];  with: [ aCanvas text: unLibro titulo,' '].  
+				aCanvas text: 'Autor:  '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor asString ].
+	aCanvas text: 'Editorial:  '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro editorial asString ].  
+				aCanvas text: 'Género:  '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro genero asString ].  
 	aCanvas 
 	heading: [ aCanvas anchor
 						callback: [ self entrarLibro:unLibro ];
@@ -80,6 +80,15 @@ ListaLibrosComponent >> renderLogoutButtonOn: aCanvas [
 		paragraph:[ aCanvas anchor
 				callback: [ self answer ];
 				with: [ aCanvas button with: 'Cerrar Sesión' ]].
+]
+
+{ #category : #rendering }
+ListaLibrosComponent >> renderVolverButtonOn: aCanvas [
+
+	aCanvas
+		paragraph:[ aCanvas anchor
+				callback: [ self answer ];
+				with: [ aCanvas button with: 'Volver' ]].
 ]
 
 { #category : #hooks }
@@ -109,7 +118,11 @@ ListaLibrosComponent >> titleTop: aCanvas [
 		aCanvas div
 		id: 'logout';
 		with: [self renderLogoutButtonOn: aCanvas ].
+		aCanvas div
 		
-aCanvas horizontalRule.
+	"	id: 'logout';
+		with: [self renderVolverButtonOn: aCanvas ]."
+		
+
 
 ]
