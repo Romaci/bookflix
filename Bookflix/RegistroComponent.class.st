@@ -102,7 +102,7 @@ RegistroComponent >> initialize [
 RegistroComponent >> irLogin [
 
 
-self call: LoginComponent new.
+self call: LoginWithMoldComponent new.
 
 
 ]
