@@ -92,6 +92,11 @@ HomeAdminComponent >> irRegistrarLibro [
 
 ]
 
+{ #category : #'as yet unclassified' }
+HomeAdminComponent >> logOut [
+self show: (LoginAdminWithMoldComponent  new )
+]
+
 { #category : #accessing }
 HomeAdminComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
@@ -147,7 +152,7 @@ aCanvas div
 				with: [ 
 			aCanvas div
 				with: [ aCanvas anchor
-						callback: [ self answer. ];
+						callback: [ self logOut . ];
 						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
 ]
 

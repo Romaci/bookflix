@@ -20,6 +20,17 @@ DetalleLibroComponent >> initialize [
 super initialize 
 ]
 
+{ #category : #accessing }
+DetalleLibroComponent >> libro [
+
+^libro
+]
+
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> logOut [
+self show: (LoginWithMoldComponent  new )
+]
+
 { #category : #'as yet unclassified' }
 DetalleLibroComponent >> logOutButton: aCanvas [
 "aCanvas div
@@ -41,6 +52,36 @@ DetalleLibroComponent >> model [
 ^ SistemaBookflix  soleInstance 
 ]
 
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> modificarAutor:unLibro [
+
+self call: (EditarAutorComponent new autorDe:unLibro).
+]
+
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> modificarEditorial [
+
+self call: EditarEditorialComponent new.
+]
+
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> modificarGenero [
+
+self call: EditarGeneroComponent new.
+]
+
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> modificarTitulo [
+
+self call: (EditarTituloComponent new tituloDe:libro).
+]
+
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> modificarTitulo:unLibro [
+
+self call: (EditarTituloComponent new tituloDe:libro).
+]
+
 { #category : #rendering }
 DetalleLibroComponent >> renderContentOn: aCanvas [
 
@@ -51,33 +92,49 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 ]
 
 { #category : #rendering }
-DetalleLibroComponent >> renderGeneros: unLibro on: aCanvas [
-	unLibro generos  do: [ :each | aCanvas text: each nombre . aCanvas text: ', ' ]
-]
-
-{ #category : #rendering }
 DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 	aCanvas heading level: 2; with: unLibro titulo asString.
+		aCanvas horizontalRule.
+	aCanvas anchor
+		callback: [ self modificarTitulo   ];
+		with: [ aCanvas button with: 'Modificar título' ].
+	aCanvas horizontalRule.
+		aCanvas break.
 	aCanvas text: 'Autor'.
 	aCanvas anchor
 		callback: [   ];
-		with: [ aCanvas text: unLibro autor nombre  ].
+		with: [ aCanvas text: unLibro autor asString   ].
+			aCanvas horizontalRule.
+	aCanvas anchor
+		callback: [ self modificarAutor:unLibro   ];
+		with: [ aCanvas button with: 'Modificar autor' ].
+	aCanvas horizontalRule.
 		aCanvas break.
 	aCanvas break.
 			aCanvas text: 'Editorial'.
 	aCanvas anchor
 		callback: [   ];
-		with: [ aCanvas text: unLibro editorial  nombre  ].
+		with: [ aCanvas text: unLibro editorial  asString  ].
+			aCanvas horizontalRule.
+	aCanvas anchor
+		callback: [ self modificarEditorial  ];
+		with: [ aCanvas button with: 'Modificar Editorial' ].
+	aCanvas horizontalRule.
+		aCanvas break.
+			aCanvas text: 'Genero'.
+	aCanvas anchor
+		callback: [   ];
+		with: [ aCanvas text: unLibro genero  asString  ].
+			aCanvas horizontalRule.
+	aCanvas anchor
+		callback: [ self modificarGenero   ];
+		with: [ aCanvas button with: 'Modificar género' ].
+	aCanvas horizontalRule.
+		aCanvas break.
+	
 	
 	aCanvas break.
-	aCanvas break.
-	aCanvas div
-	id:'topicos';
-	with:[
-	aCanvas text: ' Géneros: '. self renderGeneros: unLibro on: aCanvas.].
-	
-	aCanvas break.
-	aCanvas break.
+
 	"aCanvas 
 		paragraph: [aCanvas  text: ' | Cantidad de likes: ' , unaPreg cantidadLikes printString .
 					aCanvas  text: ' | Cantidad de dislikes: ' , unaPreg cantidadDislikes printString.]."

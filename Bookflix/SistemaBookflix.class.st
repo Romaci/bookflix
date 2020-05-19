@@ -191,11 +191,11 @@ SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: un
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
+SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero [
 
 |unLibro|
 
- unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros . 
+ unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero . 
 
 libros add:unLibro. 
 

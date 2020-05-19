@@ -57,3 +57,10 @@ Autor >> nombre [
 
 	^nombre.
 ]
+
+{ #category : #'as yet unclassified' }
+Autor >> nombreYapellido [
+
+|aux|
+^aux:=nombre+apellido
+]

@@ -31,19 +31,19 @@ genero4:=unSistema darDeAltaGenero: 'Novela epistolar'.
 
 
 listaDeGéneros add:genero2.
-libro1:= unSistema  registrarLibroConTitulo:'Carrie' de:autor1 editadoPor:editorial2 generos:listaDeGéneros .
+"libro1:= unSistema  registrarLibroConTitulo:'Carrie' de:autor1 editadoPor:editorial2 generos:listaDeGéneros .
 
 listaDeGéneros add:genero1.
 libro2:= unSistema  registrarLibroConTitulo:'Mr Mercedes' de:autor1 editadoPor:editorial2 generos:listaDeGéneros.
 
-libro3:=unSistema  registrarLibroConTitulo:'Dolores Clairborne' de:autor1 editadoPor:editorial2 generos:listaDeGéneros.
+libro3:=unSistema  registrarLibroConTitulo:'Dolores Clairborne' de:autor1 editadoPor:editorial2 generos:listaDeGéneros."
 
 listaDeGéneros removeAll.
 listaDeGéneros add:genero3.
 
-libro4:= unSistema  registrarLibroConTitulo:'Biografía del hambre' de:autor2 editadoPor:editorial1 generos:listaDeGéneros.
+"libro4:= unSistema  registrarLibroConTitulo:'Biografía del hambre' de:autor2 editadoPor:editorial1 generos:listaDeGéneros.
 
-libro5:= unSistema  registrarLibroConTitulo:'Estupor y temblores' de:autor2 editadoPor:editorial1 generos:listaDeGéneros.
+libro5:= unSistema  registrarLibroConTitulo:'Estupor y temblores' de:autor2 editadoPor:editorial1 generos:listaDeGéneros."
 
 
 

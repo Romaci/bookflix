@@ -5,7 +5,7 @@ Class {
 		'titulo',
 		'autor',
 		'editorial',
-		'generos',
+		'genero',
 		'trailer',
 		'puntuacion',
 		'comentarios'
@@ -14,9 +14,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Libro class >> conTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
+Libro class >> conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero [
 
-^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros
+^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero
 
 
 
@@ -46,30 +46,30 @@ editorial:=unaEditorial .
 ]
 
 { #category : #accessing }
-Libro >> generos [
+Libro >> genero [
 
-^generos
+^genero
 ]
 
 { #category : #'as yet unclassified' }
-Libro >> generos:unaLista [
+Libro >> genero:unGenero [
 
-generos:=unaLista.
+genero:=unGenero.
 ]
 
 { #category : #'as yet unclassified' }
 Libro >> initilize [
 
-generos:= OrderedCollection new. 
+"generos:= OrderedCollection new. "
 ]
 
 { #category : #'as yet unclassified' }
-Libro >> libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial generos:unaListaDeGeneros [
+Libro >> libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero [
 
 titulo:=unTitulo . 
 autor:=unAutor . 
 editorial :=unaEditorial .
-generos :=unaListaDeGeneros . 
+genero :=unGenero . 
 ]
 
 { #category : #accessing }

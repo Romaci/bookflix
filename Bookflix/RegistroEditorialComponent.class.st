@@ -43,6 +43,11 @@ RegistroEditorialComponent >> initialize [
 super initialize 
 ]
 
+{ #category : #'as yet unclassified' }
+RegistroEditorialComponent >> logOut [
+self show: (LoginAdminWithMoldComponent  new )
+]
+
 { #category : #accessing }
 RegistroEditorialComponent >> model [ 
 ^ SistemaBookflix soleInstance 
@@ -88,7 +93,7 @@ aCanvas div
 					aCanvas paragraph: self session getUser user ."
 			aCanvas div
 				with: [ aCanvas anchor
-						callback: [ self answer. ];
+						callback: [ self logOut. ];
 						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
 ]
 

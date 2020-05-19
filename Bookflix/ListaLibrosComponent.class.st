@@ -61,10 +61,9 @@ aCanvas horizontalRule.
 
 									
 				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo,' '].  
-				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor ,' ' ].  
-				
-	aCanvas text: 'Editorial '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro editorial].  
-				aCanvas text: 'Género '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro generos ].  
+				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor asString ].
+	aCanvas text: 'Editorial '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro editorial asString ].  
+				aCanvas text: 'Género '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro genero asString ].  
 	aCanvas 
 	heading: [ aCanvas anchor
 						callback: [ self entrarLibro:unLibro ];

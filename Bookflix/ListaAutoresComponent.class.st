@@ -11,11 +11,22 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+ListaAutoresComponent >> cancelar [
+
+self answer .
+]
+
+{ #category : #'as yet unclassified' }
 ListaAutoresComponent >> irRegistrarAutor [
 
 
 	self call: (RegistroAutorComponent  new ).
 	"self answer ."
+]
+
+{ #category : #'as yet unclassified' }
+ListaAutoresComponent >> logOut [
+self show: (LoginAdminWithMoldComponent  new )
 ]
 
 { #category : #accessing }
@@ -59,8 +70,18 @@ ListaAutoresComponent >> renderLogoutButtonOn: aCanvas [
 
 	aCanvas
 		paragraph:[ aCanvas anchor
-				callback: [ self answer ];
+				callback: [ self logOut ];
 				with: [ aCanvas button with: 'Cerrar Sesión' ]].
+]
+
+{ #category : #rendering }
+ListaAutoresComponent >> renderVolverButtonOn: aCanvas [
+
+
+	aCanvas
+		paragraph:[ aCanvas anchor
+				callback: [ self volver  ];
+				with: [ aCanvas button with: 'Ir a home' ]].
 ]
 
 { #category : #hooks }
@@ -91,10 +112,25 @@ ListaAutoresComponent >> titleTop: aCanvas [
 		id: 'logout';
 		with: [self renderLogoutButtonOn: aCanvas ].
 		
+		aCanvas div
+		id: 'logout';
+		with: [self renderVolverButtonOn: aCanvas ].
+		
+			"aCanvas button
+			callback: [self volver  ];
+			with: 'Volver'."
+		
+		
 aCanvas horizontalRule.
 
 aCanvas 
 	heading: [ aCanvas anchor
 						callback: [ self irRegistrarAutor  ];
 						with: [aCanvas text: 'Registrar nuevo libro en el sistema' ].].
+]
+
+{ #category : #'as yet unclassified' }
+ListaAutoresComponent >> volver [
+
+self show: HomeAdminComponent new.
 ]

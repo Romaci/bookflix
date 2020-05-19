@@ -1,7 +1,21 @@
 "
+""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
+
+Metacello new 
+  baseline: 'Mold';
+  repository: 'github://grype/Seaside-Mold/src';
+  load.
+
+
+
+---------------------------------------------------------------------------------------
+
+
 |application|
 
 ""--------------------------------SEASIDE REGISTRO--------------------------------------""
+
+
 
 
 application:=WAAdmin register: LoginAdminWithMoldComponent asApplicationAt: 'loginAdmin'.
@@ -18,6 +32,16 @@ WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'RegistroExitoso'.
 WAAdmin register: ErrorLoginComponent   asApplicationAt: 'ErrorLogin'.
 WAAdmin register: RegistrarLibroComponent asApplicationAt: 'RegistroLibro'.
 WAAdmin register: ListaLibrosComponent asApplicationAt: 'ListaLibros'.
+WAAdmin register: RegistroAutorComponent asApplicationAt: 'RegistroAutor'.
+WAAdmin register: ListaAutoresComponent asApplicationAt: 'ListaAutores'.
+WAAdmin register: RegistroGeneroComponent asApplicationAt: 'RegistroGenero'.
+WAAdmin register: RegistroEditorialComponent asApplicationAt: 'RegistroEditorial'.
+WAAdmin register: DetalleLibroComponent asApplicationAt: 'DetalleLibro'.
+WAAdmin register: CargarNovedadComponent asApplicationAt: 'CargarNovedad'.
+WAAdmin register: EditarEditorialComponent asApplicationAt: 'EditarEditorialDeLibro'.
+WAAdmin register: EditarAutorComponent asApplicationAt: 'EditarAutorDeLibro'.
+WAAdmin register: EditarTituloComponent asApplicationAt: 'EditarTituloDeLibro'.
+WAAdmin register: EditarGeneroComponent asApplicationAt: 'EditarGeneroDeLibro'.
 
 
 ""----------------------------------------------------------------------------------------""
@@ -25,17 +49,60 @@ SistemaBookflix clearSoleInstance .
 BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
 
 
-""----------------para INSTALAR PAQUETE DE MOLD EJECUTAR SOLO UNA VEZ en PLAYGROUND:
-
-Metacello new 
-  baseline: 'Mold';
-  repository: 'github://grype/Seaside-Mold/src';
-  load.
 
 
 
----------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------- ACA EMPIEZA EL QUE TIENE RO, NO LO USO YO, ESTA DESACTUALIZADO----------------------------------------
+
+
+
+|application|
+
+""--------------------------------SEASIDE REGISTRO--------------------------------------""
+
+application:=WAAdmin register: LoginComponent  asApplicationAt: 'bookflix'. 
+WAAdmin register: RegistroComponent  asApplicationAt: 'registro'.
+application sessionClass: SessionWithUser.
+WAAdmin register: HomeComponent  asApplicationAt: 'bookflixHome'.
+WAAdmin register:CuentaComponent   asApplicationAt: 'cuenta'.
+WAAdmin register: EditarNombreUserComponent  asApplicationAt: 'editarNombre'.
+WAAdmin register: EditarApellidoUserComponent  asApplicationAt: 'editarApellido'.
+WAAdmin register: EditarEmailUserComponent  asApplicationAt: 'editarEmail'.
+
+application:=WAAdmin register: HomeAdminComponent  asApplicationAt: 'homeAdmin'.
+WAAdmin register: RegistroExitosoComponent   asApplicationAt: 'registroExitoso'.
+WAAdmin register: ErrorLoginComponent   asApplicationAt: 'errorLogin'.
+WAAdmin register: RegistrarLibroComponent asApplicationAt: 'registroLibro'.
+WAAdmin register: ListaLibrosComponent asApplicationAt: 'listaLibros'.
+
+
+""----------------------------------------------------------------------------------------""
+SistemaBookflix clearSoleInstance .
+BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance . 
 "
 Class {
 	#name : #LoginWithMoldComponent,

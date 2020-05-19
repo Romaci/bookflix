@@ -6,7 +6,7 @@ Class {
 		'titulo',
 		'autor',
 		'editorial',
-		'generos'
+		'genero'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -20,12 +20,12 @@ RegistrarLibroComponent >> autor [
 { #category : #accessing }
 RegistrarLibroComponent >> autor:unAutor [
 
-autor:=unAutor.
+autor:=unAutor asString .
 ]
 
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> cancelar [
-self answer 
+RegistrarLibroComponent >> cancelar:aCanvas [
+self answer .
 ]
 
 { #category : #accessing }
@@ -75,9 +75,9 @@ aCanvas horizontalRule
 		aCanvas 
 				paragraph: [ aCanvas label: 'Generos: '.
 					aCanvas select
-						callback: [ :valor| self generos:valor];
+						callback: [ :valor| self genero:valor];
 						list:(self model generos collect:[:g|g nombreGenero]);	
-					selected:self generos;	
+					selected:self genero;	
 					with: ''.].
 			
 
@@ -85,23 +85,24 @@ aCanvas horizontalRule
 	
 		aCanvas button
 			callback: [self registrar  ];
-			with: 'Registrar libro'.].
+			with: 'Registrar libro'.
 	
 	
 		aCanvas button
-			callback: [self cancelar ];
-			with: 'Cancelar'.].].
+			callback: [self cancelar:aCanvas  ];
+			with: 'Cancelar'.].].]
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> generos [ 
-^generos
+RegistrarLibroComponent >> genero [
+
+^genero.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> generos:listaDeGeneros [
+RegistrarLibroComponent >> genero:unGenero [
 
-generos:=listaDeGeneros .
+genero:=unGenero .
 ]
 
 { #category : #initialization }
@@ -119,18 +120,18 @@ RegistrarLibroComponent >> model [
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> registrar [
 
-|listaGeneros  |
+"|listaGeneros  |
 
 	listaGeneros := OrderedCollection new.
 	
 	
-	(self generos findTokens: ',') do: [ :each | listaGeneros  add: each ]. 
+	(self generos findTokens: ',') do: [ :each | listaGeneros  add: each ]. "
 	
 
 	
-	
 
-     self model registrarLibroConTitulo: self titulo de: self autor editadoPor: self editorial generos: listaGeneros .
+
+     self model registrarLibroConTitulo: self titulo  de: self autor  editadoPor: self editorial  genero: self genero .
 
 	self answer
 

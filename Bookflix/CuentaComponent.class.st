@@ -25,7 +25,7 @@ CuentaComponent >> guardar [
 
 { #category : #'as yet unclassified' }
 CuentaComponent >> logOut [
-	self answer.
+self show: (LoginWithMoldComponent  new )
 ]
 
 { #category : #'as yet unclassified' }
