@@ -2,7 +2,8 @@ Class {
 	#name : #EditarNombreUserComponent,
 	#superclass : #WAComponent,
 	#instVars : [
-		'nombre'
+		'nombre',
+		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -15,14 +16,25 @@ self answer
 { #category : #'as yet unclassified' }
 EditarNombreUserComponent >> guardar [
 
+self isValid
+		ifFalse: [ ^ self ]
+		ifTrue:[
 	self session getUser nombre: nombre.
 
-	self answer
+	self answer]
 ]
 
 { #category : #initialization }
 EditarNombreUserComponent >> initialize [
-	super initialize. 
+	super initialize.
+	errorMessage:= OrderedCollection new.
+]
+
+{ #category : #validating }
+EditarNombreUserComponent >> isValid [
+    errorMessage removeAll.
+	self verificarNombre.
+	 ^ errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -51,6 +63,10 @@ aCanvas
 			with: 'Cancelar'.
 		
 	].
+			aCanvas div
+				id: 'mensajeError';
+				with: [ errorMessage do: [ :each | aCanvas paragraph: each ] ] 
+
 
 
 
@@ -64,6 +80,7 @@ EditarNombreUserComponent >> style [
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
 	#pieDeRespuesta{text-align: center}
+	#mensajeError { text-aling:center; color:red}
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;} 
 	#respuesta { text-align: center; }
 	a {color:red} 
@@ -78,4 +95,11 @@ EditarNombreUserComponent >> style [
 EditarNombreUserComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
+]
+
+{ #category : #validating }
+EditarNombreUserComponent >> verificarNombre [
+
+	nombre ='' ifTrue: [errorMessage add:'*El campo Nombre es requerido.'].
+
 ]
