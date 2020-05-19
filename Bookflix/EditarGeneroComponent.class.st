@@ -22,10 +22,6 @@ aCanvas horizontalRule
 		id: 'formLogin';
 		
 		with: [ aCanvas form: [
-				
-				
-				
-				
 		
 		aCanvas 
 				paragraph: [ aCanvas label: 'Generos: '.
