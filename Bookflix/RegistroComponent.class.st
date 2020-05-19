@@ -125,7 +125,7 @@ RegistroComponent >> isValid [
 		self verificarApellTit.
 		self verificarNroTarjeta.
 		self verificarDateExp.
-		"self verificarCodSeg:codSeg."	
+		self verificarCodSeg.	
      ^ errorMessage isEmpty.
 
 ]
@@ -242,7 +242,7 @@ RegistroComponent >> style [
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;  } 
 	#respuesta { text-align: center; }
 	a {color:red} 
-	#mensajeError { text-aling:center; color:red }
+	#mensajeError { text-aling:center; color:red}
 	#logout { text-align: right; padding: 6px 14px; float: right}
 	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: ForestGreen; }
 	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
@@ -271,12 +271,24 @@ RegistroComponent >> verificarApellido [
 ]
 
 { #category : #validating }
+RegistroComponent >> verificarCodSeg [
+	codSeg = ''
+		ifTrue: [ errorMessage add: '*El campo Número de Tarjeta es requerido.' ]
+		ifFalse: [ codSeg size > 4 | (codSeg size < 3)
+				ifTrue: [ errorMessage
+						add: '*El Código de seguridad debe tener 3 o 4 dígitos.' ] ]
+]
+
+{ #category : #validating }
 RegistroComponent >> verificarDateExp [
-|mes|
-mes:=((dateExp at:6) asInteger)*10 +((dateExp at:7) asInteger).
-
-mes  < (Date today month) ifTrue:[errorMessage add:'*La fecha de vencimiento ingresada es incorrecta.'].
-
+	| mes hoy |
+	dateExp isEmpty
+		ifTrue: [ errorMessage add: '*El campo Fecha de Vencimiento es requerido.' ]
+		ifFalse: [ mes := (dateExp at: 6) asInteger * 10 + (dateExp at: 7) asInteger.
+			hoy := DateAndTime now.
+			mes > hoy month
+				ifTrue: [ errorMessage
+						add: '*La fecha de vencimiento ingresada es incorrecta.' ] ]
 ]
 
 { #category : #validating }
@@ -298,7 +310,8 @@ RegistroComponent >> verificarNombre [
 { #category : #validating }
 RegistroComponent >> verificarNroTarjeta [
 
-	nroTarjeta size = 10  ifFalse: [errorMessage add:'*El Número de Tarjeta debe tener 10 dígitos.'].
+	nroTarjeta = '' ifTrue:[errorMessage add:'*El campo Número de Tarjeta es requerido.']
+	ifFalse:[nroTarjeta size = 10  ifFalse: [errorMessage add:'*El Número de Tarjeta debe tener 10 dígitos.'].]
 	
 	
 ]
