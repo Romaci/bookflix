@@ -40,17 +40,27 @@ aCanvas
 
 { #category : #'as yet unclassified' }
 EditarTituloComponent >> guardar [
+	self isValid
+		ifFalse: [ ^ self ]
+		ifTrue:[	self libro titulo: titulo. 
 
-	self libro titulo: titulo. 
+	self answer]
 
-	self answer
 	
 
 ]
 
 { #category : #initialization }
 EditarTituloComponent >> initialize [
-	super initialize. 
+	super initialize.
+	errorMessage:= OrderedCollection new.
+]
+
+{ #category : #validating }
+EditarTituloComponent >> isValid [
+    errorMessage removeAll.
+    self verificarNombre.
+    ^ errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -122,4 +132,10 @@ titulo:=unTitulo .
 EditarTituloComponent >> tituloDe:unLibro [
 
 libro:=unLibro. 
+]
+
+{ #category : #validating }
+EditarTituloComponent >> verificarNombre [
+
+	titulo ='' ifTrue: [errorMessage add:'*El campo Título es requerido.'].
 ]
