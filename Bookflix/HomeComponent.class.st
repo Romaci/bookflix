@@ -1,3 +1,20 @@
+"
+-----------------------------------CODIGO PARA AGREGAR LIBRO---------------------------------------
+
+""(aCanvas form)
+  multipart;
+  with:
+    [(aCanvas label)
+       for: 'upload';
+       with: 'Elegir el libro a cargar'.
+aCanvas break.
+     (aCanvas fileUpload)
+       readonly: true;
+       id: 'upload';
+       callback: [:f | self upload: f]].
+		aCanvas submitButton text: 'Send file'.""
+------------------------------------------------------------------------------------------------------		
+"
 Class {
 	#name : #HomeComponent,
 	#superclass : #WAComponent,
@@ -86,10 +103,9 @@ HomeComponent >> titleTop: aCanvas [
 		
 aCanvas horizontalRule.
 
-aCanvas 
-	heading: [ aCanvas anchor
+ aCanvas anchor
 						callback: [ self irDatosPersonales ];
-						with: [aCanvas text: 'Datos personales' ].].
+						with: 'Datos personales'.
 				
 	
 

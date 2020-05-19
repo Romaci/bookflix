@@ -111,36 +111,27 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-LoginComponent >> formularioLogin:aCanvas [
-
-aCanvas horizontalRule 
-		with: [aCanvas div
-		id: 'formLogin';
-		with: [ aCanvas form: [aCanvas 
-				paragraph: [ aCanvas label: 'Nombre de usuario: '.
-					aCanvas textInput 
-						callback: [ :valor| self setUser:valor];
-					with: ''.].
-			
-	
-			aCanvas paragraph: [ aCanvas label: 'Password: '.
-					aCanvas passwordInput
-					callback: [ :valor| self setPassword:valor];
-					with: ''.].
- 
-	
-		aCanvas button
-			callback: [self login ];
-			with: 'Iniciar sesión'.
-		
-		
-		aCanvas button
-			callback: [self irRegistro ];
-			with: 'Registrarse'.].
-		]. ].
-
-
-
+LoginComponent >> formularioLogin: aCanvas [
+	aCanvas horizontalRule
+		with: [ aCanvas div
+				id: 'formLogin';
+				with: [ aCanvas
+						form: [ aCanvas
+								paragraph: [ aCanvas label: 'Nombre de usuario: '.
+									aCanvas textInput
+										callback: [ :valor | self setUser: valor ];
+										with: '' ].
+							aCanvas
+								paragraph: [ aCanvas label: 'Password: '.
+									aCanvas passwordInput
+										callback: [ :valor | self setPassword: valor ];
+										with: '' ].
+							aCanvas button
+								callback: [ self login ];
+								with: 'Iniciar sesión'.
+							aCanvas button
+								callback: [ self irRegistro ];
+								with: 'Registrarse' ] ] ]
 ]
 
 { #category : #initialization }
