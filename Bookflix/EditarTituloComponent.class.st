@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'model',
 		'titulo',
-		'libro'
+		'libro',
+		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -16,17 +17,27 @@ self answer
 
 { #category : #'as yet unclassified' }
 EditarTituloComponent >> guardar [
+	self isValid
+		ifFalse: [ ^ self ]
+		ifTrue:[	self libro titulo: titulo. 
 
-	self libro titulo: titulo. 
+	self answer]
 
-	self answer
 	
 
 ]
 
 { #category : #initialization }
 EditarTituloComponent >> initialize [
-	super initialize. 
+	super initialize.
+	errorMessage:= OrderedCollection new.
+]
+
+{ #category : #validating }
+EditarTituloComponent >> isValid [
+    errorMessage removeAll.
+    self verificarNombre.
+    ^ errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -60,6 +71,9 @@ aCanvas
 			with: 'Cancelar'.
 		
 	].
+			aCanvas div
+				id: 'mensajeError';
+				with: [ errorMessage do: [ :each | aCanvas paragraph: each ] ] 
 ]
 
 { #category : #hooks }
@@ -94,4 +108,10 @@ titulo:=unTitulo .
 EditarTituloComponent >> tituloDe:unLibro [
 
 libro:=unLibro. 
+]
+
+{ #category : #validating }
+EditarTituloComponent >> verificarNombre [
+
+	titulo ='' ifTrue: [errorMessage add:'*El campo Título es requerido.'].
 ]
