@@ -145,6 +145,8 @@ SistemaBookflix >> registrarAdministrador:unUser conNombre: unNombre conApellido
 
 { #category : #'as yet unclassified' }
 SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: unApellido conMail: unMail yPass:password [
+
+
 	|ok|
 	
 	ok:=false.
