@@ -60,19 +60,12 @@ aCanvas horizontalRule.
 	
 
 									
-				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo   ].  
-				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor nombre ].  
-				aCanvas text: 'Editorial '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro editorial].  
-				aCanvas text: 'Género '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor nombre ].  
-	aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self entrarLibro:unLibro ];
-						with: [aCanvas text: 'Modificar datos del libro' ].].
+				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo,' '].  
+				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor nombre,' ', unLibro autor apellido ].  
+				
+	
 
-
-
-
-
+		
 ]
 
 { #category : #rendering }
