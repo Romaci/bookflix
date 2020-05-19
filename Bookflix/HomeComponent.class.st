@@ -52,10 +52,10 @@ HomeComponent >> model [
 { #category : #rendering }
 HomeComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
-		aCanvas horizontalRule.
-
-
-			
+	aCanvas horizontalRule.
+	aCanvas anchor
+		callback: [ self irDatosPersonales ];
+		with: [ aCanvas button with: 'Ver Datos personales' ]
 ]
 
 { #category : #rendering }
@@ -64,7 +64,7 @@ HomeComponent >> renderLogoutButtonOn: aCanvas [
 aCanvas div
 		id: 'contLogout';
 		with: [aCanvas div
-				id: 'cuooter';
+				"id: 'cuooter';"
 				with: [ aCanvas text: 'Usuario en sesión: '.
 					aCanvas paragraph: self session getUser user .
 			aCanvas div
@@ -100,12 +100,9 @@ HomeComponent >> titleTop: aCanvas [
 		aCanvas div
 		id: 'logout';
 		with: [self renderLogoutButtonOn: aCanvas ].
-		
-aCanvas horizontalRule.
 
- aCanvas anchor
-						callback: [ self irDatosPersonales ];
-						with: 'Datos personales'.
+
+
 				
 	
 
