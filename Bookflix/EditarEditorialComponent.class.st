@@ -58,7 +58,7 @@ aCanvas horizontalRule
 	
 		aCanvas button
 			callback: [self registrar  ];
-			with: 'Editar editorial'.
+			with: 'Modificar editorial'.
 	
 	
 		aCanvas button

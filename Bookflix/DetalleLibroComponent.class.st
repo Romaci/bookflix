@@ -27,7 +27,7 @@ DetalleLibroComponent >> libro [
 
 { #category : #'as yet unclassified' }
 DetalleLibroComponent >> logOut [
-self show: (LoginWithMoldComponent  new )
+self show: (LoginAdminWithMoldComponent  new )
 ]
 
 { #category : #'as yet unclassified' }
@@ -89,7 +89,10 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 
 	aCanvas break.
-	self renderLibro: libro on: aCanvas
+	aCanvas div
+	id:'centrar';
+	with:[
+	self renderLibro: libro on: aCanvas]
 ]
 
 { #category : #rendering }
@@ -101,7 +104,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 		with: [ aCanvas button with: 'Modificar título' ].
 	aCanvas horizontalRule.
 		aCanvas break.
-	aCanvas text: 'Autor'.
+	aCanvas text: ''.
 	aCanvas anchor
 		callback: [   ];
 		with: [ aCanvas text: unLibro autor asString   ].
@@ -112,7 +115,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 	aCanvas horizontalRule.
 		aCanvas break.
 	aCanvas break.
-			aCanvas text: 'Editorial'.
+			aCanvas text: ''.
 	aCanvas anchor
 		callback: [   ];
 		with: [ aCanvas text: unLibro editorial  asString  ].
@@ -122,7 +125,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 		with: [ aCanvas button with: 'Modificar Editorial' ].
 	aCanvas horizontalRule.
 		aCanvas break.
-			aCanvas text: 'Genero'.
+			aCanvas text: ''.
 	aCanvas anchor
 		callback: [   ];
 		with: [ aCanvas text: unLibro genero  asString  ].
@@ -164,21 +167,21 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 { #category : #hooks }
 DetalleLibroComponent >> style [
 	^ '
-	body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
+	body { font-family: arial; text-decoration: strong; padding: 5px 20px 200px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	.cuerpo { padding: 15px 25px 25px 25px; display: flex; flex: 30px; flex-direction: row; justify-content: center; background-color: white }
-	#pieDeRespuesta{text-align: center; color: ForestGreen}
-	#CuOOra { text-align: left; color: ForestGreen; font-family: arial; font-size: 60px;  } 
+	#pieDeRespuesta{text-align: center; color: darkblue}
+	#CuOOra { text-align: left; color: darkblue; font-family: arial; font-size: 60px;  } 
 	#respuesta { text-align: center; }
 	#logout { text-align: right; padding: 6px 14px; float: right}
 	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: DarkOrange; }
-	a {color: green; color: MediumSeaGreen; text-decoration: none}
-	#cuooter { color: ForestGreen }
+	a {color: darkblue; color: black; text-decoration: none}
+	#cuooter { color: darkblue }
 	#contLogout { display: flex; flex-flow: row; align-items: center; align-content: center ; justify-content: flex-end; }
 	#acepCan { display: flex; flex-flow: row; justify-content: space-between; }
 	form { border-radius: 8px;  } 
-	button { background-color: ForestGreen; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: 	inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: 	pointer;}
-	button:hover {background-color: ForestGreen; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);}
+	button { background-color: darkblue; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: 	inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: 	pointer;}
+	button:hover {background-color: darkblue; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);}
 	textArea { height: 6em; width: 400px;}
 	input { width: 400px;}
 	'
