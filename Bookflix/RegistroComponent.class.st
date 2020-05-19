@@ -37,7 +37,7 @@ RegistroComponent >> formularioRegistro: aCanvas [
 										with: '' ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Email: '.
-									aCanvas textInput
+									aCanvas emailInput
 										callback: [ :valor | self setEmail: valor ];
 										with: '' ].
 							aCanvas
@@ -55,8 +55,8 @@ RegistroComponent >> formularioRegistro: aCanvas [
 									aCanvas passwordInput
 										callback: [ :valor | self setPasswordRepetida: valor ];
 										with: '' ].
-						   aCanvas horizontalRule.
-						   aCanvas paragraph:[aCanvas label: 'Datos de Tarjeta:'].
+							aCanvas horizontalRule.
+							aCanvas paragraph: [ aCanvas label: 'Datos de Tarjeta:' ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Nombre Titular: '.
 									aCanvas textInput
@@ -76,22 +76,20 @@ RegistroComponent >> formularioRegistro: aCanvas [
 								paragraph: [ aCanvas label: 'Código de seguridad: '.
 									aCanvas numberInput
 										callback: [ :valor | self setCodSeg: valor ];
-										with: '' ].		
+										with: '' ].
 							aCanvas
 								paragraph: [ aCanvas label: 'vencimiento: '.
 									aCanvas monthInput
 										callback: [ :valor | self setDateExp: valor ];
-										with: ''.	
-							aCanvas div:[aCanvas button
-								callback: [ self registrar ];
-								with: 'Registrarme' ].
-							
-							aCanvas button
-								callback: [ self volver. ];
-								with: 'Cancelar'.
-							]].
-							 ].
-						 ]
+										with: ''.
+									aCanvas
+										div: [ aCanvas button
+												callback: [ self registrar ];
+												with: 'Registrarme' ].
+									aCanvas div
+										with: [ aCanvas button
+												callback: [ self volver ];
+												with: 'Cancelar'  ] ] ] ] ]
 ]
 
 { #category : #initialization }
@@ -118,14 +116,17 @@ RegistroComponent >> isValid [
 			].
 		self verificarNombre.
 		self verificarApellido.
+		self verificarMail.
       self verificarUser.
       self verificarPassword.
 		self verificarPassword2.
 		self verificarNombTit.
 		self verificarApellTit.
 		self verificarNroTarjeta.
+		self verificarCodSeg.
 		self verificarDateExp.
-		self verificarCodSeg.	
+		
+					
      ^ errorMessage isEmpty.
 
 ]
@@ -164,8 +165,7 @@ RegistroComponent >> renderContentOn: aCanvas [
 				with: [ self formularioRegistro: aCanvas ].
 			aCanvas div
 				id: 'mensajeError';
-				with:
-						[ errorMessage do: [ :each | aCanvas paragraph: each ] ] ]
+				with: [ errorMessage do: [ :each | aCanvas paragraph: each ] ] ]
 ]
 
 { #category : #initialization }
@@ -259,7 +259,7 @@ RegistroComponent >> titleTop: aCanvas [
 { #category : #validating }
 RegistroComponent >> verificarApellTit [
 
-	apellTit   ='' ifTrue: [errorMessage add:'*El campo es requerido.'].
+	apellTit   ='' ifTrue: [errorMessage add:'*El campo Apellido Titular es requerido.'].
 	
 	
 ]
@@ -273,7 +273,7 @@ RegistroComponent >> verificarApellido [
 { #category : #validating }
 RegistroComponent >> verificarCodSeg [
 	codSeg = ''
-		ifTrue: [ errorMessage add: '*El campo Número de Tarjeta es requerido.' ]
+		ifTrue: [ errorMessage add: '*El campo Código de Seguridad es requerido.' ]
 		ifFalse: [ codSeg size > 4 | (codSeg size < 3)
 				ifTrue: [ errorMessage
 						add: '*El Código de seguridad debe tener 3 o 4 dígitos.' ] ]
@@ -281,14 +281,38 @@ RegistroComponent >> verificarCodSeg [
 
 { #category : #validating }
 RegistroComponent >> verificarDateExp [
-	| mes hoy |
+	| mes anio hoy dic |
+	dic := Dictionary new.
+	dic at: 48 put: 0.
+	dic at: 49 put: 1.
+	dic at: 50 put: 2.
+	dic at: 51 put: 3.
+	dic at: 52 put: 4.
+	dic at: 53 put: 5.
+	dic at: 54 put: 6.
+	dic at: 55 put: 7.
+	dic at: 56 put: 8.
+	dic at: 57 put: 9.
 	dateExp isEmpty
 		ifTrue: [ errorMessage add: '*El campo Fecha de Vencimiento es requerido.' ]
-		ifFalse: [ mes := (dateExp at: 6) asInteger * 10 + (dateExp at: 7) asInteger.
+		ifFalse: [ mes := (dic at: (dateExp at: 6) asInteger) * 10
+				+ (dic at: (dateExp at: 7) asInteger).
+			anio := (dic at: (dateExp at: 1) asInteger) * 1000
+				+ ((dic at: (dateExp at: 2) asInteger) * 100)
+				+ ((dic at: (dateExp at: 3) asInteger) * 10)
+				+ (dic at: (dateExp at: 4) asInteger).
 			hoy := DateAndTime now.
-			mes > hoy month
-				ifTrue: [ errorMessage
-						add: '*La fecha de vencimiento ingresada es incorrecta.' ] ]
+			mes < hoy month | (anio < hoy year)
+				ifTrue:
+					[ errorMessage add: '*La Fecha de Vencimiento ingresada no es válida' ] ]
+]
+
+{ #category : #validating }
+RegistroComponent >> verificarMail [
+	mail = ''
+		ifTrue: [ errorMessage add: '*El campo Mail es requerido.' ]
+"		ifFalse: [ (mail asOrderedCollection  anySatisfy: [:each| each = '@'asCharacter])
+				ifFalse: [ errorMessage add: '*El mail ingresado no es válido.' ] ]"
 ]
 
 { #category : #validating }
@@ -318,16 +342,18 @@ RegistroComponent >> verificarNroTarjeta [
 
 { #category : #validating }
 RegistroComponent >> verificarPassword [
-
-	password size < 4 | (password size > 11) ifTrue:[errorMessage add:'*La contraseña debe entre 4 y 10 caractéres inclusive'].
-	password  ='' ifTrue: [errorMessage add:'*El campo Password es requerido.'].
+	password = ''
+		ifTrue: [ errorMessage add: '*El campo Password es requerido.' ]
+		ifFalse: [ password size < 4 | (password size > 11)
+				ifTrue: [ errorMessage
+						add: '*La contraseña debe entre 4 y 10 caractéres inclusive' ] ]
 ]
 
 { #category : #validating }
 RegistroComponent >> verificarPassword2 [
 	
 	password2 = password ifFalse: [ errorMessage add:'*No coincide confirmación password con password ingresada' ].
-	password2  ='' ifTrue: [errorMessage add:'*El campo Confimar Password es requerido.'].
+	password2  ='' ifTrue: [errorMessage add:'*El campo Confirmar Contraseña es requerido.'].
 
 ]
 
@@ -345,12 +371,16 @@ RegistroComponent >> verificarUsuario [
 
 { #category : #'as yet unclassified' }
 RegistroComponent >> volver [
-	user := nil.
-	password := nil.
 	mail := nil.
 	nombre := nil.
 	apellido := nil.
+	user := nil.
+	password := nil.
+	password2 := nil.
+	nombTit := nil.
+	apellTit := nil.
 	nroTarjeta := nil.
 	dateExp := nil.
+	codSeg := nil.
 	self answer.
 ]
