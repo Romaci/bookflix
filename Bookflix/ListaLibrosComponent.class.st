@@ -25,7 +25,7 @@ ListaLibrosComponent >> renderContentOn: aCanvas. [
 
 self titleTop: aCanvas.
 	aCanvas
-		table: [  (self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
+		table: [(self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
 		
 	
 ]
@@ -44,15 +44,12 @@ aCanvas horizontalRule.
 	
 
 									
-				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo   ].  
-				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor nombre  ].  
+				aCanvas text: 'Titulo del libro '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro titulo,' '].  
+				aCanvas text: 'Autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor nombre,' ', unLibro autor apellido ].  
 				
 	
 
-
-
-
-
+		
 ]
 
 { #category : #rendering }
