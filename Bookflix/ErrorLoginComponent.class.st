@@ -8,6 +8,12 @@ Class {
 	#category : #'Bookflix-UI'
 }
 
+{ #category : #'as yet unclassified' }
+ErrorLoginComponent >> irLoginUser [
+
+self call: LoginWithMoldComponent new. 
+]
+
 { #category : #rendering }
 ErrorLoginComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
@@ -17,7 +23,7 @@ self titleTop: aCanvas.
 				paragraph: 'El usuario y/o constraseña ingresados son incorrectos'.
 	   
 		aCanvas anchor
-			callback: [self answer ];
+			callback: [self irLoginUser ];
 			with: 'Volver a iniciar sesión'.].
 		].  
 ]

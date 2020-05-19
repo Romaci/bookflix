@@ -15,9 +15,8 @@ libro:=unLibro .
 ]
 
 { #category : #initialization }
-DetalleLibroComponent >> initialize [ 
-
-super initialize 
+DetalleLibroComponent >> initialize [
+	super initialize. 
 ]
 
 { #category : #accessing }
@@ -65,9 +64,9 @@ self call: EditarEditorialComponent new.
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> modificarGenero [
+DetalleLibroComponent >> modificarGenero:unLibro [
 
-self call: EditarGeneroComponent new.
+self call: (EditarGeneroComponent new generoDe:unLibro ).
 ]
 
 { #category : #'as yet unclassified' }
@@ -127,7 +126,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 		with: [ aCanvas text: unLibro genero  asString  ].
 			aCanvas horizontalRule.
 	aCanvas anchor
-		callback: [ self modificarGenero   ];
+		callback: [ self modificarGenero:unLibro   ];
 		with: [ aCanvas button with: 'Modificar género' ].
 	aCanvas horizontalRule.
 		aCanvas break.

@@ -41,7 +41,7 @@ HomeComponent >> irDatosPersonales [
 { #category : #'as yet unclassified' }
 HomeComponent >> logOut [ 
 
-	self show: (LoginComponent new )
+	self show: (LoginWithMoldComponent  new )
 ]
 
 { #category : #accessing }
@@ -69,7 +69,7 @@ aCanvas div
 					aCanvas paragraph: self session getUser user .
 			aCanvas div
 				with: [ aCanvas anchor
-						callback: [ self answer. ];
+						callback: [ self logOut  ];
 						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
 ]
 

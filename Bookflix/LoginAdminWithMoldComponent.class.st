@@ -55,7 +55,7 @@ LoginAdminWithMoldComponent >> initialize [
 
 { #category : #'as yet unclassified' }
 LoginAdminWithMoldComponent >> irErrorLogin [
-	self call: ErrorLoginComponent new.
+	self call: ErrorLoginAdminComponent new.
 ]
 
 { #category : #'as yet unclassified' }

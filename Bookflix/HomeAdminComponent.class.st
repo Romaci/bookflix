@@ -94,8 +94,8 @@ HomeAdminComponent >> irRegistrarLibro [
 
 { #category : #'as yet unclassified' }
 HomeAdminComponent >> logOut [
-self answer.
-"self show: (LoginAdminWithMoldComponent  new )"
+
+self show: (LoginAdminWithMoldComponent  new )
 ]
 
 { #category : #accessing }
