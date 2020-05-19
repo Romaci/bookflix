@@ -37,18 +37,7 @@ HomeComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 		aCanvas horizontalRule.
 
-(aCanvas form)
-  multipart;
-  with:
-    [(aCanvas label)
-       for: 'upload';
-       with: 'Elegir el libro a cargar'.
-aCanvas break.
-     (aCanvas fileUpload)
-       readonly: true;
-       id: 'upload';
-       callback: [:f | self upload: f]].
-		aCanvas submitButton text: 'Send file'.
+
 			
 ]
 
@@ -104,12 +93,6 @@ aCanvas
 				
 	
 
-]
-
-{ #category : #'as yet unclassified' }
-HomeComponent >> upload:aFile [
-
-file:=aFile. 
 ]
 
 { #category : #'as yet unclassified' }

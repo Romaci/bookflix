@@ -28,6 +28,14 @@ super initialize
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irCargarNovedad [
+
+
+	self call: (CargarNovedadComponent new ).
+	"self answer ."
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irDatosPersonales [
 
 	self call: (CuentaComponent new ).
@@ -108,6 +116,12 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						aCanvas anchor
 						callback: [ self irRegistrarLibro  ];
 						with: [ aCanvas button with: 'Dar de alta Libro' ].
+						
+						aCanvas break. 
+						
+						aCanvas anchor
+						callback: [ self irCargarNovedad  ];
+						with: [ aCanvas button with: 'Cargar Novedad' ].
 						
 						aCanvas break. 
 						

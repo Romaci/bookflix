@@ -36,6 +36,21 @@ coincidan con uno que ya está en la lista de usuarios registrados"
 		ifNone: [ nil ]
 ]
 
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> cargarNovedad:unaImagen conNombreClave:unNombreClave [
+
+	|ok |
+	ok:=false.
+	
+	"Verifico que no este ya cargado en el sistema la Novedad por dar de alta"
+	(novedades anySatisfy:[:novedad | novedad nombreClave   = unNombreClave])
+	ifFalse: [novedades add: (Editorial imagen: unaImagen  clave: unNombreClave  ).
+		ok:=true].
+	
+	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia novedad"
+	^ok.
+]
+
 { #category : #accessing }
 SistemaBookflix >> cuentas [
 
