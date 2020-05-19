@@ -3,7 +3,8 @@ Class {
 	#superclass : #WAComponent,
 	#instVars : [
 		'apellido',
-		'model'
+		'model',
+		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -21,15 +22,25 @@ self answer
 
 { #category : #'as yet unclassified' }
 EditarApellidoUserComponent >> guardar [
+self isValid
+		ifFalse: [ ^ self ]
+		ifTrue:[
+	self session getUser apellido: apellido.
 
-	self session getUser apellido:apellido.
-
-	self answer
+	self answer]
 ]
 
 { #category : #initialization }
 EditarApellidoUserComponent >> initialize [
-	super initialize. 
+	super initialize.
+	errorMessage:= OrderedCollection new.
+]
+
+{ #category : #validating }
+EditarApellidoUserComponent >> isValid [
+    errorMessage removeAll.
+	self verificarApellido.
+	 ^ errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -55,7 +66,9 @@ aCanvas
 			with: 'Cancelar'.
 		
 	].
-
+			aCanvas div
+				id: 'mensajeError';
+				with: [ errorMessage do: [ :each | aCanvas paragraph: each ] ] 
 
 
 
@@ -67,6 +80,7 @@ EditarApellidoUserComponent >> style [
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
 	#pieDeRespuesta{text-align: center}
+	#mensajeError { text-aling:center; color:red}
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;} 
 	#respuesta { text-align: center; }
 	a {color:red} 
@@ -81,4 +95,10 @@ EditarApellidoUserComponent >> style [
 EditarApellidoUserComponent >> titleTop: aCanvas [
 	 aCanvas div id: 'Bookflix';
 		with: 'Bookflix'
+]
+
+{ #category : #validating }
+EditarApellidoUserComponent >> verificarApellido [
+
+	apellido ='' ifTrue: [errorMessage add:'*El campo Apellido es requerido.'].
 ]
