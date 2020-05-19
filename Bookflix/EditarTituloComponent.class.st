@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'model',
 		'titulo',
-		'libro'
+		'libro',
+		'errorMessage'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -66,12 +67,26 @@ EditarTituloComponent >> model [
 { #category : #rendering }
 EditarTituloComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
-	aCanvas div
-	id: 'formLogin';
-		with: [ self formularioRegistro: aCanvas ]
+aCanvas 
+	form: [aCanvas 
+				paragraph: [ aCanvas label: 'Título'.
+					aCanvas textInput 
+						callback: [ :valor| self titulo:valor];
+					with: ''.].
+			
 
-
-
+		aCanvas button
+			callback: [self guardar ];
+			with: 'Guardar'.
+		
+		aCanvas button
+			callback: [self cancelar ];
+			with: 'Cancelar'.
+		
+	].
+			aCanvas div
+				id: 'mensajeError';
+				with: [ errorMessage do: [ :each | aCanvas paragraph: each ] ] 
 ]
 
 { #category : #hooks }
