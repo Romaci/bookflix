@@ -14,7 +14,7 @@ BookflixSampleLoader new loadExampleDataIn: SistemaBookflix soleInstance .
 "
 Class {
 	#name : #HomeAdminComponent,
-	#superclass : #WAComponent,
+	#superclass : #AbstractAdminComponent,
 	#instVars : [
 		'model'
 	],
@@ -92,12 +92,6 @@ HomeAdminComponent >> irRegistrarLibro [
 
 ]
 
-{ #category : #'as yet unclassified' }
-HomeAdminComponent >> logOut [
-
-self show: (LoginAdminWithMoldComponent  new )
-]
-
 { #category : #accessing }
 HomeAdminComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
@@ -156,38 +150,17 @@ aCanvas div
 						with:'Cerrar sesión' ].]
 ]
 
-{ #category : #hooks }
-HomeAdminComponent >> style [
-	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px }
-	#pieDeRespuesta{text-align: center}
-	#Bookflix { text-align: left; color: darkblue; font-family: arial; font-size: 60px;  } 
-	#respuesta { text-align: center; }
-	#mostrarRespuesta { padding: 5px 10px; font-size: 10px; margin: 4px 2px; }
-	a {color: red; text-decoration: none } 
-	#cuooter { color: LightGreen}
-	#logOutAdmin{color: darkblue}
-	#contLogout { display: flex; flex-flow: row; align-items: center; align-content: center ; justify-content: flex-end; }
-	#logout { text-align: right; padding: 6px 14px; float: right}
-	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: darkred; }
-	
-	button { background-color: darkblue; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
-	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);
-			'
-]
-
 { #category : #'as yet unclassified' }
 HomeAdminComponent >> titleTop: aCanvas [
 	aCanvas div
 		id: 'Bookflix';
-		with: [ aCanvas text: 'Bookflix' ].
-	
-		aCanvas div
+		with: [ aCanvas text: 'Bookflix'.
+				aCanvas div
 		id: 'logout';
-		with: [self renderLogoutButtonOn: aCanvas ].
-		
-aCanvas horizontalRule.
+		with: [ self logOutButton: aCanvas.].
+					aCanvas break.
+		aCanvas horizontalRule ].
 
-	
 
 ]
 

@@ -1,6 +1,6 @@
 Class {
 	#name : #ListaAutoresComponent,
-	#superclass : #WAComponent,
+	#superclass : #AbstractAdminComponent,
 	#instVars : [
 		'nombre',
 		'apellido',
@@ -22,11 +22,6 @@ ListaAutoresComponent >> irRegistrarAutor [
 
 	self call: (RegistroAutorComponent  new ).
 	"self answer ."
-]
-
-{ #category : #'as yet unclassified' }
-ListaAutoresComponent >> logOut [
-self show: (LoginAdminWithMoldComponent  new )
 ]
 
 { #category : #accessing }
@@ -83,50 +78,6 @@ ListaAutoresComponent >> renderVolverButtonOn: aCanvas [
 		paragraph:[ aCanvas anchor
 				callback: [ self volver  ];
 				with: [ aCanvas button with: 'Volver' ]].
-]
-
-{ #category : #hooks }
-ListaAutoresComponent >> style [
-	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px }
-	#pieDeRespuesta{text-align: center}
-	#Bookflix { text-align: left; color: darkblue; font-family: arial; font-size: 60px;  } 
-	#respuesta { text-align: center; }
-	#mostrarRespuesta { padding: 5px 10px; font-size: 10px; margin: 4px 2px; }
-	a {color: darkblue; text-decoration: none } 
-	#cuooter { color: darkblue}
-	#contLogout { display: flex; flex-flow: row; align-items: center; align-content: center ; justify-content: flex-end; }
-	#logout { text-align: right; padding: 6px 14px; float: right}
-	#usuario { text-align: right; padding: 6px 14px; float: left; padding: 0px; color: darkblue; }
-	
-	button { background-color: darkblue; border: none; color: white; padding: 10px 24px; text-align: center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
-	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19);
-			'
-]
-
-{ #category : #'as yet unclassified' }
-ListaAutoresComponent >> titleTop: aCanvas [
-	aCanvas div
-		id: 'Bookflix';
-		with: [ aCanvas text: 'Bookflix' ].
-	
-		aCanvas div
-		id: 'logout';
-		with: [self renderLogoutButtonOn: aCanvas ].
-		
-		aCanvas div
-		id: 'logout';
-		with: [self renderVolverButtonOn: aCanvas ].
-		
-			"aCanvas button
-			callback: [self volver  ];
-			with: 'Volver'."
-		
-
-
-"aCanvas 
-	heading: [ aCanvas button
-						callback: [ self irRegistrarAutor  ];
-						with: [aCanvas text: 'Registrar nuevo libro en el sistema' ].]."
 ]
 
 { #category : #'as yet unclassified' }

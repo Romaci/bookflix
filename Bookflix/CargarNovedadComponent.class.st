@@ -1,6 +1,6 @@
 Class {
 	#name : #CargarNovedadComponent,
-	#superclass : #WAComponent,
+	#superclass : #AbstractAdminComponent,
 	#instVars : [
 		'file',
 		'nombreClave'
@@ -29,7 +29,7 @@ self answer
 
 { #category : #rendering }
 CargarNovedadComponent >> renderContentOn: aCanvas [
-
+self titleTop: aCanvas.
 aCanvas form
   multipart;
   with:
