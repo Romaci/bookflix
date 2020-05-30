@@ -32,15 +32,23 @@ aCanvas horizontalRule
 			with: 'Registrar Género'.].
 	
 	
-		aCanvas button
+"		aCanvas button
 			callback: [self cancelar ];
-			with: 'Cancelar'.].].
+			with: 'Cancelar'."].].
 ]
 
 { #category : #initialization }
 RegistroGeneroComponent >> initialize [ 
 
 super initialize 
+]
+
+{ #category : #testing }
+RegistroGeneroComponent >> isValid [
+self errorMessage  removeAll.
+self successMessage: false.
+		self verificarGenero.
+     ^ self errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -61,21 +69,22 @@ nombre:=unNombre .
 
 { #category : #'as yet unclassified' }
 RegistroGeneroComponent >> registrar [
-
-
-
-     self model darDeAltaGenero: self nombre. 
-
-	self answer
+	self isValid
+		ifTrue: [ self model darDeAltaGenero: self nombre.
+			self successMessage: true ].
+	self nombre: nil.
+	^ self
+   
 
 ]
 
 { #category : #rendering }
 RegistroGeneroComponent >> renderContentOn: aCanvas [
-self titleTop: aCanvas.
+	self titleTop: aCanvas.
 	aCanvas div
-	id: 'formLogin';
-		with: [ self formularioRegistro: aCanvas ]
+		id: 'formLogin';
+		with: [ self formularioRegistro: aCanvas ].
+	self mensajes: aCanvas de: 'EL Género'
 ]
 
 { #category : #rendering }
@@ -91,4 +100,15 @@ aCanvas div
 				with: [ aCanvas anchor
 						callback: [ self answer. ];
 						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
+]
+
+{ #category : #'as yet unclassified' }
+RegistroGeneroComponent >> verificarGenero [
+	
+	self nombre ='' ifTrue: [self errorMessage add:'*El campo Género es requerido.']
+	ifFalse:[
+	(self model estaRegistradoGenero: self nombre)
+		ifNotNil: [ self errorMessage
+				add: '*El Género ',self nombre,' ya se encuentra registrado en el sistema'.
+			]]
 ]

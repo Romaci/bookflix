@@ -115,11 +115,46 @@ SistemaBookflix >> editoriales [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoAutor: nomb apellido: apell fNac: fN fDef: fD [
+
+
+	^autores detect: [ :each | (each nombre  = nomb) & (each apellido = apell) & (each fechaDeNac = fN) & (each fechaDeDef = fD)]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoEditorial: unNombre [
+
+"metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
+
+	^editoriales detect: [ :each | each nombreEditorial  = unNombre ]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoEmail: unEmail [
 
 "metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
 
 	^cuentas detect: [ :each | each mail = unEmail ]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoGenero: unNombre [
+
+"metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
+
+	^generos detect: [ :each | each nombreGenero  = unNombre ]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoLibro: unIsbn [ 
+
+"metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"
+
+	^libros detect: [ :each | each isbn = unIsbn ]	
 		ifNone: [ nil ]
 ]
 
@@ -191,11 +226,11 @@ SistemaBookflix >> registrarCuentaDe: unUser conNombre: unNombre conApellido: un
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero [
+SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn:unIsbn [
 
-|unLibro|
+|unLibro |
 
- unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero . 
+ unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn: unIsbn . 
 
 libros add:unLibro. 
 

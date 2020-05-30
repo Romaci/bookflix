@@ -62,7 +62,7 @@ HomeAdminComponent >> irListaDeLibros [
 HomeAdminComponent >> irRegistrarAutor [
 
 
-	self call: (RegistroAutorComponent  new ).
+	self call: (RegistrarAutorComponent  new ).
 	"self answer ."
 ]
 

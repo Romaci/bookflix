@@ -32,15 +32,23 @@ aCanvas horizontalRule
 			with: 'Registrar Editorial'.].
 	
 	
-		aCanvas button
+		"aCanvas button
 			callback: [self cancelar ];
-			with: 'Cancelar'.].].
+			with: 'Cancelar'."].].
 ]
 
 { #category : #initialization }
 RegistroEditorialComponent >> initialize [ 
 
 super initialize 
+]
+
+{ #category : #validating }
+RegistroEditorialComponent >> isValid [
+self errorMessage  removeAll.
+self successMessage: false.
+		self verificarEditorial.
+     ^ self errorMessage isEmpty.
 ]
 
 { #category : #accessing }
@@ -61,12 +69,11 @@ nombre:=unNombre .
 
 { #category : #'as yet unclassified' }
 RegistroEditorialComponent >> registrar [
-
-
-
-     self model darDeAltaEditorial: self nombre. 
-
-	self answer
+	self isValid
+		ifTrue: [ self model darDeAltaEditorial: self nombre.
+			self successMessage: true ].
+	self nombre: nil.
+	^ self
 ]
 
 { #category : #rendering }
@@ -74,20 +81,17 @@ RegistroEditorialComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
-		with: [ self formularioRegistro: aCanvas ]
+		with: [ self formularioRegistro: aCanvas ].
+		self mensajes: aCanvas de:'La Editorial'
 ]
 
-{ #category : #rendering }
-RegistroEditorialComponent >> renderLogoutButtonOn: aCanvas [
-
-aCanvas div
-		id: 'contLogout';
-		with: [aCanvas div
-				id: 'cuooter';
-				with: [ "aCanvas text: 'Administrador en sesión: '.
-					aCanvas paragraph: self session getUser user ."
-			aCanvas div
-				with: [ aCanvas anchor
-						callback: [ self logOut. ];
-						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
+{ #category : #validating }
+RegistroEditorialComponent >> verificarEditorial [
+	
+	self nombre ='' ifTrue: [self errorMessage add:'*El campo Editorial es requerido.']
+	ifFalse:[
+	(self model estaRegistradoEditorial: self nombre)
+		ifNotNil: [ self errorMessage
+				add: '*La editorial ',self nombre,' ya se encuentra registrada en el sistema'.
+			]]
 ]

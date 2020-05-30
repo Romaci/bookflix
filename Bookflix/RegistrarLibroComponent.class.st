@@ -2,11 +2,11 @@ Class {
 	#name : #RegistrarLibroComponent,
 	#superclass : #AbstractAdminComponent,
 	#instVars : [
-		'model',
 		'titulo',
 		'autor',
 		'editorial',
-		'genero'
+		'genero',
+		'isbn'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -41,56 +41,48 @@ editorial:=unaEditorial.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> formularioRegistro:aCanvas [
-
-aCanvas horizontalRule 
-		with: [aCanvas div
-		id: 'formLogin';
-		
-		with: [ aCanvas form: [aCanvas 
-				paragraph: [ aCanvas label: 'Título: '.
-					aCanvas textInput 
-						callback: [ :valor| self titulo:valor];
-					with: ''.].
-				
-			aCanvas 
-				paragraph: [ aCanvas label: 'Autor: '.
-					aCanvas select
-						callback: [ :valor| self autor:valor];
-				      list:(self model autores collect:[:a|a nombre,' ', a apellido]);	
-					selected:self autor;	
-					with: ''.].
-				
-				
-				
-				aCanvas 
-				paragraph: [ aCanvas label: 'Editorial: '.
-					aCanvas select
-						callback: [ :valor| self editorial:valor];
-						list:(self model editoriales collect:[:e|e nombreEditorial ]);	
-					selected:self editorial;	
-					with: ''.].
-		             
-		
-		aCanvas 
-				paragraph: [ aCanvas label: 'Generos: '.
-					aCanvas select
-						callback: [ :valor| self genero:valor];
-						list:(self model generos collect:[:g|g nombreGenero]);	
-					selected:self genero;	
-					with: ''.].
-			
-
- 
-	
-		aCanvas button
-			callback: [self registrar  ];
-			with: 'Registrar libro'.
-	
-	
-		aCanvas button
-			callback: [self cancelar:aCanvas  ];
-			with: 'Cancelar'.].].]
+RegistrarLibroComponent >> formularioRegistro: aCanvas [
+	aCanvas horizontalRule
+		with: [ aCanvas div
+				id: 'formLogin';
+				with: [ aCanvas
+						form: [ aCanvas
+								paragraph: [ aCanvas label: 'Título: '.
+									aCanvas textInput
+										callback: [ :valor | self titulo: valor ];
+										with: '' ].
+							aCanvas
+								paragraph: [ aCanvas label: 'Autor: '.
+									aCanvas select
+										callback: [ :valor | self autor: valor ];
+										list: (self model autores collect: [ :a | a nombre , ' ' , a apellido ]);
+										selected: self autor;
+										with: '' ].
+							aCanvas
+								paragraph: [ aCanvas label: 'Editorial: '.
+									aCanvas select
+										callback: [ :valor | self editorial: valor ];
+										list: (self model editoriales collect: [ :e | e nombreEditorial ]);
+										selected: self editorial;
+										with: '' ].
+							aCanvas
+								paragraph: [ aCanvas label: 'Generos: '.
+									aCanvas select
+										callback: [ :valor | self genero: valor ];
+										list: (self model generos collect: [ :g | g nombreGenero ]);
+										selected: self genero;
+										with: '' ].
+							aCanvas
+								paragraph: [ aCanvas label: 'ISBM: '.
+									aCanvas numberInput
+										callback: [ :valor | self isbn: valor ];
+										with: '' ].
+							aCanvas button
+								callback: [ self registrar: aCanvas ];
+								with: 'Registrar libro'.
+							aCanvas button
+								callback: [ self cancelar: aCanvas ];
+								with: 'Cancelar' ] ] ]
 ]
 
 { #category : #accessing }
@@ -112,42 +104,56 @@ super initialize
 
 ]
 
+{ #category : #validating }
+RegistrarLibroComponent >> isValid [
+self errorMessage  removeAll.
+self successMessage: false.
+		self verificarISBM.
+		self verificarTitulo.
+     ^ errorMessage isEmpty.
+
+]
+
+{ #category : #accessing }
+RegistrarLibroComponent >> isbn [
+	
+	^isbn.
+]
+
+{ #category : #accessing }
+RegistrarLibroComponent >> isbn: unIsbn [
+	
+	isbn:= unIsbn.
+]
+
 { #category : #accessing }
 RegistrarLibroComponent >> model [ 
 ^ SistemaBookflix soleInstance 
 ]
 
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> registrar [
-
-
-     self model registrarLibroConTitulo: self titulo  de: self autor  editadoPor: self editorial  genero: self genero .
-
-	self answer
-
+RegistrarLibroComponent >> registrar: aCanvas [
+	self isValid
+		ifTrue: [ self model
+				registrarLibroConTitulo: self titulo
+				de: self autor
+				editadoPor: self editorial
+				genero: self genero
+				isbn: self isbn.
+			self successMessage: true ].
+	self titulo: nil.
+	self isbn: nil.
+	
+	^ self
 ]
 
 { #category : #rendering }
 RegistrarLibroComponent >> renderContentOn: aCanvas [
-self titleTop: aCanvas.
+	self titleTop: aCanvas.
 	aCanvas div
-	id: 'formLogin';
-		with: [ self formularioRegistro: aCanvas ]
-]
-
-{ #category : #rendering }
-RegistrarLibroComponent >> renderLogoutButtonOn: aCanvas [
-
-aCanvas div
-		id: 'contLogout';
-		with: [aCanvas div
-				id: 'cuooter';
-				with: [ "aCanvas text: 'Administrador en sesión: '.
-					aCanvas paragraph: self session getUser user ."
-			aCanvas div
-				with: [ aCanvas anchor
-						callback: [ self answer. ];
-						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
+		id: 'formLogin';
+		with: [ self formularioRegistro: aCanvas ].
+	self mensajes: aCanvas de: 'El Libro'
 ]
 
 { #category : #accessing }
@@ -160,4 +166,20 @@ RegistrarLibroComponent >> titulo [
 RegistrarLibroComponent >> titulo:unTitulo [
 
 titulo:=unTitulo.
+]
+
+{ #category : #validating }
+RegistrarLibroComponent >> verificarISBM [
+self isbn ='' ifTrue: [errorMessage add:'*El campo ISBM es requerido.']
+ifFalse:[
+	(self model estaRegistradoLibro: self isbn)
+		ifNotNil: [ errorMessage
+				add: '*El Libro con el ISBN: ',self isbn,' ya se encuentra registrado en el sistema'.
+			]]
+]
+
+{ #category : #validating }
+RegistrarLibroComponent >> verificarTitulo [
+
+	self titulo ='' ifTrue: [errorMessage add:'*El campo Título es requerido.'].
 ]

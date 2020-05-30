@@ -8,15 +8,16 @@ Class {
 		'genero',
 		'trailer',
 		'puntuacion',
-		'comentarios'
+		'comentarios',
+		'isbn'
 	],
 	#category : #'Bookflix-model'
 }
 
 { #category : #'as yet unclassified' }
-Libro class >> conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero [
+Libro class >> conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn: unIsbn [
 
-^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero
+^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn: unIsbn
 
 
 
@@ -63,13 +64,24 @@ Libro >> initilize [
 "generos:= OrderedCollection new. "
 ]
 
-{ #category : #'as yet unclassified' }
-Libro >> libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero [
+{ #category : #accessing }
+Libro >> isbn [
+	^isbn.
+]
 
-titulo:=unTitulo . 
-autor:=unAutor . 
-editorial :=unaEditorial .
-genero :=unGenero . 
+{ #category : #accessing }
+Libro >> isbn: unIsbn [
+
+	isbn:= unIsbn.
+]
+
+{ #category : #'as yet unclassified' }
+Libro >> libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn [
+	titulo := unTitulo.
+	autor := unAutor.
+	editorial := unaEditorial.
+	genero := unGenero.
+	isbn := unIsbn
 ]
 
 { #category : #accessing }
