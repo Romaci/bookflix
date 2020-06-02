@@ -292,10 +292,13 @@ RegistroComponent >> verificarDateExp [
 
 { #category : #validating }
 RegistroComponent >> verificarMail [
-	mail = ''
+
+	mail=''
 		ifTrue: [ errorMessage add: '*El campo Mail es requerido.' ]
-		"ifFalse: [ (mail asOrderedCollection  anySatisfy: [:each| each = '@'asCharacter])
-				ifFalse: [ errorMessage add: '*El mail ingresado no es válido.' ] ]"
+		ifFalse: [ (mail includes: $@)
+				ifFalse: [ errorMessage add: '*El mail ingresado no es válido.' ]
+				ifTrue:[(self model estaRegistradoEmail: mail) ifNotNil: [ '*El mail ingresado ya se encuentra registrado en el sistema' ]
+					]]
 ]
 
 { #category : #validating }
