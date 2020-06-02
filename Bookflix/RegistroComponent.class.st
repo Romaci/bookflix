@@ -107,6 +107,11 @@ self call: LoginWithMoldComponent new.
 
 ]
 
+{ #category : #'as yet unclassified' }
+RegistroComponent >> irRegistroExitoso [
+	self call: RegistroExitosoComponent new.
+]
+
 { #category : #validating }
 RegistroComponent >> isValid [
     errorMessage removeAll.
@@ -146,14 +151,8 @@ RegistroComponent >> registrar [
 				conApellido: apellido
 				conMail: mail
 				yPass: password.
-			self irLogin ].
-	user := nil.
-	password := nil.
-	mail := nil.
-	nombre := nil.
-	apellido := nil.
-	nroTarjeta := nil.
-	dateExp := nil.
+			self irRegistroExitoso. ].
+
 ]
 
 { #category : #rendering }
@@ -295,7 +294,7 @@ RegistroComponent >> verificarDateExp [
 RegistroComponent >> verificarMail [
 	mail = ''
 		ifTrue: [ errorMessage add: '*El campo Mail es requerido.' ]
-"		ifFalse: [ (mail asOrderedCollection  anySatisfy: [:each| each = '@'asCharacter])
+		"ifFalse: [ (mail asOrderedCollection  anySatisfy: [:each| each = '@'asCharacter])
 				ifFalse: [ errorMessage add: '*El mail ingresado no es válido.' ] ]"
 ]
 

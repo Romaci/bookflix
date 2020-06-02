@@ -13,16 +13,13 @@ self answer.
 
 { #category : #rendering }
 RegistroExitosoComponent >> renderContentOn: aCanvas [
-self titleTop: aCanvas.
-	aCanvas horizontalRule 
-		with: [aCanvas div
-		with: [ aCanvas 
+	self titleTop: aCanvas.
+	aCanvas div
+		with: [ aCanvas
 				paragraph: 'El usuario se registro correctamente en el sistema'.
-	   
-		aCanvas anchor
-			callback: [self irLogin ];
-			with: 'Volver a iniciar sesión'.].
-		].  
+			aCanvas anchor
+				callback: [ self irLogin ];
+				with: 'Volver a iniciar sesión' ]
 ]
 
 { #category : #'as yet unclassified' }

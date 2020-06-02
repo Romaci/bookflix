@@ -45,6 +45,8 @@ AbstractUserComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
+	#mensajeExito{color:green}
+	#mensajeError{color:red}
 	#pieDeRespuesta{text-align: center}
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;} 
 	#respuesta { text-align: center; }
