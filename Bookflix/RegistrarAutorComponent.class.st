@@ -99,6 +99,7 @@ RegistrarAutorComponent >> isValid [
 		ifNotNil: [ errorMessage
 				add: '*El Autor ingresado ya se encuentra registrado en el sistema' ].
 	self verificarAutor.
+	self verificarFN.
 	^ errorMessage isEmpty
 ]
 
@@ -145,4 +146,9 @@ self apellido ='' ifTrue: [errorMessage add:'*El campo Apellido es requerido.'].
 self nombre ='' ifTrue: [errorMessage add:'*El campo Nombre es requerido.'].
 
 
+]
+
+{ #category : #validating }
+RegistrarAutorComponent >> verificarFN [ 
+self fechaDeNac > self fechaDeDef ifTrue: [ errorMessage add:'*La Fecha de Defunción no puede ser anterior a la de nacimiento']
 ]
