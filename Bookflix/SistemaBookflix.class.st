@@ -159,6 +159,14 @@ SistemaBookflix >> estaRegistradoLibro: unIsbn [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> estaRegistradoMail: unMail [
+
+
+	^cuentas detect: [ :each | each mail  = unMail ]	
+		ifNone: [ nil ]
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoUsuario: nombreUser [ 
 
 "metodo que chequea que el nombre de usuario que entró por parámetro no esté en la lista de usuarios registrados"

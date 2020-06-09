@@ -29,59 +29,59 @@ RegistroComponent >> formularioRegistro: aCanvas [
 								paragraph: [ aCanvas label: 'Nombre: '.
 									aCanvas textInput
 										callback: [ :valor | self setNombre: valor ];
-										with: '' ].
+										with: nombre  ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Apellido: '.
 									aCanvas textInput
 										callback: [ :valor | self setApellido: valor ];
-										with: '' ].
+										with: apellido ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Email: '.
-									aCanvas emailInput
+									aCanvas textInput
 										callback: [ :valor | self setEmail: valor ];
-										with: '' ].
+										with: mail ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Nombre de usuario: '.
 									aCanvas textInput
 										callback: [ :valor | self setUser: valor ];
-										with: '' ].
+										with: user].
 							aCanvas
 								paragraph: [ aCanvas label: 'Password: '.
 									aCanvas passwordInput
 										callback: [ :valor | self setPassword: valor ];
-										with: '' ].
+										with: password  ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Repetir Password: '.
 									aCanvas passwordInput
 										callback: [ :valor | self setPasswordRepetida: valor ];
-										with: '' ].
+										with: password2  ].
 							aCanvas horizontalRule.
 							aCanvas paragraph: [ aCanvas label: 'Datos de Tarjeta:' ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Nombre Titular: '.
 									aCanvas textInput
 										callback: [ :valor | self setNombTit: valor ];
-										with: '' ].
+										with: nombTit ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Apellido Titular: '.
 									aCanvas textInput
 										callback: [ :valor | self setApellTit: valor ];
-										with: '' ].
+										with: apellTit  ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Número de tarjeta (debe contener 10 dígitos): '.
 									aCanvas numberInput
 										callback: [ :valor | self setNroTarjeta: valor ];
-										with: '' ].
+										with: nroTarjeta  ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Código de seguridad (debe contener 3 o 4 dígitos): '.
 									aCanvas numberInput
 										callback: [ :valor | self setCodSeg: valor ];
-										with: '' ].
+										with: codSeg  ].
 							aCanvas
 								paragraph: [ aCanvas label: 'vencimiento: '.
 									aCanvas monthInput
 										callback: [ :valor | self setDateExp: valor ];
-										with: ''.
+										with: dateExp.
 									aCanvas
 										div: [ aCanvas button
 												callback: [ self registrar ];
@@ -292,10 +292,13 @@ RegistroComponent >> verificarDateExp [
 
 { #category : #validating }
 RegistroComponent >> verificarMail [
-	mail = ''
+
+	mail=''
 		ifTrue: [ errorMessage add: '*El campo Mail es requerido.' ]
-		"ifFalse: [ (mail asOrderedCollection  anySatisfy: [:each| each = '@'asCharacter])
-				ifFalse: [ errorMessage add: '*El mail ingresado no es válido.' ] ]"
+		ifFalse: [ (mail includes: $@)
+				ifFalse: [ errorMessage add: '*El mail ingresado no es válido.' ]
+				ifTrue:[(self model estaRegistradoEmail: mail) ifNotNil: [ '*El mail ingresado ya se encuentra registrado en el sistema' ]
+					]]
 ]
 
 { #category : #validating }
