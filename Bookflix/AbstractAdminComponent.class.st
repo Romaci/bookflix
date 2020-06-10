@@ -85,7 +85,7 @@ AbstractAdminComponent >> style [
 	#caja {border: 1px solid #DADCE0;border-radius: 8px;padding: 10px}
 	#Bookflix { text-align: left; color: darkblue; font-family: arial; font-size: 60px;} 
 	#respuesta { text-align: center; }
-	.hr { border-color:#DADCE0 }
+	hr { border-color:#DADCE0 }
 	a {color:black} 
 	#mensajeExito{color:green}
 	#mensajeError{color:red}
