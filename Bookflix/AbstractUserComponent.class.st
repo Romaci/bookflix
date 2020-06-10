@@ -31,7 +31,6 @@ AbstractUserComponent >> logOutButton: aCanvas [
 aCanvas div
 		id: 'contLogout';
 		with: [aCanvas div
-				id: 'cuooter';
 				with: [ aCanvas text: 'Usuario en sesión: '.
 					aCanvas paragraph: self session getUser user .
 			aCanvas div
@@ -60,14 +59,12 @@ AbstractUserComponent >> style [
 
 { #category : #'as yet unclassified' }
 AbstractUserComponent >> titleTop: aCanvas [
-	aCanvas div 
-		id: 'Bookflix';
-		with: [ aCanvas text: 'Bookflix' ].
-	
-		aCanvas div
-		id: 'logout';
-		with: [self logOutButton: aCanvas  ].
-		
-aCanvas horizontalRule.
+aCanvas div
+id:'Top';
+with:[	 aCanvas paragraph
+		id:'Bookflix';
+		with:[ aCanvas text: 'Bookflix'].
+		self logOutButton: aCanvas].
+		aCanvas horizontalRule.
 	
 ]

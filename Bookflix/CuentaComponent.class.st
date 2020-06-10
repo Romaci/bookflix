@@ -72,8 +72,9 @@ CuentaComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 CuentaComponent >> renderDatosPersonalesOn: aCanvas [
-
-	aCanvas text: 'Titular de la cuenta'.
+aCanvas div 
+	id:'caja';
+	with:[	aCanvas text: 'Titular de la cuenta'.
 		aCanvas break.
 		aCanvas break.
 	aCanvas text: 'Nombre: '.
@@ -101,6 +102,8 @@ CuentaComponent >> renderDatosPersonalesOn: aCanvas [
 		callback: [ self modificarEmail   ];
 		with: [ aCanvas button with: 'Modificar email' ].
 	aCanvas horizontalRule.
+]
+	
 
 
 ]
