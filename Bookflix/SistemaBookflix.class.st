@@ -238,7 +238,7 @@ SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEdi
 
 |unLibro |
 
- unLibro:= Libro conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn: unIsbn . 
+ unLibro:= Libro libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn. 
 
 libros add:unLibro. 
 

@@ -153,7 +153,7 @@ aCanvas div
 { #category : #'as yet unclassified' }
 HomeAdminComponent >> titleTop: aCanvas [
 	aCanvas div
-		id: 'Bookflix';
+		id: 'BookflixAdmin';
 		with: [ aCanvas text: 'Bookflix'.
 				aCanvas div
 		id: 'logout';
