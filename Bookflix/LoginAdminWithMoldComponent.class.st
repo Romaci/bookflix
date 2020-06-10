@@ -106,7 +106,7 @@ self titleTop: aCanvas.
 { #category : #'as yet unclassified' }
 LoginAdminWithMoldComponent >> titleTop: aCanvas [
 	aCanvas div
-		id: 'Bookflix';
+		id: 'BookflixAdmin';
 		with: [ aCanvas text: 'Bookflix' ].
 		aCanvas break.
 		aCanvas horizontalRule 

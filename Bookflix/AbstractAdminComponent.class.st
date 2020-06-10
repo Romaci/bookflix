@@ -101,6 +101,8 @@ AbstractAdminComponent >> style [
 	
 	#Bookflix { text-align: left; color: darkred; font-family: arial; font-size: 60px;} 
 	
+	#BookflixAdmin { text-align: left; color: darkblue; font-family: arial; font-size: 60px;} 
+	
 	#respuesta { text-align: center; }
 	
 	#logout { text-align: right; padding: 6px 14px; float: right}
@@ -125,7 +127,7 @@ AbstractAdminComponent >> successMessage: aValue [
 { #category : #'as yet unclassified' }
 AbstractAdminComponent >> titleTop: aCanvas [
 	aCanvas div
-		id: 'Bookflix';
+		id: 'BookflixAdmin';
 		with: [ aCanvas text: 'Bookflix'.	].
 			aCanvas div
 		id: 'logout';
