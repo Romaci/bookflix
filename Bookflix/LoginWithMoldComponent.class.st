@@ -120,14 +120,12 @@ mold := Mold new.
   (mold stringField)
     label: 'Nombre de usuario:';
 	 on: #user of: self cuenta;
-    beRequired: 'El campo es requerido';
-	addCondition: [:input | self model estaRegistradoUsuario: input] labeled: 'El nombre de usuario no se encuentra registrado en el sistema'.
+    beRequired: 'El campo es requerido'.
 	
   (mold passwordField)
     label: 'Contraseña:';
 	 on: #password of:self cuenta;
-    beRequired: 'El campo es requerido';
-	 addCondition: [:input | self model withUsername:cuenta user ypass:input] labeled: 'La contraseña ingresada es inconrrecta'.
+    beRequired: 'El campo es requerido'.
 	 
 ]
 

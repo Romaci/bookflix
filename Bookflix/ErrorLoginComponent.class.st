@@ -25,3 +25,10 @@ self titleTop: aCanvas.
 			callback: [self irLoginUser ];
 			with: 'Volver a iniciar sesión'.].
 ]
+
+{ #category : #'as yet unclassified' }
+ErrorLoginComponent >> titleTop: aCanvas [
+	 aCanvas div id: 'Bookflix';
+		with: 'Bookflix'.
+		aCanvas horizontalRule.
+]
