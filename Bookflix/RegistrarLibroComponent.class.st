@@ -6,7 +6,8 @@ Class {
 		'autor',
 		'editorial',
 		'genero',
-		'isbn'
+		'isbn',
+		'portada'
 	],
 	#category : #'Bookflix-UI'
 }
