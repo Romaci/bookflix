@@ -9,16 +9,16 @@ Class {
 		'trailer',
 		'puntuacion',
 		'comentarios',
-		'isbn'
+		'isbn',
+		'portada'
 	],
 	#category : #'Bookflix-model'
 }
 
 { #category : #'as yet unclassified' }
-Libro class >> conTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn: unIsbn [
+Libro class >> libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn [ 
 
-^self new libroConTitulo:unTitulo de:unAutor editadoPor:unaEditorial genero:unGenero isbn: unIsbn
-
+^self new libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn 
 
 
 ]
@@ -76,12 +76,22 @@ Libro >> isbn: unIsbn [
 ]
 
 { #category : #'as yet unclassified' }
-Libro >> libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn [
+Libro >> libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn [ 
 	titulo := unTitulo.
 	autor := unAutor.
 	editorial := unaEditorial.
 	genero := unGenero.
-	isbn := unIsbn
+	isbn := unIsbn.
+]
+
+{ #category : #accessing }
+Libro >> portada [
+	^portada.
+]
+
+{ #category : #accessing }
+Libro >> portada: unaPortada [
+	portada:= unaPortada.
 ]
 
 { #category : #accessing }
@@ -94,4 +104,16 @@ Libro >> titulo [
 Libro >> titulo:unTitulo [
 
 titulo:=unTitulo . 
+]
+
+{ #category : #accessing }
+Libro >> trailer [
+
+	^trailer
+]
+
+{ #category : #accessing }
+Libro >> trailer: unTrailer [
+
+	trailer:= unTrailer.
 ]
