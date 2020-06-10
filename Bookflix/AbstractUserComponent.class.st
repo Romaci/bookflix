@@ -45,6 +45,7 @@ AbstractUserComponent >> style [
 	
 	.grid { display:grid; grid-template-columns:70% 30%}
 	
+	
 	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19)}
 		
 	a {color:red} 
