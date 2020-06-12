@@ -7,7 +7,8 @@ Class {
 		'apellido',
 		'mail',
 		'password',
-		'perfiles'
+		'perfiles',
+		'tarjetas'
 	],
 	#category : #'Bookflix-model'
 }
@@ -21,6 +22,12 @@ Cuenta class >> conUser:unUser conNombre:unNombre conApellido:unApellido conMail
 Cuenta >> agregarPerfilConNombre: unNombre. [
 
 	perfiles add: (Perfil conNombre:unNombre).
+]
+
+{ #category : #'as yet unclassified' }
+Cuenta >> agregarTarjeta: tarjeta [
+	
+	tarjetas add: tarjeta.
 ]
 
 { #category : #accessing }
@@ -63,6 +70,7 @@ Cuenta >> conUseryPassword [
 Cuenta >> initialize [ 
 
 	perfiles:= OrderedCollection new.
+	tarjetas:= OrderedCollection new.
 	
 ]
 
