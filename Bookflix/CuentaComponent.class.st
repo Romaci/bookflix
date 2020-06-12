@@ -87,7 +87,9 @@ aCanvas div
 		aCanvas div
 		with:[aCanvas text: self session getUser nombre.].
 		aCanvas div
-		with:[aCanvas text: 'Modificar'].
+		with:[aCanvas anchor
+		callback: [ self modificarNombre   ];
+		with: [ aCanvas text: 'Modificar' ].].
 		].
 	aCanvas div
 	class:'gridForm';
@@ -97,7 +99,9 @@ aCanvas div
 		aCanvas div
 		with:[aCanvas text: self session getUser apellido.].
 		aCanvas div
-		with:[aCanvas text: 'Modificar'].
+		with:[aCanvas anchor
+		callback: [ self modificarApellido   ];
+		with: [ aCanvas text: 'Modificar' ].].
 	].
 	aCanvas div
 	class:'gridForm';
@@ -107,7 +111,7 @@ aCanvas div
 		aCanvas div
 		with:[aCanvas text: self session getUser user].
 		aCanvas div
-		with:[aCanvas text: 'Modificar'].
+		with:[aCanvas text: ''].
 		].
 	aCanvas div
 	class:'gridForm';
@@ -117,8 +121,18 @@ aCanvas div
 		aCanvas div
 		with:[aCanvas text: self session getUser mail.].
 		aCanvas div
-		with:[aCanvas text: 'Modificar'].
-	].]]
+		with:[aCanvas anchor
+		callback: [ self modificarEmail   ];
+		with: [ aCanvas text: 'Modificar' ]].
+	].]].
+aCanvas anchor
+		callback: [ self volver ];
+		with: [ aCanvas button with: 'Volver' ]
+]
+
+{ #category : #'as yet unclassified' }
+CuentaComponent >> volver [ 
+	self answer.
 ]
 
 { #category : #'as yet unclassified' }

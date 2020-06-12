@@ -35,7 +35,7 @@ super initialize
 HomeComponent >> irDatosPersonales [
 
 	self call: (CuentaComponent new ).
-	self answer.
+
 ]
 
 { #category : #accessing }

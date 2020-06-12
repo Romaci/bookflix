@@ -59,7 +59,10 @@ display: flex; flex-direction: column;
 }
 	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 	rgba(0,0,0,0.19)}
 		
-	a {color:red} 
+	a:link, a:visited, a:active {
+    text-decoration:none;
+	color:black;
+}
 	
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 		
