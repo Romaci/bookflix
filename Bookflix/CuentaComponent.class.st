@@ -166,8 +166,8 @@ CuentaComponent >> renderTarjeta: unaTarjeta On: aCanvas [
 							aCanvas div ].
 					aCanvas div
 						class: 'gridForm2';
-						with: [ aCanvas div with: [ aCanvas text: 'FECHA DE VENCIMIENTO' ].
-							aCanvas div with: [aCanvas text: unaTarjeta expDate ].
+						with: [ aCanvas div with: [ aCanvas text: 'VENCIMIENTO' ].
+							aCanvas div with: [aCanvas text: unaTarjeta expDate].
 							aCanvas div ].
 					aCanvas div
 						class: 'gridForm2';
