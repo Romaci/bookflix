@@ -128,6 +128,7 @@ aCanvas div
 aCanvas anchor
 		callback: [ self volver ];
 		with: [ aCanvas button with: 'Volver' ]
+
 ]
 
 { #category : #'as yet unclassified' }

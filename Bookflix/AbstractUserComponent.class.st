@@ -95,14 +95,6 @@ AbstractUserComponent >> titleTop: aCanvas [
 		aCanvas div 
 		id: 'Bookflix';
 		with: [ aCanvas text: 'Bookflix' ].
-	
-		aCanvas div
-		id: 'logout';
-		with: [self logOutButton: aCanvas  ].
-		 
-		].
-	
-		
 aCanvas horizontalRule.
-	
+	]
 ]
