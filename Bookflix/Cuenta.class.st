@@ -66,6 +66,11 @@ Cuenta >> conUseryPassword [
 
 ]
 
+{ #category : #'as yet unclassified' }
+Cuenta >> eliminarTarjeta: unaTarjeta [
+	tarjetas remove:unaTarjeta.
+]
+
 { #category : #initialization }
 Cuenta >> initialize [ 
 
@@ -106,6 +111,11 @@ Cuenta >> password [
 { #category : #accessing }
 Cuenta >> password: unaPass [
 	password := unaPass.
+]
+
+{ #category : #accessing }
+Cuenta >> tarjetas [
+	^tarjetas
 ]
 
 { #category : #accessing }

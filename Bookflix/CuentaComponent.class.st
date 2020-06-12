@@ -15,6 +15,13 @@ self answer
 ]
 
 { #category : #'as yet unclassified' }
+CuentaComponent >> eliminarTarjeta: unaTarjeta [
+	
+	self session getUser eliminarTarjeta: unaTarjeta.
+	^self.
+]
+
+{ #category : #'as yet unclassified' }
 CuentaComponent >> guardar [
 
 	
@@ -63,11 +70,13 @@ aCanvas
 
 { #category : #rendering }
 CuentaComponent >> renderContentOn: aCanvas [
-
 	self titleTop: aCanvas.
-
 	aCanvas break.
-	self renderDatosPersonalesOn: aCanvas
+	self renderDatosPersonalesOn: aCanvas.
+	(self session getUser tarjetas) do:[:each| self renderTarjeta: each On: aCanvas].
+	aCanvas anchor
+		callback: [ self volver ];
+		with: [ aCanvas button with: 'Volver' ]
 ]
 
 { #category : #rendering }
@@ -115,6 +124,7 @@ aCanvas div
 		].
 	aCanvas div
 	class:'gridForm';
+	style: 'border-bottom-width: 0px;';
 	with:
 	[ aCanvas div
 		with:[aCanvas text: 'EMAIL '.].
@@ -124,11 +134,54 @@ aCanvas div
 		with:[aCanvas anchor
 		callback: [ self modificarEmail   ];
 		with: [ aCanvas text: 'Modificar' ]].
-	].]].
-aCanvas anchor
-		callback: [ self volver ];
-		with: [ aCanvas button with: 'Volver' ]
+	].].].
 
+	
+
+	
+
+]
+
+{ #category : #rendering }
+CuentaComponent >> renderTarjeta: unaTarjeta On: aCanvas [
+	aCanvas div
+		class: 'centro';
+		with: [ aCanvas heading
+				style: 'margin-bottom:1.5px';
+				with: 'Tarjetas'.
+			aCanvas anchor
+				callback: [ "agregarTarjeta" ];
+				with: [ aCanvas text: 'Agregar Tarjeta' ].
+			aCanvas div
+				class: 'caja';
+				with: [ aCanvas div
+						class: 'gridForm2';
+						with: [ aCanvas div with: [ aCanvas text: 'NRO' ].
+							aCanvas div with: [ aCanvas text: unaTarjeta nro ].
+							aCanvas div ].
+					aCanvas div
+						class: 'gridForm2';
+						with: [ aCanvas div with: [ aCanvas text: 'NOMBRE DE TITULAR' ].
+							aCanvas div with: [ aCanvas text: unaTarjeta nombre, ' ' , unaTarjeta apellido].
+							aCanvas div ].
+					aCanvas div
+						class: 'gridForm2';
+						with: [ aCanvas div with: [ aCanvas text: 'FECHA DE VENCIMIENTO' ].
+							aCanvas div with: [aCanvas text: unaTarjeta expDate ].
+							aCanvas div ].
+					aCanvas div
+						class: 'gridForm2';
+						style: 'border-bottom-width: 0px;';
+						with: [ aCanvas div.
+							aCanvas div.
+							aCanvas div
+								with: [ aCanvas anchor
+										callback: [ "agregar modificar datos tarjeta" ];
+										with: [ aCanvas text: 'Modificar' ].
+									aCanvas text: ' | '.
+									aCanvas anchor
+										callback: [ self eliminarTarjeta: unaTarjeta];
+										with: [ aCanvas text: 'Eliminar' ] ] ] ] ]
 ]
 
 { #category : #'as yet unclassified' }

@@ -42,16 +42,20 @@ AbstractUserComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	
 	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; 	text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; 	-webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
+					
 	
 	.grid { display:grid; grid-template-columns:70% 30%; }
 	
 	.gridForm { display:grid; grid-template-columns:40% 50% 10%; padding:1.5em;border-bottom-style:solid; border-bottom-width: 1px;}
 	
+	.gridForm2 { display:grid; grid-template-columns:35% 40% 25%; padding:1.5em;border-bottom-style:solid; border-bottom-width: 1px;}
+	
 	.titSeccion{text-aling: center, text-decoration:none, text-color: gray}
 	
 	.centro{display: flex; flex-direction: column; align-items: center; justify-content: center;}
 	.caja{
-  
+  border: 1px solid;
+  border-radius: 25px;
   padding: 20px;
   margin: 10px;
   width: 60%;
@@ -62,6 +66,7 @@ display: flex; flex-direction: column;
 	a:link, a:visited, a:active {
     text-decoration:none;
 	color:black;
+	font-style: italic;
 }
 	
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
@@ -95,6 +100,14 @@ AbstractUserComponent >> titleTop: aCanvas [
 		aCanvas div 
 		id: 'Bookflix';
 		with: [ aCanvas text: 'Bookflix' ].
+	
+		aCanvas div
+		id: 'logout';
+		with: [self logOutButton: aCanvas  ].
+		 
+		].
+	
+		
 aCanvas horizontalRule.
-	]
+	
 ]

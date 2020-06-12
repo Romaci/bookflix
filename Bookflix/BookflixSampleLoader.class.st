@@ -11,6 +11,7 @@ BookflixSampleLoader >> loadExampleDataIn:unSistema [
 listaDeGéneros :=OrderedCollection new.
 
 usuario1:=unSistema registrarCuentaDe: 'lugosi' conNombre: 'Gato' conApellido: 'Lugosi' conMail: 'lugosi@bookflix.com'  yPass: '1234'.
+	usuario1 agregarTarjeta: (Tarjeta conNombre: 'lugosi' apellido: 'gato' nro:1234567890 cod:123 expDate: DateAndTime today ).
 usuario2:=unSistema registrarCuentaDe: 'stonky' conNombre: 'Gata' conApellido: 'Fernandez' conMail: 'stonky@bookflix.com'  yPass: '1234'.
 
 
