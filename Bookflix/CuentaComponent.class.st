@@ -72,40 +72,53 @@ CuentaComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 CuentaComponent >> renderDatosPersonalesOn: aCanvas [
+aCanvas div
+class:'centro';
+with:[
+aCanvas heading:'Datos personales'.
 aCanvas div 
-	id:'caja';
-	with:[	aCanvas text: 'Titular de la cuenta'.
-		aCanvas break.
-		aCanvas break.
-	aCanvas text: 'Nombre: '.
-	aCanvas text: self session getUser nombre.
-	aCanvas horizontalRule.
-	aCanvas anchor
-		callback: [ self modificarNombre   ];
-		with: [ aCanvas button with: 'Modificar nombre' ].
-	aCanvas horizontalRule.
-		aCanvas break.
-	aCanvas text: 'Apellido: '.
-	aCanvas text: self session getUser apellido  .
-	aCanvas anchor
-		callback: [ self modificarApellido   ];
-		with: [ aCanvas button with: 'Modificar apellido' ].
-	aCanvas horizontalRule.
-		aCanvas break.
-	aCanvas text: 'Nombre de usuario: '.
-	aCanvas text: self session getUser user  .
-	aCanvas horizontalRule.
-		aCanvas break.
-	aCanvas text: 'Email: '.
-	aCanvas text: self session getUser mail.
-	aCanvas anchor
-		callback: [ self modificarEmail   ];
-		with: [ aCanvas button with: 'Modificar email' ].
-	aCanvas horizontalRule.
-]
-	
-
-
+	class:'caja';
+	with:[	
+			aCanvas div
+	class:'gridForm';
+	with:
+	[ aCanvas div
+		with:[aCanvas text: 'NOMBRE'.].
+		aCanvas div
+		with:[aCanvas text: self session getUser nombre.].
+		aCanvas div
+		with:[aCanvas text: 'Modificar'].
+		].
+	aCanvas div
+	class:'gridForm';
+	with:
+	[ aCanvas div
+		with:[aCanvas text: 'APELLIDO'.].
+		aCanvas div
+		with:[aCanvas text: self session getUser apellido.].
+		aCanvas div
+		with:[aCanvas text: 'Modificar'].
+	].
+	aCanvas div
+	class:'gridForm';
+	with:
+	[ aCanvas div
+		with:[aCanvas text: 'NOMBRE DE USUARIO '.].
+		aCanvas div
+		with:[aCanvas text: self session getUser user].
+		aCanvas div
+		with:[aCanvas text: 'Modificar'].
+		].
+	aCanvas div
+	class:'gridForm';
+	with:
+	[ aCanvas div
+		with:[aCanvas text: 'EMAIL '.].
+		aCanvas div
+		with:[aCanvas text: self session getUser mail.].
+		aCanvas div
+		with:[aCanvas text: 'Modificar'].
+	].]]
 ]
 
 { #category : #'as yet unclassified' }

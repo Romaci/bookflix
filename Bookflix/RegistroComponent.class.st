@@ -145,12 +145,12 @@ RegistroComponent >> model [
 RegistroComponent >> registrar [
 	self isValid
 		ifFalse: [ ^ self ]
-		ifTrue: [ self model
+		ifTrue: [(self model
 				registrarCuentaDe: user
 				conNombre: nombre
 				conApellido: apellido
 				conMail: mail
-				yPass: password.
+				yPass: password)agregarTarjeta: (Tarjeta conNombre:nombTit  apellido:apellTit  nro:nroTarjeta  cod:codSeg  expDate: dateExp).
 			self irRegistroExitoso. ].
 
 ]
