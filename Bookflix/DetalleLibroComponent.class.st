@@ -114,7 +114,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 							aCanvas anchor
 								callback: [ "irEliminarLibro" ];
 								with: [ aCanvas text: 'Eliminar' ] ]].].
-				(unLibro sinopsis isNotNil)
+				(unLibro sinopsis =' ')
 					ifTrue: [
 						aCanvas div
 							style:'padding: 1.5em;';
