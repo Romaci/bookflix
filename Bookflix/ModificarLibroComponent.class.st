@@ -1,5 +1,5 @@
 Class {
-	#name : #RegistrarLibroComponent,
+	#name : #ModificarLibroComponent,
 	#superclass : #AbstractAdminComponent,
 	#instVars : [
 		'titulo',
@@ -15,36 +15,36 @@ Class {
 }
 
 { #category : #accessing }
-RegistrarLibroComponent >> autor [ 
+ModificarLibroComponent >> autor [ 
 
 ^autor
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> autor:unAutor [
+ModificarLibroComponent >> autor:unAutor [
 
 autor:=unAutor asString .
 ]
 
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> cancelar:aCanvas [
+ModificarLibroComponent >> cancelar:aCanvas [
 self answer .
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> editorial [
+ModificarLibroComponent >> editorial [
 
 ^editorial
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> editorial:unaEditorial [
+ModificarLibroComponent >> editorial:unaEditorial [
 
 editorial:=unaEditorial.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> formularioRegistro: aCanvas [
+ModificarLibroComponent >> formularioRegistro: aCanvas [
 	aCanvas horizontalRule
 		with: [ aCanvas div
 				id: 'formLogin';
@@ -88,7 +88,7 @@ RegistrarLibroComponent >> formularioRegistro: aCanvas [
 										with: self libro sinopsis .].
 							aCanvas button
 								callback: [ self registrar: aCanvas ];
-								with: 'Registrar libro'.
+								with: 'Modificar libro'.
 								
 							aCanvas button
 								callback: [ self cancelar: aCanvas ];
@@ -96,26 +96,26 @@ RegistrarLibroComponent >> formularioRegistro: aCanvas [
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> genero [
+ModificarLibroComponent >> genero [
 
 ^genero.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> genero:unGenero [
+ModificarLibroComponent >> genero:unGenero [
 
 genero:=unGenero .
 ]
 
 { #category : #initialization }
-RegistrarLibroComponent >> initialize [ 
+ModificarLibroComponent >> initialize [ 
 
 super initialize.
 libro:= Libro new.
 ]
 
 { #category : #validating }
-RegistrarLibroComponent >> isValid [
+ModificarLibroComponent >> isValid [
 self errorMessage  removeAll.
 self successMessage: false.
 		self verificarISBM.
@@ -125,42 +125,42 @@ self successMessage: false.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> isbn [
+ModificarLibroComponent >> isbn [
 	
 	^isbn.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> isbn: unIsbn [
+ModificarLibroComponent >> isbn: unIsbn [
 	
 	isbn:= unIsbn.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> libro [ 
+ModificarLibroComponent >> libro [ 
 	^libro
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> libro: unLibro [
+ModificarLibroComponent >> libro: unLibro [
 
 	libro:= unLibro
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> model [ 
+ModificarLibroComponent >> model [ 
 ^ SistemaBookflix soleInstance 
 ]
 
 { #category : #'as yet unclassified' }
-RegistrarLibroComponent >> registrar: aCanvas [
+ModificarLibroComponent >> registrar: aCanvas [
 	self isValid
-		ifTrue: [ (self model
-				registrarLibroConTitulo: self titulo
-				de: self autor
-				editadoPor: self editorial
-				genero: self genero
-				isbn: self isbn) sinopsis: self sinopsis.
+		ifTrue: [ self libro titulo: self titulo.
+			self libro autor: self autor.
+			self libro genero: self genero.
+			self libro editorial: self editorial.
+			self libro sinopsis: self sinopsis.
+			self libro isbn: self isbn.
 			self successMessage: true ].
 	self titulo: nil.
 	self isbn: nil.
@@ -169,48 +169,49 @@ RegistrarLibroComponent >> registrar: aCanvas [
 ]
 
 { #category : #rendering }
-RegistrarLibroComponent >> renderContentOn: aCanvas [
+ModificarLibroComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 	aCanvas div
 		id: 'formLogin';
 		with: [ self formularioRegistro: aCanvas ].
-	self mensajes: aCanvas de: 'El Libro se registró '
+		self mensajes: aCanvas de: 'Los datos del libro de modificaron '
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> sinopsis [ 	
+ModificarLibroComponent >> sinopsis [ 	
 	^sinopsis.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> sinopsis: unaSinop [
+ModificarLibroComponent >> sinopsis: unaSinop [
 	sinopsis:= unaSinop.
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> titulo [ 
+ModificarLibroComponent >> titulo [ 
 
 ^titulo
 ]
 
 { #category : #accessing }
-RegistrarLibroComponent >> titulo:unTitulo [
+ModificarLibroComponent >> titulo:unTitulo [
 
 titulo:=unTitulo.
 ]
 
 { #category : #validating }
-RegistrarLibroComponent >> verificarISBM [
-self isbn ='' ifTrue: [errorMessage add:'*El campo ISBM es requerido.']
-ifFalse:[
-	(self model estaRegistradoLibro: self isbn)
-		ifNotNil: [ errorMessage
+ModificarLibroComponent >> verificarISBM [
+|aux|
+self isbn ='' ifTrue: [self isbn: self libro isbn].
+aux:=(self model obtenerListadoLibros reject:  [:each|each isbn = self libro isbn]).
+(aux anySatisfy: [:each|each isbn = self isbn])
+		ifTrue: [ errorMessage
 				add: '*El Libro con el ISBN: ',self isbn,' ya se encuentra registrado en el sistema'.
-			]]
+			]
 ]
 
 { #category : #validating }
-RegistrarLibroComponent >> verificarTitulo [
+ModificarLibroComponent >> verificarTitulo [
 
-	self titulo ='' ifTrue: [errorMessage add:'*El campo Título es requerido.'].
+	self titulo ='' ifTrue: [self titulo: libro titulo].
 ]

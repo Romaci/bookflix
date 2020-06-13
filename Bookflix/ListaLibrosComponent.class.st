@@ -40,34 +40,47 @@ ListaLibrosComponent >> model [
 ListaLibrosComponent >> renderContentOn: aCanvas. [
 
 self titleTop: aCanvas.
-	aCanvas
-		table: [(self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]. 
+aCanvas div
+with:[aCanvas div
+	class: 'gridCards';
+	with:[ (self model obtenerListadoLibros) do:[:each| self renderLibro:each On:aCanvas]]]. 
 		
 	
 ]
 
 { #category : #rendering }
 ListaLibrosComponent >> renderLibro:unLibro On:aCanvas [
-
-aCanvas horizontalRule.
-
-"aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self irDetalleAutor:unaPreg ];
-						with: [aCanvas text: unaPreg getTitulo asString ].].
-					aCanvas 
-	paragraph: [ aCanvas text: unaPreg getTexto]."
-	
-
+				
+	aCanvas div 
+		class: 'card';
+		with:[ aCanvas anchor
+		callback: [ self entrarLibro: unLibro];
+		with:[aCanvas image
+				altText: 'Portada';
+				style:'width:100%;border-radius: 5px 5px 0 0';
+				url: LBFileLibrary /'portada.jpg'.
+				aCanvas div
+				class:'container';
+				with:[
+					aCanvas paragraph
+					style:'font-weight: bold';
+					with: unLibro titulo.
+					aCanvas paragraph 
+					style: 'font-style: italic';
+					with:unLibro autor.
+					]]].
+		
+				
+				
 									
-				aCanvas text: 'Titulo del libro:  '. aCanvas anchor callback: [ '' ];  with: [ aCanvas text: unLibro titulo,' '].  
+			"	aCanvas text: 'Titulo del libro:  '. aCanvas anchor callback: [ '' ];  with: [ aCanvas text: unLibro titulo,' '].  
 				aCanvas text: 'Autor:  '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro autor asString ].
 	aCanvas text: 'Editorial:  '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro editorial asString ].  
 				aCanvas text: 'Género:  '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unLibro genero asString ].  
 	aCanvas 
 	heading: [ aCanvas anchor
 						callback: [ self entrarLibro:unLibro ];
-						with: [aCanvas text: 'Modificar datos del libro' ].].
+						with: [aCanvas text: 'Modificar datos del libro' ].]."
 
 
 		

@@ -72,7 +72,7 @@ AbstractAdminComponent >> mensajes: aCanvas de: elem [
 			aCanvas div
 			id:'mensajeExito';
 			with:[
-			aCanvas paragraph: elem, ' se registró correctamente' ]
+			aCanvas paragraph: elem, 'correctamente' ]
 		 ].
 ]
 
@@ -82,18 +82,37 @@ AbstractAdminComponent >> style [
 	
 	button { background-color: darkblue; border: none; color: white; padding: 10px 24px; text-align: 	center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  	border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
 	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 	17px 50px 0 	rgba(0,0,0,0.19);}
+		a:link, a:visited, a:active {
+    text-decoration:none;
+	color:black;
+}		
+	.centro{display: flex; flex-direction: column; align-items: center; justify-content: center;}
+	.caja{
+  border: 1px solid;
+  border-radius: 25px;
+  padding: 20px;
+  margin: 10px;
+  width: 60%;
+display: flex; flex-direction: column;
+}
 			
-			
-	.card { box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; width: 40%;}
+	.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: auto;
+  border-radius: 5px;
+}
 	.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
-	.container { padding: 2px 16px;}
+	.container {
+  padding: 2px 16px;
+}
 	
-	
+	.gridForm2 { display:grid; grid-template-columns:35% 40% 25%; padding:1.5em;border-bottom-style:solid; border-bottom-width: 1px;}
 	
 	.grid { display:grid; grid-template-columns:70% 30%}
 		
-	a {color:red} 
-	
+	.gridCards{ display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-column-gap: 20px;grid-row-gap: 20px;}
+		
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 		
 	

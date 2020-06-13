@@ -84,7 +84,7 @@ RegistroGeneroComponent >> renderContentOn: aCanvas [
 	aCanvas div
 		id: 'formLogin';
 		with: [ self formularioRegistro: aCanvas ].
-	self mensajes: aCanvas de: 'EL Género'
+	self mensajes: aCanvas de: 'EL Género se registró '
 ]
 
 { #category : #rendering }

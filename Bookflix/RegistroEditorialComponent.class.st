@@ -82,7 +82,7 @@ self titleTop: aCanvas.
 	aCanvas div
 	id: 'formLogin';
 		with: [ self formularioRegistro: aCanvas ].
-		self mensajes: aCanvas de:'La Editorial'
+		self mensajes: aCanvas de:'La Editorial se registró '
 ]
 
 { #category : #validating }

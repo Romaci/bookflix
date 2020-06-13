@@ -10,7 +10,8 @@ Class {
 		'puntuacion',
 		'comentarios',
 		'isbn',
-		'portada'
+		'portada',
+		'sinopsis'
 	],
 	#category : #'Bookflix-model'
 }
@@ -92,6 +93,17 @@ Libro >> portada [
 { #category : #accessing }
 Libro >> portada: unaPortada [
 	portada:= unaPortada.
+]
+
+{ #category : #accessing }
+Libro >> sinopsis [ 
+	^sinopsis 
+]
+
+{ #category : #accessing }
+Libro >> sinopsis: unaSinopsis [
+
+	sinopsis:= unaSinopsis.
 ]
 
 { #category : #accessing }

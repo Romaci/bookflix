@@ -19,6 +19,13 @@ DetalleLibroComponent >> initialize [
 	super initialize. 
 ]
 
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> irModificarLibro [
+
+
+	self call:( (ModificarLibroComponent  new ) libro: self libro ).
+]
+
 { #category : #accessing }
 DetalleLibroComponent >> libro [
 
@@ -76,69 +83,46 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
-	aCanvas heading level: 2; with: unLibro titulo asString.
-		aCanvas horizontalRule.
-	aCanvas anchor
-		callback: [ self modificarTitulo   ];
-		with: [ aCanvas button with: 'Modificar título' ].
-	aCanvas horizontalRule.
-		aCanvas break.
-	aCanvas text: ''.
-	aCanvas anchor
-		callback: [   ];
-		with: [ aCanvas text: unLibro autor asString   ].
-			aCanvas horizontalRule.
-	aCanvas anchor
-		callback: [ self modificarAutor:unLibro   ];
-		with: [ aCanvas button with: 'Modificar autor' ].
-	aCanvas horizontalRule.
-		aCanvas break.
-	aCanvas break.
-			aCanvas text: ''.
-	aCanvas anchor
-		callback: [   ];
-		with: [ aCanvas text: unLibro editorial  asString  ].
-			aCanvas horizontalRule.
-	aCanvas anchor
-		callback: [ self modificarEditorial  ];
-		with: [ aCanvas button with: 'Modificar Editorial' ].
-	aCanvas horizontalRule.
-		aCanvas break.
-			aCanvas text: ''.
-	aCanvas anchor
-		callback: [   ];
-		with: [ aCanvas text: unLibro genero  asString  ].
-			aCanvas horizontalRule.
-	aCanvas anchor
-		callback: [ self modificarGenero   ];
-		with: [ aCanvas button with: 'Modificar género' ].
-	aCanvas horizontalRule.
-		aCanvas break.
-	
-	
-	aCanvas break.
-
-	"aCanvas 
-		paragraph: [aCanvas  text: ' | Cantidad de likes: ' , unaPreg cantidadLikes printString .
-					aCanvas  text: ' | Cantidad de dislikes: ' , unaPreg cantidadDislikes printString.]."
-	
-	"aCanvas 
-	paragraph: [ aCanvas  anchor 
-							callback: [unaPreg registrarVotoDe: self session getUser valor: true ];
-							with: 'Like / '. 
-							aCanvas  anchor 
-							callback: [unaPreg registrarVotoDe: self session getUser valor: false ];
-							with: 'Dislike'].				
-			aCanvas anchor
-				callback: [ self respuesta: unaPreg ];
-				with: [ aCanvas button
-						id: 'respuesta';
-						with: 'Responder' ].
-	aCanvas horizontalRule.
-	aCanvas break.
-	aCanvas heading level: 2; with: [aCanvas text: 'Respuestas'].
-	aCanvas table: [ pregunta getRespuestas  do: [ :each | self renderRespuestas: each on: aCanvas ] ].
 	aCanvas div
-		id: 'pieDeRespuesta';
-		with: 'No hay mas respuestas.'"
+		class: 'gridForm2';
+		style: 'border-bottom-width: 0px;';
+		with: [ aCanvas div
+				with: [ aCanvas image
+						altText: 'Portada';
+						style: 'width:100%;border-radius: 5px 5px 0 0';
+						url: LBFileLibrary / 'portada.jpg' ].
+				aCanvas div
+					with: [ aCanvas heading
+						style:'font-size:20px; margin-bottom:0px';
+						with:unLibro titulo.
+						aCanvas paragraph
+						style: 'margin-top:1px
+						';
+						with:'por ',unLibro autor.
+						aCanvas paragraph
+						style:'background-color: rgba(0,0,0,.3); border: 5px solid transparent; border-radius: 2px; 				display: inline-block;font-size: 1em;margin: 0 5px 5px auto;';
+						with:unLibro genero.
+						aCanvas paragraph:'Editorial: ', unLibro editorial.
+						aCanvas paragraph:'ISBN: ', unLibro isbn.
+						].
+			   aCanvas div
+					   with:[aCanvas div
+							with: [ aCanvas anchor
+								callback: [ self irModificarLibro];
+								with: [ aCanvas text: 'Modificar' ].
+							aCanvas text: ' | '.
+							aCanvas anchor
+								callback: [ "irEliminarLibro" ];
+								with: [ aCanvas text: 'Eliminar' ] ]].].
+				(unLibro sinopsis isNotNil)
+					ifTrue: [
+						aCanvas div
+							style:'padding: 1.5em;';
+							with:[ 
+						aCanvas heading
+							style:'font-size:20px';
+							with:'Sinopsis'.
+							aCanvas paragraph: unLibro sinopsis ]
+						 ]. 
+		 
 ]

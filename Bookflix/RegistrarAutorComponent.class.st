@@ -137,7 +137,7 @@ RegistrarAutorComponent >> renderContentOn: aCanvas [
 	aCanvas div
 		id: 'formLogin';
 		with: [ self formularioRegistro: aCanvas ].
-	self mensajes: aCanvas de: 'El Autor'
+	self mensajes: aCanvas de: 'El Autor se registró '
 ]
 
 { #category : #validating }
