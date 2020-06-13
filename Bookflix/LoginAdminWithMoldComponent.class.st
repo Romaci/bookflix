@@ -62,7 +62,7 @@ LoginAdminWithMoldComponent >> irErrorLogin [
 LoginAdminWithMoldComponent >> irHome [
 
 self call: HomeAdminComponent new.
-self answer.
+
 ]
 
 { #category : #'private protocol' }

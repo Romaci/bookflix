@@ -31,6 +31,19 @@ CuentaComponent >> guardar [
 ]
 
 { #category : #'as yet unclassified' }
+CuentaComponent >> irEditarTarjeta: unaTarjeta [
+
+	self call: ((EditarTarjetaUserComponent  new) tarjeta: unaTarjeta).
+
+]
+
+{ #category : #'as yet unclassified' }
+CuentaComponent >> irRegistrarTarjeta [
+
+self call: RegistrarTarjetaUserComponent  new .
+]
+
+{ #category : #'as yet unclassified' }
 CuentaComponent >> modificarApellido [
 
 self call: EditarApellidoUserComponent new.
@@ -73,6 +86,14 @@ CuentaComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 	aCanvas break.
 	self renderDatosPersonalesOn: aCanvas.
+	aCanvas heading
+				class:'centro';
+				style: 'margin-bottom:1.5px';
+				with: 'Tarjetas'.
+			aCanvas anchor
+				callback: [ self irRegistrarTarjeta ];
+				class:'centro';
+				with: [ aCanvas text: 'Agregar Tarjeta' ].
 	(self session getUser tarjetas) do:[:each| self renderTarjeta: each On: aCanvas].
 	aCanvas anchor
 		callback: [ self volver ];
@@ -146,12 +167,7 @@ aCanvas div
 CuentaComponent >> renderTarjeta: unaTarjeta On: aCanvas [
 	aCanvas div
 		class: 'centro';
-		with: [ aCanvas heading
-				style: 'margin-bottom:1.5px';
-				with: 'Tarjetas'.
-			aCanvas anchor
-				callback: [ "agregarTarjeta" ];
-				with: [ aCanvas text: 'Agregar Tarjeta' ].
+		with: [ 
 			aCanvas div
 				class: 'caja';
 				with: [ aCanvas div
@@ -176,12 +192,14 @@ CuentaComponent >> renderTarjeta: unaTarjeta On: aCanvas [
 							aCanvas div.
 							aCanvas div
 								with: [ aCanvas anchor
-										callback: [ "agregar modificar datos tarjeta" ];
+										callback: [ self irEditarTarjeta: unaTarjeta ];
 										with: [ aCanvas text: 'Modificar' ].
-									aCanvas text: ' | '.
-									aCanvas anchor
+									(self session getUser tarjetas size > 1)
+									ifTrue: [
+										aCanvas text: ' | '.
+										aCanvas anchor
 										callback: [ self eliminarTarjeta: unaTarjeta];
-										with: [ aCanvas text: 'Eliminar' ] ] ] ] ]
+										with: [ aCanvas text: 'Eliminar' ] ] ] ] ]]
 ]
 
 { #category : #'as yet unclassified' }

@@ -52,10 +52,8 @@ HomeAdminComponent >> irListaDeAutores [
 
 { #category : #'as yet unclassified' }
 HomeAdminComponent >> irListaDeLibros [
-
-
 	self call: (ListaLibrosComponent new ).
-	self answer .
+
 ]
 
 { #category : #'as yet unclassified' }

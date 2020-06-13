@@ -71,6 +71,13 @@ Cuenta >> eliminarTarjeta: unaTarjeta [
 	tarjetas remove:unaTarjeta.
 ]
 
+{ #category : #'as yet unclassified' }
+Cuenta >> estaRegistradaTarjeta: unNro [
+	
+		^tarjetas detect: [ :each | each nro = unNro ]	
+		ifNone: [ nil ]
+]
+
 { #category : #initialization }
 Cuenta >> initialize [ 
 
