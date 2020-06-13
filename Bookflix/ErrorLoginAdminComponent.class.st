@@ -17,13 +17,20 @@ self call: LoginAdminWithMoldComponent new.
 { #category : #rendering }
 ErrorLoginAdminComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
-	aCanvas horizontalRule 
-		with: [aCanvas div
+aCanvas div
 		with: [ aCanvas 
 				paragraph: 'El usuario y/o constraseña ingresados son incorrectos'.
 	   
 		aCanvas anchor
 			callback: [self irLoginAdmin ];
-			with: 'Volver a iniciar sesión'.].
-		].  
+			with: 'Volver a iniciar sesión'.].  
+]
+
+{ #category : #'as yet unclassified' }
+ErrorLoginAdminComponent >> titleTop: aCanvas [
+	aCanvas div
+		id: 'BookflixAdmin';
+		with: [ aCanvas text: 'Bookflix' ].
+		aCanvas break.
+		aCanvas horizontalRule 
 ]
