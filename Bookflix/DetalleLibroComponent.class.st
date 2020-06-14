@@ -78,7 +78,7 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 	aCanvas div
 	id:'centrar';
 	with:[
-	self renderLibro: libro on: aCanvas for: self admin].
+	self renderLibro: libro on: aCanvas].
 ]
 
 { #category : #rendering }
