@@ -19,7 +19,7 @@ ListaLibrosComponent >> entrarLibro [
 ListaLibrosComponent >> entrarLibro:unLibro [
 
 
-	self call: ((DetalleLibroComponent  new detalleDe:unLibro ) admin: self admin).
+	self call: ((DetalleLibroComponent  new detalleDe:unLibro )).
 	"self answer ."
 ]
 
