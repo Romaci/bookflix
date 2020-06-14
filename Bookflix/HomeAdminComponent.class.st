@@ -47,7 +47,7 @@ HomeAdminComponent >> irListaDeAutores [
 
 
 	self call: (ListaAutoresComponent new ).
-	self answer .
+
 ]
 
 { #category : #'as yet unclassified' }

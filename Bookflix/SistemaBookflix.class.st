@@ -201,6 +201,11 @@ SistemaBookflix >> initialize [
 	
 ]
 
+{ #category : #accessing }
+SistemaBookflix >> libros [
+	^libros
+]
+
 { #category : #'as yet unclassified' }
 SistemaBookflix >> obtenerListadoAutores [
 

@@ -18,9 +18,7 @@ self answer .
 
 { #category : #'as yet unclassified' }
 ListaAutoresComponent >> irRegistrarAutor [
-
-
-	self call: (RegistroAutorComponent  new ).
+	self call: (RegistrarAutorComponent  new ).
 	"self answer ."
 ]
 
@@ -59,29 +57,4 @@ aCanvas break.
 		table: [  (self model obtenerListadoAutores) do:[:each| self renderAutor:each On:aCanvas]]. 
 		
 
-]
-
-{ #category : #rendering }
-ListaAutoresComponent >> renderLogoutButtonOn: aCanvas [
-
-	aCanvas
-		paragraph:[ aCanvas anchor
-				callback: [ self logOut ];
-				with: [ aCanvas button with: 'Cerrar Sesión' ]].
-]
-
-{ #category : #rendering }
-ListaAutoresComponent >> renderVolverButtonOn: aCanvas [
-
-
-	aCanvas
-		paragraph:[ aCanvas anchor
-				callback: [ self volver  ];
-				with: [ aCanvas button with: 'Volver' ]].
-]
-
-{ #category : #'as yet unclassified' }
-ListaAutoresComponent >> volver [
-
-self show: HomeAdminComponent new.
 ]

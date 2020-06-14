@@ -9,10 +9,10 @@ Class {
 
 { #category : #'as yet unclassified' }
 ListaLibrosComponent >> entrarLibro:unLibro [
-
-
 	self call: ((DetalleLibroComponent  new detalleDe:unLibro )).
-	self answer.
+	(self model libros isEmpty)
+	ifTrue:  [ self answer. ]
+	
 ]
 
 { #category : #'as yet unclassified' }
@@ -32,6 +32,8 @@ ListaLibrosComponent >> model [
 ListaLibrosComponent >> renderContentOn: aCanvas. [
 
 self titleTop: aCanvas.
+(self model libros isEmpty)
+ifTrue:  [aCanvas paragraph: 'No hay libros registrados en el sistema'  ].
 aCanvas div
 with:[aCanvas div
 	class: 'gridCards';

@@ -10,6 +10,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 MensajeConfirmacionComponent >> cancelar [
+self call:((DetalleLibroComponent new)detalleDe:  self libro). 
 self answer .
 ]
 
