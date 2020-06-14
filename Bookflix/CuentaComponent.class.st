@@ -95,9 +95,7 @@ CuentaComponent >> renderContentOn: aCanvas [
 				class:'centro';
 				with: [ aCanvas text: 'Agregar Tarjeta' ].
 	(self session getUser tarjetas) do:[:each| self renderTarjeta: each On: aCanvas].
-	aCanvas anchor
-		callback: [ self volver ];
-		with: [ aCanvas button with: 'Volver' ]
+
 ]
 
 { #category : #rendering }

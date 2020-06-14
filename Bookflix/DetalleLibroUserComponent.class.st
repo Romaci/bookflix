@@ -1,6 +1,6 @@
 Class {
-	#name : #DetalleLibroComponent,
-	#superclass : #AbstractAdminComponent,
+	#name : #DetalleLibroUserComponent,
+	#superclass : #AbstractUserComponent,
 	#instVars : [
 		'libro',
 		'model'
@@ -9,48 +9,48 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> detalleDe:unLibro [
+DetalleLibroUserComponent >> detalleDe:unLibro [
 
 libro:=unLibro . 
 ]
 
 { #category : #initialization }
-DetalleLibroComponent >> initialize [
+DetalleLibroUserComponent >> initialize [
 	super initialize. 
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> irModificarLibro [
+DetalleLibroUserComponent >> irModificarLibro [
 
 
 	self call:( (ModificarLibroComponent  new ) libro: self libro ).
 ]
 
 { #category : #accessing }
-DetalleLibroComponent >> libro [
+DetalleLibroUserComponent >> libro [
 
 ^libro
 ]
 
 { #category : #accessing }
-DetalleLibroComponent >> model [ 
+DetalleLibroUserComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> modificarAutor:unLibro [
+DetalleLibroUserComponent >> modificarAutor:unLibro [
 
 self call: (EditarAutorComponent new autorDe:unLibro).
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> modificarEditorial [
+DetalleLibroUserComponent >> modificarEditorial [
 
 self call: (EditarEditorialComponent new editorialDe:libro).
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> modificarGenero [
+DetalleLibroUserComponent >> modificarGenero [
 
 self call: (EditarGeneroComponent new generoDe:libro ).
 
@@ -58,19 +58,19 @@ self call: (EditarGeneroComponent new generoDe:libro ).
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> modificarTitulo [
+DetalleLibroUserComponent >> modificarTitulo [
 
 self call: (EditarTituloComponent new tituloDe:libro).
 ]
 
 { #category : #'as yet unclassified' }
-DetalleLibroComponent >> modificarTitulo:unLibro [
+DetalleLibroUserComponent >> modificarTitulo:unLibro [
 
 self call: (EditarTituloComponent new tituloDe:libro).
 ]
 
 { #category : #rendering }
-DetalleLibroComponent >> renderContentOn: aCanvas [
+DetalleLibroUserComponent >> renderContentOn: aCanvas [
 
 	self titleTop: aCanvas.
 
@@ -78,11 +78,11 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 	aCanvas div
 	id:'centrar';
 	with:[
-	self renderLibro: libro on: aCanvas for: self admin].
+	self renderLibro: libro on: aCanvas].
 ]
 
 { #category : #rendering }
-DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
+DetalleLibroUserComponent >> renderLibro: unLibro on: aCanvas [
 	aCanvas div
 		class: 'gridForm2';
 		style: 'border-bottom-width: 0px;';
@@ -105,15 +105,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 						aCanvas paragraph:'Editorial: ', unLibro editorial.
 						aCanvas paragraph:'ISBN: ', unLibro isbn.
 						].
-			   aCanvas div
-					   with:[aCanvas div
-							with: [ aCanvas anchor
-								callback: [ self irModificarLibro];
-								with: [ aCanvas text: 'Modificar' ].
-							aCanvas text: ' | '.
-							aCanvas anchor
-								callback: [ "irEliminarLibro" ];
-								with: [ aCanvas text: 'Eliminar' ] ]].].
+			   aCanvas div.
 				(unLibro sinopsis =' ')
 					ifTrue: [
 						aCanvas div
@@ -123,6 +115,5 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 							style:'font-size:20px';
 							with:'Sinopsis'.
 							aCanvas paragraph: unLibro sinopsis ]
-						 ]. 
-		 
+						 ]. ]
 ]

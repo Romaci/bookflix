@@ -38,6 +38,12 @@ HomeComponent >> irDatosPersonales [
 
 ]
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> irListaDeLibros [
+	self call:(ListaLibrosUserComponent new ).
+
+]
+
 { #category : #accessing }
 HomeComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
@@ -48,7 +54,11 @@ HomeComponent >> renderContentOn: aCanvas [
 	self titleTop: aCanvas.
 	aCanvas anchor
 		callback: [ self irDatosPersonales ];
-		with: [ aCanvas button with: 'Ver Datos personales' ]
+		with: [ aCanvas button with: 'Ver Datos personales' ].
+	aCanvas anchor
+		callback: [ self irListaDeLibros ];
+		with: [ aCanvas button with: 'Ver listado de libros' ]
+	
 ]
 
 { #category : #rendering }

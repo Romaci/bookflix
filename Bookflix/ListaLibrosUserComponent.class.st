@@ -1,14 +1,26 @@
 Class {
-	#name : #ListaLibrosComponent,
-	#superclass : #AbstractAdminComponent,
+	#name : #ListaLibrosUserComponent,
+	#superclass : #AbstractUserComponent,
 	#instVars : [
-		'model'
+		'model',
+		'admin'
 	],
 	#category : #'Bookflix-UI'
 }
 
+{ #category : #accessing }
+ListaLibrosUserComponent >> admin [ 	
+	^admin.
+]
+
+{ #category : #accessing }
+ListaLibrosUserComponent >> admin: unBoolean [
+	admin:= unBoolean.
+	
+]
+
 { #category : #'as yet unclassified' }
-ListaLibrosComponent >> entrarLibro [
+ListaLibrosUserComponent >> entrarLibro [
 
 
 	self call: (DetalleLibroComponent  new ).
@@ -16,15 +28,15 @@ ListaLibrosComponent >> entrarLibro [
 ]
 
 { #category : #'as yet unclassified' }
-ListaLibrosComponent >> entrarLibro:unLibro [
+ListaLibrosUserComponent >> entrarLibro:unLibro [
 
 
-	self call: ((DetalleLibroComponent  new detalleDe:unLibro ) admin: self admin).
+	self call: (DetalleLibroUserComponent  new detalleDe:unLibro ).
 	"self answer ."
 ]
 
 { #category : #'as yet unclassified' }
-ListaLibrosComponent >> irRegistrarLibro [
+ListaLibrosUserComponent >> irRegistrarLibro [
 
 
 	self call: (RegistrarLibroComponent  new ).
@@ -32,12 +44,12 @@ ListaLibrosComponent >> irRegistrarLibro [
 ]
 
 { #category : #accessing }
-ListaLibrosComponent >> model [ 
+ListaLibrosUserComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderContentOn: aCanvas. [
+ListaLibrosUserComponent >> renderContentOn: aCanvas. [
 
 self titleTop: aCanvas.
 aCanvas div
@@ -49,7 +61,7 @@ with:[aCanvas div
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderLibro:unLibro On:aCanvas [
+ListaLibrosUserComponent >> renderLibro:unLibro On:aCanvas [
 				
 	aCanvas div 
 		class: 'card';
@@ -87,7 +99,7 @@ ListaLibrosComponent >> renderLibro:unLibro On:aCanvas [
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderLogoutButtonOn: aCanvas [
+ListaLibrosUserComponent >> renderLogoutButtonOn: aCanvas [
 
 	aCanvas
 		paragraph:[ aCanvas anchor
@@ -96,7 +108,7 @@ ListaLibrosComponent >> renderLogoutButtonOn: aCanvas [
 ]
 
 { #category : #rendering }
-ListaLibrosComponent >> renderVolverButtonOn: aCanvas [
+ListaLibrosUserComponent >> renderVolverButtonOn: aCanvas [
 
 	aCanvas
 		paragraph:[ aCanvas anchor

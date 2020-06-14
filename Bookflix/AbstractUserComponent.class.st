@@ -42,6 +42,16 @@ AbstractUserComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
 	
 	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; 	text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; 	-webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
+		.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: auto;
+  border-radius: 5px;
+}
+	.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+	.container {
+  padding: 2px 16px;
+}
 					
 	
 	.grid { display:grid; grid-template-columns:70% 30%; }
@@ -49,7 +59,9 @@ AbstractUserComponent >> style [
 	.gridForm { display:grid; grid-template-columns:40% 50% 10%; padding:1.5em;border-bottom-style:solid; border-bottom-width: 1px;}
 	
 	.gridForm2 { display:grid; grid-template-columns:35% 40% 25%; padding:1.5em;border-bottom-style:solid; border-bottom-width: 1px;}
-	
+		.gridCards{ display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-column-gap: 20px;grid-row-gap: 20px;}
+		
+	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 	.titSeccion{text-aling: center, text-decoration:none, text-color: gray}
 	
 	.centro{display: flex; flex-direction: column; align-items: center; justify-content: center;}
@@ -110,4 +122,9 @@ AbstractUserComponent >> titleTop: aCanvas [
 		
 aCanvas horizontalRule.
 	
+]
+
+{ #category : #'as yet unclassified' }
+AbstractUserComponent >> volver [ 
+	self answer.
 ]
