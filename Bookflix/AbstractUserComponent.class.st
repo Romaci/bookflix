@@ -118,7 +118,9 @@ AbstractUserComponent >> titleTop: aCanvas [
 		with: [self logOutButton: aCanvas  ].
 		 
 		].
-	
+		aCanvas anchor
+						callback: [ self volver ];
+						with: [ aCanvas button with: 'Volver' ] .
 		
 aCanvas horizontalRule.
 	

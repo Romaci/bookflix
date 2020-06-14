@@ -77,6 +77,25 @@ aCanvas div
 ]
 
 { #category : #'as yet unclassified' }
+HomeComponent >> titleTop: aCanvas [
+	
+	aCanvas div 
+	class:'grid';
+	with: [ 
+		aCanvas div 
+		id: 'Bookflix';
+		with: [ aCanvas text: 'Bookflix' ].
+	
+		aCanvas div
+		id: 'logout';
+		with: [self logOutButton: aCanvas  ].
+		 
+		].
+
+aCanvas horizontalRule.
+]
+
+{ #category : #'as yet unclassified' }
 HomeComponent >> verCuenta:unUser [
 
 "self show: (PerfilComponent new perfilDe:unUser) "

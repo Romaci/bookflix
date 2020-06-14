@@ -166,6 +166,7 @@ LoginWithMoldComponent >> initialize [
 { #category : #'as yet unclassified' }
 LoginWithMoldComponent >> irErrorLogin [
 	self call: ErrorLoginComponent new.
+	self answer.
 ]
 
 { #category : #'as yet unclassified' }
