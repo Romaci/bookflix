@@ -29,6 +29,9 @@ self answer
 
 { #category : #rendering }
 CargarNovedadComponent >> renderContentOn: aCanvas [
+
+
+
 self titleTop: aCanvas.
 aCanvas form
   multipart;
@@ -51,7 +54,7 @@ aCanvas break.
 			callback: [self registrar  ];
 			with: 'Registrar'.
 	
-		"aCanvas submitButton text: 'Guardar novedad'."
+		aCanvas submitButton text: 'Guardar novedad'.
 		
 	
 	

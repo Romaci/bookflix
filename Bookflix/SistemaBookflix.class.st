@@ -115,6 +115,12 @@ SistemaBookflix >> editoriales [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> eliminarLibro: unLibro [
+	
+	libros remove: unLibro.
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoAutor: nomb apellido: apell fNac: fN fDef: fD [
 
 

@@ -20,6 +20,12 @@ DetalleLibroComponent >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
+DetalleLibroComponent >> irEliminarLibro [ 
+	self call:( (MensajeConfirmacionComponent  new ) libro: self libro ).
+	self answer
+]
+
+{ #category : #'as yet unclassified' }
 DetalleLibroComponent >> irModificarLibro [
 
 
@@ -112,7 +118,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 								with: [ aCanvas text: 'Modificar' ].
 							aCanvas text: ' | '.
 							aCanvas anchor
-								callback: [ "irEliminarLibro" ];
+								callback: [ self irEliminarLibro ];
 								with: [ aCanvas text: 'Eliminar' ] ]].].
 				(unLibro sinopsis =' ')
 					ifTrue: [
