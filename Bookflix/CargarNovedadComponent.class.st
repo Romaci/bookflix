@@ -42,7 +42,7 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 								paragraph: [ aCanvas label: 'Nombre Clave: '.
 									aCanvas textInput
 										callback: [ :valor | self nombreClave: valor ];
-										with: '' ].
+										with: self nombreClave ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Título: '.
 									aCanvas textInput
@@ -69,7 +69,7 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 							aCanvas fileUpload
 								readonly: true;
 								id: 'upload';
-								callback: [ :f | self upload: f ] ].
+								callback: [ :f | self upload: f ] .
 							aCanvas break.
 							
 							
@@ -78,7 +78,7 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 						with: 'Cargar Novedad'.
 					aCanvas button
 						callback: [ self cancelar: aCanvas ];
-						with: 'Cancelar' ] ]
+						with: 'Cancelar' ] ] ]
 ]
 
 { #category : #testing }
