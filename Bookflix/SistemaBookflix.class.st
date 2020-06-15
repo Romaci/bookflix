@@ -49,7 +49,7 @@ SistemaBookflix >> cargarNovedad:unaImagen conNombreClave:unNombreClave titulo: 
 	
 	"Verifico que no este ya cargado en el sistema la Novedad por dar de alta"
 	(novedades anySatisfy:[:novedad | novedad nombreClave   = unNombreClave])
-	ifFalse: [novedades add: (Novedad titulo: unTitulo autor: unAutor portada: unaImagen sinopsis: unaSinopsis unNombreClave:unNombreClave).
+	ifFalse: [novedades add: (Novedad titulo: unTitulo autor:unAutor  portada:unaImagen  sinopsis:unaSinopsis  unNombreClave:unNombreClave ).
 		ok:=true].
 	
 	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia novedad"

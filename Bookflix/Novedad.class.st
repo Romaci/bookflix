@@ -32,6 +32,11 @@ Novedad >> autor: unAutor [
 ]
 
 { #category : #accessing }
+Novedad >> nombreClave [ 
+^nombreClave
+]
+
+{ #category : #accessing }
 Novedad >> portada [
 	
 	^portada.
