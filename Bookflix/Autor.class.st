@@ -61,10 +61,20 @@ Autor >> fechaDeDef [
 	^fechaDeDef.
 ]
 
+{ #category : #accessing }
+Autor >> fechaDeDef: unaFecha [
+	fechaDeDef:= unaFecha.
+]
+
 { #category : #'as yet unclassified' }
 Autor >> fechaDeNac [
 
 	^fechaDeNac. 
+]
+
+{ #category : #accessing }
+Autor >> fechaDeNac: unaFecha [
+	fechaDeNac:= unaFecha.
 ]
 
 { #category : #'as yet unclassified' }

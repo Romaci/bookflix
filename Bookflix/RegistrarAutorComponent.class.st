@@ -1,3 +1,7 @@
+"
+//SI NO DETERMINO FECHA DE DEFUNCION, ME GUARDA LA FECHA DE HOY.
+
+"
 Class {
 	#name : #RegistrarAutorComponent,
 	#superclass : #AbstractAdminComponent,
@@ -150,5 +154,7 @@ self nombre ='' ifTrue: [errorMessage add:'*El campo Nombre es requerido.'].
 
 { #category : #validating }
 RegistrarAutorComponent >> verificarFN [ 
-self fechaDeNac > self fechaDeDef ifTrue: [ errorMessage add:'*La Fecha de Defunción no puede ser anterior a la de nacimiento']
+self fechaDeNac > self fechaDeDef ifTrue: [ errorMessage add:'*La Fecha de Defunción no puede ser anterior a la de nacimiento'].
+(self fechaDeDef= Date today)
+	ifTrue:[self fechaDeDef: nil.]
 ]
