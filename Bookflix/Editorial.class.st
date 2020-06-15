@@ -2,7 +2,8 @@ Class {
 	#name : #Editorial,
 	#superclass : #Object,
 	#instVars : [
-		'nombre'
+		'nombre',
+		'libros'
 	],
 	#category : #'Bookflix-model'
 }
@@ -11,6 +12,26 @@ Class {
 Editorial class >> nombre:unNombre [
 
 ^self new nombre: unNombre
+]
+
+{ #category : #'as yet unclassified' }
+Editorial >> agregarLibro: unLibro [
+	libros add:unLibro
+]
+
+{ #category : #'as yet unclassified' }
+Editorial >> eliminarLibro:unLibro [
+	libros remove: unLibro.
+]
+
+{ #category : #accessing }
+Editorial >> libros [
+	^libros
+]
+
+{ #category : #accessing }
+Editorial >> nombre [
+	^nombre
 ]
 
 { #category : #accessing }
