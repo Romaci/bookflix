@@ -120,7 +120,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 							aCanvas anchor
 								callback: [ self irEliminarLibro ];
 								with: [ aCanvas text: 'Eliminar' ] ]].].
-				(unLibro sinopsis =' ')
+				(unLibro sinopsis ='')
 					ifFalse: [
 						aCanvas div
 							style:'padding: 1.5em;';
