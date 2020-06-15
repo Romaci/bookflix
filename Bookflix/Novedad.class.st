@@ -16,9 +16,9 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Novedad class >> titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis trailer: unTrailer [
+Novedad class >> titulo: unTitulo autor: unAutor genero:unGenero editorial: unaEditorial isbn: unIsbn [
 
-^self new titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis trailer: unTrailer.
+^self new titulo: unTitulo autor: unAutor genero:unGenero editorial: unaEditorial isbn: unIsbn.
 ]
 
 { #category : #accessing }
@@ -108,13 +108,13 @@ Novedad >> titulo: unTitulo [
 ]
 
 { #category : #'as yet unclassified' }
-Novedad >> titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis trailer: unTrailer [
-
+Novedad >> titulo: unTitulo autor: unAutor genero:unGenero editorial: unaEditorial isbn: unIsbn [
+	
 	titulo:= unTitulo.
 	autor:= unAutor.
-	portada:= unaPortada.
-	sinopsis:= unaSinopsis.
-	trailer:= unTrailer.
+	genero:= unGenero.
+	editorial:= unaEditorial.
+	isbn:= unIsbn.
 ]
 
 { #category : #accessing }
