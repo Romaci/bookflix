@@ -213,6 +213,11 @@ SistemaBookflix >> libros [
 	^libros
 ]
 
+{ #category : #accessing }
+SistemaBookflix >> novedades [
+	^novedades
+]
+
 { #category : #'as yet unclassified' }
 SistemaBookflix >> obtenerListadoAutores [
 
