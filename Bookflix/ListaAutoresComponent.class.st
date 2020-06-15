@@ -57,14 +57,14 @@ ListaAutoresComponent >> renderContentOn: aCanvas [
 							aCanvas tableData: each apellido.
 							aCanvas tableData: each fechaDeNac.
 							aCanvas tableData: each fechaDeDef.
-							aCanvas tableData
+							"aCanvas tableData
 							with:[aCanvas anchor
 								callback:[self irModificar: each];
-								with:'Modificar'.
+								with:'Modificar'.]."
 							aCanvas tableData
 							with:[	
 							aCanvas anchor
 								callback:[self irEliminar: each];
 								with:'Eliminar'].]
-							.] ] ]]]
+							.] ] ]]
 ]
