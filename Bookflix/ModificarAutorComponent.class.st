@@ -125,10 +125,10 @@ ModificarAutorComponent >> nombre: unNomb [
 { #category : #'as yet unclassified' }
 ModificarAutorComponent >> registrar [
 	self isValid
-		ifTrue: [ self autor nombre: self nombre.
-					self autor apellido: self apellido.
-					self autor fechaDeNac: self fechaDeNac.
-					self autor fechaDeDef: self fechaDeDef.
+		ifTrue: [ (self autor) nombre: self nombre.
+					(self autor) apellido: self apellido.
+					(self autor) fechaDeNac: self fechaDeNac.
+					(self autor) fechaDeDef: self fechaDeDef.
 					self successMessage: true.
 			 ].
 
