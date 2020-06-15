@@ -122,6 +122,12 @@ SistemaBookflix >> eliminarLibro: unLibro [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> eliminarNovedad: unaNovedad [
+
+	novedades remove: unaNovedad.
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> estaRegistradoAutor: nomb apellido: apell fNac: fN fDef: fD [
 
 

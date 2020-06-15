@@ -20,7 +20,7 @@ DetalleNovedadComponent >> initialize [
 
 { #category : #'as yet unclassified' }
 DetalleNovedadComponent >> irEliminarNovedad [
-	self call:( (MensajeConfirmacionComponent  new ) libro: self libro ).
+	self call:( (MensajeConfirmacionNovComponent  new ) novedad: novedad ).
 	self answer
 ]
 
