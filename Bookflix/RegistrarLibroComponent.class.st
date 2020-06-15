@@ -46,7 +46,9 @@ editorial:= self model editoriales detect:[:each|each nombre = unaEditorial].
 { #category : #accessing }
 RegistrarLibroComponent >> formularioRegistro: aCanvas [
 	aCanvas horizontalRule
-		with: [ aCanvas div
+		with: [ 
+			aCanvas heading:'Dar de alta Libro'.
+			aCanvas div
 				id: 'formLogin';
 				with: [ aCanvas
 						form: [ aCanvas
