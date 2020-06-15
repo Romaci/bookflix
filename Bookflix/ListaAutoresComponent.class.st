@@ -16,12 +16,9 @@ ListaAutoresComponent >> irEliminar: unAutor [
 ]
 
 { #category : #'as yet unclassified' }
-ListaAutoresComponent >> irEliminarAutor [
-
-]
-
-{ #category : #'as yet unclassified' }
-ListaAutoresComponent >> irModificarAutor [
+ListaAutoresComponent >> irModificar: unAutor [
+	
+self call: ((ModificarAutorComponent new)autor: unAutor)
 ]
 
 { #category : #'as yet unclassified' }
@@ -62,7 +59,7 @@ ListaAutoresComponent >> renderContentOn: aCanvas [
 							aCanvas tableData: each fechaDeDef.
 							aCanvas tableData
 							with:[aCanvas anchor
-								callback:["irModificar"];
+								callback:[self irModificar: each];
 								with:'Modificar'.
 							aCanvas tableData
 							with:[	
