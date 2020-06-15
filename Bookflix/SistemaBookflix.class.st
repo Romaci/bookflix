@@ -42,18 +42,12 @@ SistemaBookflix >> autores [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> cargarNovedad:unaImagen conNombreClave:unNombreClave [
+SistemaBookflix >> cargarNovedad: unTitulo autor: unAutor genero:unGenero editorial: unaEditorial isbn: unIsbn [
+|aux|
 
-	|ok |
-	ok:=false.
-	
-	"Verifico que no este ya cargado en el sistema la Novedad por dar de alta"
-	(novedades anySatisfy:[:novedad | novedad nombreClave   = unNombreClave])
-	ifFalse: [novedades add: (Editorial imagen: unaImagen  clave: unNombreClave  ).
-		ok:=true].
-	
-	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia novedad"
-	^ok.
+	aux:= Novedad titulo: unTitulo autor: unAutor genero:unGenero editorial: unaEditorial isbn: unIsbn.
+	self novedades add: aux.
+	^aux.
 ]
 
 { #category : #accessing }
