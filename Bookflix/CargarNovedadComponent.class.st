@@ -149,10 +149,12 @@ CargarNovedadComponent >> portada: unaPortada [
 
 { #category : #'as yet unclassified' }
 CargarNovedadComponent >> registrar [
-
-self model cargarNovedad: file conNombreClave: nombreClave . 
-    
-self answer
+	self isValid
+		ifTrue: [ (self model
+				cargarNovedad: self file conNombreClave:self nombreClave   titulo:self titulo   autor:self autor  sinopsis:self sinopsis ).
+			self successMessage: true ].
+	
+	^ self
 ]
 
 { #category : #rendering }
