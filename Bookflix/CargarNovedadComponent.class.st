@@ -67,25 +67,19 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 										with: self titulo ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Autor: '.
-									aCanvas select
+									aCanvas textInput
 										callback: [ :valor | self autor: valor ];
-										list: (self model autores collect: [ :a | a nombre , ' ' , a apellido ]);
-										selected: self autor;
 										with: self autor ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Editorial: '.
-									aCanvas select
-										callback: [ :valor | self editorial: valor ];
-										list: (self model editoriales collect: [ :e | e nombreEditorial ]);
-										selected: self editorial;
+									aCanvas textInput
+										callback: [ :valor | self editorial:  valor ];
 										with: self editorial ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Generos: '.
-									aCanvas select
+									aCanvas textInput
 										callback: [ :valor | self genero: valor ];
-										list: (self model generos collect: [ :g | g nombreGenero ]);
-										selected: self genero;
-										with: '' ].
+										with: self genero ].
 							aCanvas
 								paragraph: [ aCanvas label: 'ISBM: '.
 									aCanvas numberInput
@@ -123,6 +117,15 @@ CargarNovedadComponent >> genero: unGenero [
 	genero:= unGenero 
 ]
 
+{ #category : #testing }
+CargarNovedadComponent >> isValid [
+self errorMessage  removeAll.
+self successMessage: false.
+		self verificarISBM.
+		self verificarTitulo.
+     ^ errorMessage isEmpty.
+]
+
 { #category : #accessing }
 CargarNovedadComponent >> isbn [ 
 	^isbn.
@@ -151,7 +154,7 @@ CargarNovedadComponent >> portada: unaPortada [
 CargarNovedadComponent >> registrar [
 	self isValid
 		ifTrue: [ (self model
-				cargarNovedad: self file conNombreClave:self nombreClave   titulo:self titulo   autor:self autor  sinopsis:self sinopsis ).
+				cargarNovedad: self titulo autor: self autor genero:self genero editorial: self editorial isbn: self isbn ).
 			self successMessage: true ].
 	
 	^ self
@@ -197,4 +200,20 @@ CargarNovedadComponent >> upload:aFile [
 portada:=aFile. 
 
 
+]
+
+{ #category : #validating }
+CargarNovedadComponent >> verificarISBM [
+self isbn ='' ifTrue: [errorMessage add:'*El campo ISBM es requerido.']
+ifFalse:[
+	(self model estaRegistradoLibro: self isbn)
+		ifNotNil: [ errorMessage
+				add: '*El Libro con el ISBN: ',self isbn,' ya se encuentra registrado en el sistema'.
+			]]
+]
+
+{ #category : #validating }
+CargarNovedadComponent >> verificarTitulo [
+
+	self titulo ='' ifTrue: [errorMessage add:'*El campo Título es requerido.'].
 ]
