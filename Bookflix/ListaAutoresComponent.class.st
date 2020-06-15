@@ -1,12 +1,6 @@
 Class {
 	#name : #ListaAutoresComponent,
 	#superclass : #AbstractAdminComponent,
-	#instVars : [
-		'nombre',
-		'apellido',
-		'fechaNac',
-		'fechaDef'
-	],
 	#category : #'Bookflix-UI'
 }
 
@@ -28,33 +22,38 @@ ListaAutoresComponent >> model [
 ]
 
 { #category : #rendering }
-ListaAutoresComponent >> renderAutor:unAutor On:aCanvas [
+ListaAutoresComponent >> renderContentOn: aCanvas [
+	self titleTop: aCanvas.
+	aCanvas div
+	class: 'centrar';
+	with:[
+	aCanvas table
+		with: [ aCanvas tableHead
+				with: [ aCanvas tableHeading: 'Nombre'.
+					aCanvas tableHeading: 'Apellido'.
+					aCanvas tableHeading: 'Fecha de Nacimiento'.
+					aCanvas tableHeading: 'Fecha de Defunción'.
+					aCanvas tableHeading.
+					aCanvas tableHeading.
+					].
 
-aCanvas horizontalRule.
-
-"aCanvas 
-	heading: [ aCanvas anchor
-						callback: [ self irDetalleAutor:unaPreg ];
-						with: [aCanvas text: unaPreg getTitulo asString ].].
-					aCanvas 
-	paragraph: [ aCanvas text: unaPreg getTexto]."
-	
-
-									
-				aCanvas text: 'Nombre de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor nombre    ].  
-				aCanvas text: 'Apellido de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor apellido   ].  
-				aCanvas text: 'Fecha de nacimiento de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor fechaDeNac ].  
-				aCanvas text: 'Fecha de defunción de autor '. aCanvas anchor callback: [ '' ]; with: [ aCanvas text: unAutor fechaDeDef ].  
-	
-]
-
-{ #category : #rendering }
-ListaAutoresComponent >> renderContentOn: aCanvas. [
-
-self titleTop: aCanvas.
-aCanvas break. 
-	aCanvas
-		table: [  (self model obtenerListadoAutores) do:[:each| self renderAutor:each On:aCanvas]]. 
-		
-
+			aCanvas tableBody
+			with:[	
+			self model autores
+				do: [ :each | 
+					aCanvas tableRow
+						with: [ aCanvas tableData: each nombre.
+							aCanvas tableData: each apellido.
+							aCanvas tableData: each fechaDeNac.
+							aCanvas tableData: each fechaDeDef.
+							aCanvas tableData
+							with:[aCanvas anchor
+								callback:["irModificar"];
+								with:'Modificar'.
+							aCanvas tableData
+							with:[	
+							aCanvas anchor
+								callback:["irEliminar"];
+								with:'Eliminar'].]
+							.] ] ]]]
 ]

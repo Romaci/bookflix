@@ -79,7 +79,16 @@ AbstractAdminComponent >> mensajes: aCanvas de: elem [
 { #category : #hooks }
 AbstractAdminComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
-	
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 	button { background-color: darkblue; border: none; color: white; padding: 10px 24px; text-align: 	center; text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  	border-radius: 8px; -webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
 	button:hover {background-color: black; color: white; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24), 0 	17px 50px 0 	rgba(0,0,0,0.19);}
 		a:link, a:visited, a:active {
@@ -115,7 +124,8 @@ display: flex; flex-direction: column;
 		
 	.panel {  padding: 40px; box-shadow: 0 6px 10px 0 rgba(0,0,0,0.24)  }
 		
-	
+	.centrar{align-items: center;
+    justify-content: center;}
 	#formLogin { display: flex; flex-direction: column; align-items: center; justify-content: center;  }
 	
 	#mensajeExito{color:green}

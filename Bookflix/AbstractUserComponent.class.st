@@ -40,7 +40,18 @@ aCanvas div
 { #category : #hooks }
 AbstractUserComponent >> style [
 	^ ' body { font-family: arial; text-decoration: strong; padding: 5px 20px 20px 20px; }
-	
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+	.centrar{align-items: center;
+    justify-content: center;}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 	button { background-color: darkred; border: none; color: white; padding: 10px 24px; text-align: center; 	text-decoration: 	none; display: inline-block; font-size: 16px; margin: 4px 2px;  border-radius: 8px; 	-webkit-transition-duration: 0.4s; 	transition-duration: 0.4s; cursor: pointer;}
 		.card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
