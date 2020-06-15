@@ -23,7 +23,7 @@ RegistrarLibroComponent >> autor [
 { #category : #accessing }
 RegistrarLibroComponent >> autor:unAutor [
 
-autor:=unAutor asString .
+autor:=self model autores detect:[:each|each nombreYapellido = unAutor].
 ]
 
 { #category : #'as yet unclassified' }
@@ -40,7 +40,7 @@ RegistrarLibroComponent >> editorial [
 { #category : #accessing }
 RegistrarLibroComponent >> editorial:unaEditorial [
 
-editorial:=unaEditorial.
+editorial:= self model editoriales detect:[:each|each nombre = unaEditorial].
 ]
 
 { #category : #accessing }
@@ -104,7 +104,7 @@ RegistrarLibroComponent >> genero [
 { #category : #accessing }
 RegistrarLibroComponent >> genero:unGenero [
 
-genero:=unGenero .
+genero:=self model generos detect:[:each|each nombre = unGenero] .
 ]
 
 { #category : #initialization }
@@ -154,13 +154,15 @@ RegistrarLibroComponent >> model [
 
 { #category : #'as yet unclassified' }
 RegistrarLibroComponent >> registrar: aCanvas [
+|unLibro|
 	self isValid
-		ifTrue: [ (self model
+		ifTrue: [ unLibro:=self model
 				registrarLibroConTitulo: self titulo
 				de: self autor
 				editadoPor: self editorial
 				genero: self genero
-				isbn: self isbn) sinopsis: self sinopsis.
+				isbn: self isbn.
+				unLibro sinopsis: self sinopsis.
 			self successMessage: true ].
 	self titulo: nil.
 	self isbn: nil.

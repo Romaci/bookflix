@@ -11,6 +11,20 @@ self answer .
 ]
 
 { #category : #'as yet unclassified' }
+ListaAutoresComponent >> irEliminar: unAutor [
+	self call: ((MensajeConfirmacionAutorComponent new) autor: unAutor)
+]
+
+{ #category : #'as yet unclassified' }
+ListaAutoresComponent >> irEliminarAutor [
+
+]
+
+{ #category : #'as yet unclassified' }
+ListaAutoresComponent >> irModificarAutor [
+]
+
+{ #category : #'as yet unclassified' }
 ListaAutoresComponent >> irRegistrarAutor [
 	self call: (RegistrarAutorComponent  new ).
 	"self answer ."
@@ -53,7 +67,7 @@ ListaAutoresComponent >> renderContentOn: aCanvas [
 							aCanvas tableData
 							with:[	
 							aCanvas anchor
-								callback:["irEliminar"];
+								callback:[self irEliminar: each];
 								with:'Eliminar'].]
 							.] ] ]]]
 ]

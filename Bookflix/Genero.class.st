@@ -14,6 +14,11 @@ Genero class >> nombre:unNom [
 ]
 
 { #category : #accessing }
+Genero >> nombre [ 
+	^nombre.
+]
+
+{ #category : #accessing }
 Genero >> nombre:unNombre [
 
 nombre:=unNombre . 

@@ -115,8 +115,15 @@ SistemaBookflix >> editoriales [
 ]
 
 { #category : #'as yet unclassified' }
+SistemaBookflix >> eliminarAutor: unAutor [
+	autores remove: unAutor.
+]
+
+{ #category : #'as yet unclassified' }
 SistemaBookflix >> eliminarLibro: unLibro [
 	
+	unLibro editorial eliminarLibro: unLibro.
+	unLibro autor eliminarLibro: unLibro.
 	libros remove: unLibro.
 ]
 
@@ -243,7 +250,8 @@ SistemaBookflix >> registrarLibroConTitulo:unTitulo de:unAutor editadoPor:unaEdi
 |unLibro |
 
  unLibro:= Libro libroConTitulo: unTitulo de: unAutor editadoPor: unaEditorial genero: unGenero isbn: unIsbn. 
-
+unAutor agregarLibro: unLibro.
+unaEditorial agregarLibro: unLibro.
 libros add:unLibro. 
 
 ^unLibro

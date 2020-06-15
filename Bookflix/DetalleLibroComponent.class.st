@@ -104,11 +104,11 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 						aCanvas paragraph
 						style: 'margin-top:1px
 						';
-						with:'por ',unLibro autor.
+						with:'por ',unLibro autor nombreYapellido.
 						aCanvas paragraph
 						style:'background-color: rgba(0,0,0,.3); border: 5px solid transparent; border-radius: 2px; 				display: inline-block;font-size: 1em;margin: 0 5px 5px auto;';
-						with:unLibro genero.
-						aCanvas paragraph:'Editorial: ', unLibro editorial.
+						with:unLibro genero nombre.
+						aCanvas paragraph:'Editorial: ', unLibro editorial nombre.
 						aCanvas paragraph:'ISBN: ', unLibro isbn.
 						].
 			   aCanvas div

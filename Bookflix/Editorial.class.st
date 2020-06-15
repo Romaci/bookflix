@@ -24,6 +24,11 @@ Editorial >> eliminarLibro:unLibro [
 	libros remove: unLibro.
 ]
 
+{ #category : #initialization }
+Editorial >> initialize [
+	libros:= OrderedCollection new.
+]
+
 { #category : #accessing }
 Editorial >> libros [
 	^libros

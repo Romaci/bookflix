@@ -73,6 +73,11 @@ Autor >> fechaDeNacimiento [
 	^fechaDeNac. 
 ]
 
+{ #category : #initialization }
+Autor >> initialize [
+	libros:= OrderedCollection new.
+]
+
 { #category : #accessing }
 Autor >> libros [
 	^libros
@@ -92,5 +97,5 @@ Autor >> nombre: unNombre [
 Autor >> nombreYapellido [
 
 
-^(nombre,apellido)
+^(nombre,' ',apellido)
 ]

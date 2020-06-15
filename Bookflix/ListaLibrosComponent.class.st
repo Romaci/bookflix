@@ -61,7 +61,7 @@ ListaLibrosComponent >> renderLibro:unLibro On:aCanvas [
 					with: unLibro titulo.
 					aCanvas paragraph 
 					style: 'font-style: italic';
-					with:unLibro autor.
+					with:unLibro autor nombreYapellido .
 					]]].
 		
 				

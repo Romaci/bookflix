@@ -23,7 +23,7 @@ ModificarLibroComponent >> autor [
 { #category : #accessing }
 ModificarLibroComponent >> autor:unAutor [
 
-autor:=unAutor asString .
+autor:=self model autores detect:[:each|each nombreYapellido = unAutor].
 ]
 
 { #category : #'as yet unclassified' }
@@ -40,7 +40,7 @@ ModificarLibroComponent >> editorial [
 { #category : #accessing }
 ModificarLibroComponent >> editorial:unaEditorial [
 
-editorial:=unaEditorial.
+editorial:= self model editoriales detect:[:each|each nombre = unaEditorial].
 ]
 
 { #category : #accessing }
@@ -103,8 +103,7 @@ ModificarLibroComponent >> genero [
 
 { #category : #accessing }
 ModificarLibroComponent >> genero:unGenero [
-
-genero:=unGenero .
+genero:=self model generos detect:[:each|each nombre = unGenero] .
 ]
 
 { #category : #initialization }
