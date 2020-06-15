@@ -16,6 +16,11 @@ ListaLibrosComponent >> entrarLibro:unLibro [
 ]
 
 { #category : #'as yet unclassified' }
+ListaLibrosComponent >> irModificar: unAutor [
+"FALTA IMPLEMENTAR"
+]
+
+{ #category : #'as yet unclassified' }
 ListaLibrosComponent >> irRegistrarLibro [
 
 
