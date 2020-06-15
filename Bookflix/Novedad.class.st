@@ -4,9 +4,13 @@ Class {
 	#instVars : [
 		'titulo',
 		'autor',
+		'genero',
+		'editorial',
 		'portada',
 		'sinopsis',
-		'trailer'
+		'trailer',
+		'fechaDePublicacion',
+		'isbn'
 	],
 	#category : #'Bookflix-model'
 }
@@ -27,6 +31,46 @@ Novedad >> autor [
 Novedad >> autor: unAutor [
 	
 	autor:= unAutor.
+]
+
+{ #category : #accessing }
+Novedad >> editorial [ 
+	^editorial
+]
+
+{ #category : #accessing }
+Novedad >> editorial: unaEditorial [
+	editorial := unaEditorial 
+]
+
+{ #category : #accessing }
+Novedad >> fechaDePublicacion [ 
+	^fechaDePublicacion 
+]
+
+{ #category : #accessing }
+Novedad >> fechaDePublicacion: unaFecha [
+	fechaDePublicacion :=unaFecha.
+]
+
+{ #category : #accessing }
+Novedad >> genero [ 	
+	^genero 
+]
+
+{ #category : #accessing }
+Novedad >> genero: unGenero [
+	genero:= unGenero.
+]
+
+{ #category : #accessing }
+Novedad >> isbn [ 
+	^isbn
+]
+
+{ #category : #accessing }
+Novedad >> isbn: unIsbn [
+	isbn:= unIsbn 
 ]
 
 { #category : #accessing }
