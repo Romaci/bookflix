@@ -6,15 +6,17 @@ Class {
 		'autor',
 		'portada',
 		'sinopsis',
-		'trailer'
+		'trailer',
+		'publicada',
+		'nombreClave'
 	],
 	#category : #'Bookflix-model'
 }
 
 { #category : #'as yet unclassified' }
-Novedad class >> titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis trailer: unTrailer [
+Novedad class >> titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis unNombreClave:nombreClave [
 
-^self new titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis trailer: unTrailer.
+^self new titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis unNombreClave:nombreClave
 ]
 
 { #category : #accessing }
@@ -41,6 +43,11 @@ Novedad >> portada: unaPortada [
 ]
 
 { #category : #accessing }
+Novedad >> publicada [
+^publicada
+]
+
+{ #category : #accessing }
 Novedad >> sinopsis [
 	^sinopsis.
 ]
@@ -64,13 +71,14 @@ Novedad >> titulo: unTitulo [
 ]
 
 { #category : #'as yet unclassified' }
-Novedad >> titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis trailer: unTrailer [
+Novedad >> titulo: unTitulo autor: unAutor portada: unaPortada sinopsis: unaSinopsis unNombreClave: unNombreClave [
 
 	titulo:= unTitulo.
 	autor:= unAutor.
 	portada:= unaPortada.
 	sinopsis:= unaSinopsis.
-	trailer:= unTrailer.
+	publicada:=false.
+	nombreClave:=unNombreClave
 ]
 
 { #category : #accessing }

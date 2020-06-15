@@ -42,14 +42,29 @@ SistemaBookflix >> autores [
 ]
 
 { #category : #'as yet unclassified' }
-SistemaBookflix >> cargarNovedad:unaImagen conNombreClave:unNombreClave [
+SistemaBookflix >> cargarNovedad:unaImagen conNombreClave:unNombreClave titulo: unTitulo autor: unAutor sinopsis: unaSinopsis [
 
 	|ok |
 	ok:=false.
 	
 	"Verifico que no este ya cargado en el sistema la Novedad por dar de alta"
 	(novedades anySatisfy:[:novedad | novedad nombreClave   = unNombreClave])
-	ifFalse: [novedades add: (Editorial imagen: unaImagen  clave: unNombreClave  ).
+	ifFalse: [novedades add: (Novedad titulo: unTitulo autor: unAutor portada: unaImagen sinopsis: unaSinopsis unNombreClave:unNombreClave).
+		ok:=true].
+	
+	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia novedad"
+	^ok.
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> cargarNovedad:unaImagen conNombreClave:unNombreClave titulo: unTitulo autor: unAutor sinopsis: unaSinopsis trailer: unTrailer [ 
+
+	|ok |
+	ok:=false.
+	
+	"Verifico que no este ya cargado en el sistema la Novedad por dar de alta"
+	(novedades anySatisfy:[:novedad | novedad nombreClave   = unNombreClave])
+	ifFalse: [novedades add: (Novedad titulo: unTitulo autor: unAutor portada: unaImagen sinopsis: unaSinopsis unNombreClave:unNombreClave).
 		ok:=true].
 	
 	"Devuelvo boolean para poder avisar en pantalla desde UI si fue satisfactoria la carga o si ya existia novedad"
@@ -216,6 +231,11 @@ SistemaBookflix >> obtenerListadoAutores [
 SistemaBookflix >> obtenerListadoLibros [
 
 ^libros
+]
+
+{ #category : #'as yet unclassified' }
+SistemaBookflix >> obtenerListadoNovedades [
+^novedades
 ]
 
 { #category : #'as yet unclassified' }

@@ -28,6 +28,10 @@ super initialize
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irAdministrarNovedades [
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irCargarNovedad [
 
 
@@ -52,8 +56,13 @@ HomeAdminComponent >> irListaDeAutores [
 
 { #category : #'as yet unclassified' }
 HomeAdminComponent >> irListaDeLibros [
-	self call:((ListaLibrosComponent new )).
+	self call:(ListaLibrosComponent new ).
 
+]
+
+{ #category : #'as yet unclassified' }
+HomeAdminComponent >> irListaDeNovedades [
+	self call:(ListaNovedadesComponent new ).
 ]
 
 { #category : #'as yet unclassified' }
@@ -114,9 +123,7 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						aCanvas anchor
 						callback: [ self irRegistrarLibro  ];
 						with: [ aCanvas button with: 'Dar de alta Libro' ].
-						
-						aCanvas break. 
-						
+	
 						aCanvas anchor
 						callback: [ self irCargarNovedad  ];
 						with: [ aCanvas button with: 'Cargar Novedad' ].
@@ -131,7 +138,11 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						callback: [ self irListaDeAutores  ];
 						with: [ aCanvas button with: 'Listado de autores' ].
 						
-						
+									aCanvas anchor
+						callback: [ self irListaDeNovedades ];
+						with: [ aCanvas button with: 'Listado de novedades' ].
+
+				
 						 ]
 ]
 
