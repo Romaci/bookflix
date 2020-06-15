@@ -57,6 +57,15 @@ HomeAdminComponent >> irListaDeLibros [
 ]
 
 { #category : #'as yet unclassified' }
+HomeAdminComponent >> irListaDeNovedades [
+
+
+	self call: (ListaNovedadesComponent   new ).
+	"self answer ."
+
+]
+
+{ #category : #'as yet unclassified' }
 HomeAdminComponent >> irRegistrarAutor [
 
 
@@ -130,7 +139,9 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						aCanvas anchor
 						callback: [ self irListaDeAutores  ];
 						with: [ aCanvas button with: 'Listado de autores' ].
-						
+						aCanvas anchor
+						callback: [ self irListaDeNovedades ];
+						with: [ aCanvas button with: 'Listado de Novedades' ].
 						
 						 ]
 ]

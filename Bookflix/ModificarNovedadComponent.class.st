@@ -1,5 +1,5 @@
 Class {
-	#name : #CargarNovedadComponent,
+	#name : #ModificarNovedadComponent,
 	#superclass : #AbstractAdminComponent,
 	#instVars : [
 		'titulo',
@@ -10,53 +10,54 @@ Class {
 		'sinopsis',
 		'trailer',
 		'fechaDePublicacion',
-		'isbn'
+		'isbn',
+		'novedad'
 	],
 	#category : #'Bookflix-UI'
 }
 
 { #category : #accessing }
-CargarNovedadComponent >> autor [ 	
+ModificarNovedadComponent >> autor [ 	
 	^autor
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> autor: unAutor [
+ModificarNovedadComponent >> autor: unAutor [
 	autor:=unAutor.
 ]
 
 { #category : #'as yet unclassified' }
-CargarNovedadComponent >> cancelar:aCanvas [
+ModificarNovedadComponent >> cancelar:aCanvas [
 self answer .
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> editorial [
+ModificarNovedadComponent >> editorial [
 	^editorial
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> editorial: unaEditorial [
+ModificarNovedadComponent >> editorial: unaEditorial [
 
 	editorial:= unaEditorial 
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> fechaDePublicacion [ 
+ModificarNovedadComponent >> fechaDePublicacion [ 
 
 	^fechaDePublicacion 
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> fechaDePublicacion: unaFecha [
+ModificarNovedadComponent >> fechaDePublicacion: unaFecha [
 	fechaDePublicacion := unaFecha.
 ]
 
 { #category : #'as yet unclassified' }
-CargarNovedadComponent >> formularioNovedad: aCanvas [
+ModificarNovedadComponent >> formularioNovedad: aCanvas [
 	aCanvas horizontalRule
 		with: [ 
-			aCanvas heading:'Cargar Novedad'.
+			aCanvas heading:'Modificar Novedad'.
 			aCanvas div
 				id: 'formLogin';
 				with: [ aCanvas
@@ -64,22 +65,22 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 								paragraph: [ aCanvas label: 'Título: '.
 									aCanvas textInput
 										callback: [ :valor | self titulo: valor ];
-										with: self titulo ].
+										with: self novedad titulo ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Autor: '.
 									aCanvas textInput
 										callback: [ :valor | self autor: valor ];
-										with: self autor ].
+										with: self novedad autor ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Editorial: '.
 									aCanvas textInput
 										callback: [ :valor | self editorial:  valor ];
-										with: self editorial ].
+										with: self novedad editorial ].
 							aCanvas
 								paragraph: [ aCanvas label: 'Generos: '.
 									aCanvas textInput
 										callback: [ :valor | self genero: valor ];
-										with: self genero ].
+										with: self novedad genero ].
 							aCanvas
 								paragraph: [ aCanvas label: 'ISBM: '.
 									aCanvas numberInput
@@ -90,7 +91,7 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 								paragraph: [ aCanvas textArea
 										style: 'width:400px; height:300px';
 										callback: [ :valor | self sinopsis: valor ];
-										with: '' ].
+										with: self novedad sinopsis ].
 							aCanvas label
 								for: 'upload';
 								with: 'Elegir la novedad a cargar:   '.
@@ -101,24 +102,24 @@ CargarNovedadComponent >> formularioNovedad: aCanvas [
 							aCanvas break.
 							aCanvas button
 								callback: [ self registrar];
-								with: 'Cargar Novedad'.
+								with: 'Modificar Novedad'.
 							aCanvas button
 								callback: [ self cancelar:aCanvas ];
 								with: 'Cancelar' ] ] ]
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> genero [ 	
+ModificarNovedadComponent >> genero [ 	
 	^genero
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> genero: unGenero [
+ModificarNovedadComponent >> genero: unGenero [
 	genero:= unGenero 
 ]
 
 { #category : #testing }
-CargarNovedadComponent >> isValid [
+ModificarNovedadComponent >> isValid [
 self errorMessage  removeAll.
 self successMessage: false.
 		self verificarISBM.
@@ -127,42 +128,55 @@ self successMessage: false.
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> isbn [ 
+ModificarNovedadComponent >> isbn [ 
 	^isbn.
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> isbn: unIsbn [
+ModificarNovedadComponent >> isbn: unIsbn [
 	isbn:=unIsbn 
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> model [ 
+ModificarNovedadComponent >> model [ 
 ^ SistemaBookflix  soleInstance 
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> portada [ 
+ModificarNovedadComponent >> novedad [
+	^novedad
+	
+]
+
+{ #category : #accessing }
+ModificarNovedadComponent >> novedad: unaNovedad [
+	novedad:= unaNovedad 
+]
+
+{ #category : #accessing }
+ModificarNovedadComponent >> portada [ 
 	^portada.
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> portada: unaPortada [
+ModificarNovedadComponent >> portada: unaPortada [
 ]
 
 { #category : #'as yet unclassified' }
-CargarNovedadComponent >> registrar [
+ModificarNovedadComponent >> registrar [
 	self isValid
-		ifTrue: [ (self model
-				cargarNovedad: self titulo autor: self autor genero:self genero editorial: self editorial isbn: self isbn ) sinopsis: self sinopsis.
-				
+		ifTrue: [ self novedad titulo: self titulo.
+				self novedad autor: self autor.
+				self novedad genero: self genero.
+				self novedad editorial: self editorial.
+				self novedad isbn: self isbn.
+				self novedad sinopsis: self sinopsis.
 			self successMessage: true ].
-	
 	^ self
 ]
 
 { #category : #rendering }
-CargarNovedadComponent >> renderContentOn: aCanvas [
+ModificarNovedadComponent >> renderContentOn: aCanvas [
 self titleTop: aCanvas.
 aCanvas div
 		id: 'formLogin';
@@ -173,30 +187,30 @@ aCanvas div
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> sinopsis [ 
+ModificarNovedadComponent >> sinopsis [ 
 	^sinopsis 
 	
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> sinopsis: unaSinopsis [
+ModificarNovedadComponent >> sinopsis: unaSinopsis [
 
 	sinopsis := unaSinopsis 
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> titulo [ 
+ModificarNovedadComponent >> titulo [ 
 	^titulo
 ]
 
 { #category : #accessing }
-CargarNovedadComponent >> titulo: unTitulo [
+ModificarNovedadComponent >> titulo: unTitulo [
 
 	titulo := unTitulo.
 ]
 
 { #category : #'as yet unclassified' }
-CargarNovedadComponent >> upload:aFile [
+ModificarNovedadComponent >> upload:aFile [
 
 portada:=aFile. 
 
@@ -204,17 +218,18 @@ portada:=aFile.
 ]
 
 { #category : #validating }
-CargarNovedadComponent >> verificarISBM [
-self isbn ='' ifTrue: [errorMessage add:'*El campo ISBM es requerido.']
-ifFalse:[
-	(self model estaRegistradoLibro: self isbn)
-		ifNotNil: [ errorMessage
+ModificarNovedadComponent >> verificarISBM [
+|aux|
+self isbn ='' ifTrue: [self isbn: self novedad isbn].
+aux:=(self model novedades reject:  [:each|each isbn = self novedad isbn]).
+(aux anySatisfy: [:each|each isbn = self isbn])
+		ifTrue: [ errorMessage
 				add: '*El Libro con el ISBN: ',self isbn,' ya se encuentra registrado en el sistema'.
-			]]
+			]
 ]
 
 { #category : #validating }
-CargarNovedadComponent >> verificarTitulo [
+ModificarNovedadComponent >> verificarTitulo [
 
-	self titulo ='' ifTrue: [errorMessage add:'*El campo Título es requerido.'].
+	self titulo ='' ifTrue: [self titulo: novedad titulo].
 ]
