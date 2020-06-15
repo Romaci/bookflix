@@ -65,9 +65,7 @@ ModificarAutorComponent >> formularioRegistro: aCanvas [
 		with: [ aCanvas div
 				id: 'formLogin';
 				with: [ aCanvas
-						form: [ "aCanvas button
-						callback: [ self cancelar: aCanvas ];
-						with: 'Cancelar' ]"
+						form: [  
 							aCanvas
 								paragraph: [ aCanvas label: 'Nombre: '.
 									aCanvas textInput
@@ -125,10 +123,10 @@ ModificarAutorComponent >> nombre: unNomb [
 { #category : #'as yet unclassified' }
 ModificarAutorComponent >> registrar [
 	self isValid
-		ifTrue: [ (self autor) nombre: self nombre.
-					(self autor) apellido: self apellido.
-					(self autor) fechaDeNac: self fechaDeNac.
-					(self autor) fechaDeDef: self fechaDeDef.
+		ifTrue: [ (self autor) nombre:  nombre.
+					(self autor) apellido:  apellido.
+					(self autor) fechaDeNac:  fechaDef.
+					(self autor) fechaDeDef:  fechaNac.
 					self successMessage: true.
 			 ].
 

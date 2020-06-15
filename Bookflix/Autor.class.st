@@ -101,6 +101,7 @@ Autor >> nombre [
 
 { #category : #accessing }
 Autor >> nombre: unNombre [
+	nombre:= unNombre
 ]
 
 { #category : #'as yet unclassified' }
