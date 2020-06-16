@@ -2,8 +2,7 @@ Class {
 	#name : #DetalleNovedadComponent,
 	#superclass : #AbstractAdminComponent,
 	#instVars : [
-		'novedad',
-		'path'
+		'novedad'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -47,13 +46,6 @@ DetalleNovedadComponent >> novedad: unaNovedad [
 	novedad:= unaNovedad.
 ]
 
-{ #category : #accessing }
-DetalleNovedadComponent >> path [
-	((path := novedad isbn > 3) & (novedad < 1))
-		ifTrue: [^ 'portada.jpg' ]
-		ifFalse: [ ^(novedad isbn asString) , '.jpg' ]
-]
-
 { #category : #rendering }
 DetalleNovedadComponent >> renderContentOn: aCanvas [
 
@@ -75,40 +67,36 @@ DetalleNovedadComponent >> renderNovedad: unaNovedad on: aCanvas [
 				with: [ aCanvas image
 						altText: 'Portada';
 						style: 'width:100%;border-radius: 5px 5px 0 0';
-						url: LBFileLibrary / path ].
-				aCanvas div
-					with: [aCanvas heading
-						style:'font-size:20px; margin-bottom:0px';
+						url: LBFileLibrary / 'portada.jpg' ].
+			aCanvas div
+				with: [ aCanvas heading
+						style: 'font-size:20px; margin-bottom:0px';
 						with: unaNovedad titulo.
-						aCanvas paragraph
-						style: 'margin-top:1px
+					aCanvas paragraph
+						style:
+							'margin-top:1px
 						';
-						with:'por ', unaNovedad autor.
-						aCanvas paragraph
-						style:'background-color: rgba(0,0,0,.3); border: 5px solid transparent; border-radius: 2px; 				display: inline-block;font-size: 1em;margin: 0 5px 5px auto;';
-						with:unaNovedad genero.
-						aCanvas paragraph:'Editorial: ', unaNovedad editorial.
-						aCanvas paragraph:'ISBN: ', unaNovedad isbn.
-						].
-			   aCanvas div
-					   with:[aCanvas div
-							with: [ aCanvas anchor
+						with: 'por ' , unaNovedad autor.
+					aCanvas paragraph
+						style:
+							'background-color: rgba(0,0,0,.3); border: 5px solid transparent; border-radius: 2px; 				display: inline-block;font-size: 1em;margin: 0 5px 5px auto;';
+						with: unaNovedad genero.
+					aCanvas paragraph: 'Editorial: ' , unaNovedad editorial.
+					aCanvas paragraph: 'ISBN: ' , unaNovedad isbn ].
+			aCanvas div
+				with: [ aCanvas div
+						with: [ aCanvas anchor
 								callback: [ self irModificarNovedad ];
 								with: [ aCanvas text: 'Modificar' ].
-								
 							aCanvas text: ' | '.
 							aCanvas anchor
 								callback: [ self irEliminarNovedad ];
-								with: [ aCanvas text: 'Eliminar' ] ]].].
-				(unaNovedad sinopsis='')
-					ifFalse: [
-						aCanvas div
-							style:'padding: 1.5em;';
-							with:[ 
-						aCanvas heading
-							style:'font-size:20px';
-							with:'Sinopsis'.
-							aCanvas paragraph: unaNovedad sinopsis ]
-						 ]. 
-		 
+								with: [ aCanvas text: 'Eliminar' ] ] ] ].
+	unaNovedad sinopsis = ''
+		ifFalse: [ aCanvas div
+				style: 'padding: 1.5em;';
+				with: [ aCanvas heading
+						style: 'font-size:20px';
+						with: 'Sinopsis'.
+					aCanvas paragraph: unaNovedad sinopsis ] ]
 ]
