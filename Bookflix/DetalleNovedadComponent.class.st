@@ -2,7 +2,8 @@ Class {
 	#name : #DetalleNovedadComponent,
 	#superclass : #AbstractAdminComponent,
 	#instVars : [
-		'novedad'
+		'novedad',
+		'path'
 	],
 	#category : #'Bookflix-UI'
 }
@@ -46,6 +47,13 @@ DetalleNovedadComponent >> novedad: unaNovedad [
 	novedad:= unaNovedad.
 ]
 
+{ #category : #accessing }
+DetalleNovedadComponent >> path [
+	((path := novedad isbn > 3) & (novedad < 1))
+		ifTrue: [^ 'portada.jpg' ]
+		ifFalse: [ ^(novedad isbn asString) , '.jpg' ]
+]
+
 { #category : #rendering }
 DetalleNovedadComponent >> renderContentOn: aCanvas [
 
@@ -67,9 +75,9 @@ DetalleNovedadComponent >> renderNovedad: unaNovedad on: aCanvas [
 				with: [ aCanvas image
 						altText: 'Portada';
 						style: 'width:100%;border-radius: 5px 5px 0 0';
-						url: LBFileLibrary / 'portada.jpg' ].
+						url: LBFileLibrary / path ].
 				aCanvas div
-					with: [ aCanvas heading
+					with: [aCanvas heading
 						style:'font-size:20px; margin-bottom:0px';
 						with: unaNovedad titulo.
 						aCanvas paragraph
@@ -92,7 +100,7 @@ DetalleNovedadComponent >> renderNovedad: unaNovedad on: aCanvas [
 							aCanvas anchor
 								callback: [ self irEliminarNovedad ];
 								with: [ aCanvas text: 'Eliminar' ] ]].].
-				(unaNovedad sinopsis isNil)
+				(unaNovedad sinopsis='')
 					ifFalse: [
 						aCanvas div
 							style:'padding: 1.5em;';
