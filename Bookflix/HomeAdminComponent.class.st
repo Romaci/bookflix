@@ -124,7 +124,7 @@ HomeAdminComponent >> renderContentOn: aCanvas [
 						callback: [ self irRegistrarLibro  ];
 						with: [ aCanvas button with: 'Dar de alta Libro' ].
 						
-						aCanvas break. 
+	
 						
 						aCanvas anchor
 						callback: [ self irCargarNovedad  ];

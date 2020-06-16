@@ -75,6 +75,12 @@ DetalleLibroComponent >> modificarTitulo:unLibro [
 self call: (EditarTituloComponent new tituloDe:libro).
 ]
 
+{ #category : #'as yet unclassified' }
+DetalleLibroComponent >> receiveFile: aFile [
+
+libro portada: aFile .
+]
+
 { #category : #rendering }
 DetalleLibroComponent >> renderContentOn: aCanvas [
 
