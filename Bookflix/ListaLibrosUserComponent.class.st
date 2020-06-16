@@ -20,19 +20,10 @@ ListaLibrosUserComponent >> admin: unBoolean [
 ]
 
 { #category : #'as yet unclassified' }
-ListaLibrosUserComponent >> entrarLibro [
-
-
-	self call: (DetalleLibroComponent  new ).
-	"self answer ."
-]
-
-{ #category : #'as yet unclassified' }
 ListaLibrosUserComponent >> entrarLibro:unLibro [
-
-
-	self call: (DetalleLibroUserComponent  new detalleDe:unLibro ).
-	"self answer ."
+self call: (DetalleLibroUserComponent  new detalleDe:unLibro ).
+(self model libros isEmpty)
+	ifTrue:  [ self answer. ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -52,6 +43,8 @@ ListaLibrosUserComponent >> model [
 ListaLibrosUserComponent >> renderContentOn: aCanvas. [
 
 self titleTop: aCanvas.
+(self model libros isEmpty)
+ifTrue:  [aCanvas paragraph: 'No hay libros registrados en el sistema'  ].
 aCanvas div
 with:[aCanvas div
 	class: 'gridCards';
@@ -79,10 +72,9 @@ ListaLibrosUserComponent >> renderLibro:unLibro On:aCanvas [
 					with: unLibro titulo.
 					aCanvas paragraph 
 					style: 'font-style: italic';
-					with:unLibro autor.
+					with:unLibro autor nombreYapellido .
 					]]].
-		
-				
+	
 				
 									
 			"	aCanvas text: 'Titulo del libro:  '. aCanvas anchor callback: [ '' ];  with: [ aCanvas text: unLibro titulo,' '].  

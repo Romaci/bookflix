@@ -25,6 +25,36 @@ Class {
 	#category : #'Bookflix-UI'
 }
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> enderNovedad:unaNovedad On:aCanvas [
+				
+	aCanvas div 
+		class: 'card';
+		with:[ aCanvas anchor
+		callback: [ self entrarNovedad:  unaNovedad];
+		with:[aCanvas image
+				altText: 'Portada';
+				style:'width:100%;border-radius: 5px 5px 0 0';
+				url: LBFileLibrary /'portada.jpg'.
+				aCanvas div
+				class:'container';
+				with:[
+					aCanvas paragraph
+					style:'font-weight: bold';
+					with: unaNovedad titulo.
+					aCanvas paragraph 
+					style: 'font-style: italic';
+					with:unaNovedad autor.
+					]]].
+		
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> entrarNovedad:unaNovedad [
+	self call: ((DetalleNovedadUserComponent new) novedad: unaNovedad).
+
+]
+
 { #category : #initialization }
 HomeComponent >> initialize [ 
 
@@ -57,7 +87,14 @@ HomeComponent >> renderContentOn: aCanvas [
 		with: [ aCanvas button with: 'Ver Datos personales' ].
 	aCanvas anchor
 		callback: [ self irListaDeLibros ];
-		with: [ aCanvas button with: 'Ver listado de libros' ]
+		with: [ aCanvas button with: 'Ver listado de libros' ].
+		(self model novedades isEmpty)
+ifTrue:  [aCanvas paragraph: 'No hay Novedades registradas en el sistema'  ].
+aCanvas paragraph: 'NOVEDADES' .
+aCanvas div
+with:[aCanvas div
+	class: 'gridCards';
+	with:[ (self model novedades) do:[:each| self renderNovedad:each On:aCanvas]]]. 
 	
 ]
 
@@ -74,6 +111,30 @@ aCanvas div
 				with: [ aCanvas anchor
 						callback: [ self logOut  ];
 						with: [ aCanvas button with: 'Cerrar sesión' ] ] ] ].
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> renderNovedad:unaNovedad On:aCanvas [
+				
+	aCanvas div 
+		class: 'card';
+		with:[ aCanvas anchor
+		callback: [ self entrarNovedad:  unaNovedad];
+		with:[aCanvas image
+				altText: 'Portada';
+				style:'width:100%;border-radius: 5px 5px 0 0';
+				url: LBFileLibrary /'portada.jpg'.
+				aCanvas div
+				class:'container';
+				with:[
+					aCanvas paragraph
+					style:'font-weight: bold';
+					with: unaNovedad titulo.
+					aCanvas paragraph 
+					style: 'font-style: italic';
+					with:unaNovedad autor.
+					]]].
+		
 ]
 
 { #category : #'as yet unclassified' }
