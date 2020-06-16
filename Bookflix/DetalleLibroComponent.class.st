@@ -91,6 +91,11 @@ DetalleLibroComponent >> renderContentOn: aCanvas [
 	id:'centrar';
 	with:[
 	self renderLibro: libro on: aCanvas].
+
+"aCanvas form multipart; with: [
+        aCanvas fileUpload
+            callback: [ :value | self receiveFile: value ].
+        aCanvas submitButton: 'Cargar imagen' ]"
 ]
 
 { #category : #rendering }
@@ -102,7 +107,7 @@ DetalleLibroComponent >> renderLibro: unLibro on: aCanvas [
 				with: [ aCanvas image
 						altText: 'Portada';
 						style: 'width:100%;border-radius: 5px 5px 0 0';
-						url: LBFileLibrary / 'portada.jpg' ].
+						url: LBFileLibrary/'portada.jpg'.]. "/unLibro portada fileName"
 				aCanvas div
 					with: [ aCanvas heading
 						style:'font-size:20px; margin-bottom:0px';

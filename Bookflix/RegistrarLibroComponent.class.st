@@ -88,6 +88,7 @@ RegistrarLibroComponent >> formularioRegistro: aCanvas [
 										style:'width:400px; height:300px';
 										callback: [ :valor | self sinopsis: valor ];
 										with: self libro sinopsis .].
+									
 							aCanvas button
 								callback: [ self registrar: aCanvas ];
 								with: 'Registrar libro'.
@@ -152,6 +153,12 @@ RegistrarLibroComponent >> libro: unLibro [
 { #category : #accessing }
 RegistrarLibroComponent >> model [ 
 ^ SistemaBookflix soleInstance 
+]
+
+{ #category : #'as yet unclassified' }
+RegistrarLibroComponent >> receiveFile: aFile [
+
+libro portada: aFile .
 ]
 
 { #category : #'as yet unclassified' }
